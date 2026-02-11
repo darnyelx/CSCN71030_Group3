@@ -1,0 +1,14 @@
+-rootPath
+/Users/darnyelx/Projects/todo_app
+-cmake-output
+-output-file
+/Users/darnyelx/Projects/todo_app/build/.qt/qml_imports/apptodo_app_build.cmake
+-importPath
+/Users/darnyelx/Projects/todo_app/build/todo_app
+-importPath
+/Users/darnyelx/Projects/todo_app/build
+-importPath
+/Users/darnyelx/Qt/6.10.1/macos/qml
+-qrcFiles
+/Users/darnyelx/Projects/todo_app/build/.qt/rcc/qmake_todo_app.qrc
+/Users/darnyelx/Projects/todo_app/build/.qt/rcc/apptodo_app_raw_qml_0.qrc

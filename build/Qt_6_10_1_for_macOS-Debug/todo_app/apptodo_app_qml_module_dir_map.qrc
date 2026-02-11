@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="/todo_app">/Users/darnyelx/Projects/todo_app/build/Qt_6_10_1_for_macOS-Debug/todo_app</file>
+
+  </qresource>
+</RCC>

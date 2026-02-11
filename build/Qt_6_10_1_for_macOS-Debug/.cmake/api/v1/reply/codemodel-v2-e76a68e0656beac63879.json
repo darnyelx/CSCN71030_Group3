@@ -1,0 +1,205 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-125089b2752410879ded.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "todo_app",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "all_aotstats::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_aotstats-Debug-c58ccace737852ce9f5f.json",
+					"name" : "all_aotstats",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint-Debug-70216612485b171864d4.json",
+					"name" : "all_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_json-Debug-37a88dc24f8ddf981071.json",
+					"name" : "all_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_module-Debug-c0b09b49ef5f017797b5.json",
+					"name" : "all_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmltyperegistrations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmltyperegistrations-Debug-9fccff866d5f400c3e17.json",
+					"name" : "all_qmltyperegistrations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apptodo_app::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apptodo_app-Debug-271e8f9d8d129d25ab88.json",
+					"name" : "apptodo_app",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apptodo_app_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apptodo_app_autogen-Debug-83e9865354deddbf3e17.json",
+					"name" : "apptodo_app_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apptodo_app_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apptodo_app_autogen_timestamp_deps-Debug-b0def6a6bdbb1934566d.json",
+					"name" : "apptodo_app_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apptodo_app_copy_qml::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apptodo_app_copy_qml-Debug-a8b45c2fc637b8543214.json",
+					"name" : "apptodo_app_copy_qml",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apptodo_app_copy_res::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apptodo_app_copy_res-Debug-96a29b3243e3965afb87.json",
+					"name" : "apptodo_app_copy_res",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apptodo_app_qmlimportscan::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apptodo_app_qmlimportscan-Debug-13429e99605552b2ed5b.json",
+					"name" : "apptodo_app_qmlimportscan",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apptodo_app_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apptodo_app_qmllint-Debug-1db5a40c2b03e88ef2e9.json",
+					"name" : "apptodo_app_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apptodo_app_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apptodo_app_qmllint_json-Debug-6562026f86c7897f7b53.json",
+					"name" : "apptodo_app_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apptodo_app_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apptodo_app_qmllint_module-Debug-96eb918e5d6709c2535b.json",
+					"name" : "apptodo_app_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "apptodo_app_qmltyperegistration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-apptodo_app_qmltyperegistration-Debug-7f9e1bf30187dec76c2b.json",
+					"name" : "apptodo_app_qmltyperegistration",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "generate_qmlls_build_ini_file::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-generate_qmlls_build_ini_file-Debug-b0c3fd5b358f01bf9020.json",
+					"name" : "generate_qmlls_build_ini_file",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "module_apptodo_app_aotstats_target::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-module_apptodo_app_aotstats_target-Debug-e8a8fcecc9c21883aa21.json",
+					"name" : "module_apptodo_app_aotstats_target",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/darnyelx/Projects/todo_app/build/Qt_6_10_1_for_macOS-Debug",
+		"source" : "/Users/darnyelx/Projects/todo_app"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

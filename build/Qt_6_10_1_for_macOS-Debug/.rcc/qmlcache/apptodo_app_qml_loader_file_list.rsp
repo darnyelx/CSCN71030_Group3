@@ -1,0 +1,5 @@
+--resource
+/Users/darnyelx/Projects/todo_app/build/Qt_6_10_1_for_macOS-Debug/.qt/rcc/qmake_todo_app.qrc
+--resource
+/Users/darnyelx/Projects/todo_app/build/Qt_6_10_1_for_macOS-Debug/.qt/rcc/apptodo_app_raw_qml_0.qrc
+/todo_app/Main.qml
