@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/">
-    <file alias="/todo_app">/Users/darnyelx/Projects/todo_app/build/todo_app</file>
-
-  </qresource>
-</RCC>

@@ -1,6 +1,0 @@
-module todo_app
-typeinfo apptodo_app.qmltypes
-prefer :/todo_app/
-Main 1.0 Main.qml
-depends QtQuick
-
