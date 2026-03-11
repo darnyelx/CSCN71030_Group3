@@ -22,6 +22,12 @@
     <Filter Include="Header Files\Controllers">
       <UniqueIdentifier>{d26c604d-4137-4ae8-8c50-aa4a2b457d5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Controllers">
+      <UniqueIdentifier>{4ac76f06-6d7d-4fc3-9e93-0574a8cc2efc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DB">
+      <UniqueIdentifier>{b8f6a624-5403-493d-8690-80bffe8e5b01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseModel.hpp">
@@ -61,6 +67,12 @@
     </ClCompile>
     <ClCompile Include="AssignmentQueryController.hpp">
       <Filter>Header Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignmentQueryController.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="DB.hpp">
+      <Filter>Header Files\DB</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

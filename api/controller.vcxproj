@@ -133,9 +133,11 @@
   <ItemGroup>
     <ClCompile Include="AssignmentModel.cpp" />
     <ClCompile Include="AssignmentModel.hpp" />
+    <ClCompile Include="AssignmentQueryController.cpp" />
     <ClCompile Include="AssignmentQueryController.hpp" />
     <ClCompile Include="BaseModel.cpp" />
     <ClCompile Include="CourseModel.cpp" />
+    <ClCompile Include="DB.hpp" />
     <ClCompile Include="UserModel.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
