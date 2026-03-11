@@ -131,6 +131,7 @@
     <ClInclude Include="UserModel.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssignmentController.cpp" />
     <ClCompile Include="AssignmentModel.cpp" />
     <ClCompile Include="AssignmentModel.hpp" />
     <ClCompile Include="AssignmentQueryController.cpp" />

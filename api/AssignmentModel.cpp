@@ -1,7 +1,7 @@
 #pragma once
 #include "AssignmentModel.hpp"
 
-Assignment::Assignment(int id, const std::string& title, const std::string& description)
+Assignment::Assignment(int id = -1, const std::string& title = "", const std::string& description = "")
 	: id(id), title(title), description(description) {
 }
 

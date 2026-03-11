@@ -4,3 +4,7 @@
 void BaseModel::save() {
 	
 }
+
+void BaseModel::remove() {
+	
+}
