@@ -5,11 +5,21 @@ project(todo_app VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2)
 
 
 qt_add_executable(apptodo_app
     main.cpp
+        main.cpp
+        view/Controllers/headers/AuthViewController.h
+        view/Controllers/AuthViewController.cpp
+        view/Models/UserViewModel.cpp
+        view/Models/headers/UserViewModel.h
+        api/AuthController.hpp
+        api/AuthController.cpp
+        api/UserModel.hpp
+        api/UserModel.cpp
+
 )
 
 qt_add_qml_module(apptodo_app
@@ -17,6 +27,11 @@ qt_add_qml_module(apptodo_app
     VERSION 1.0
     QML_FILES
         Main.qml
+        view/AssignmentCoordinatorView.qml
+        view/Login.qml
+        view/Store/UserStore.qml
+    RESOURCES
+        view/Store/qmldir
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -32,6 +47,7 @@ set_target_properties(apptodo_app PROPERTIES
 
 target_link_libraries(apptodo_app
     PRIVATE Qt6::Quick
+    PRIVATE Qt6::QuickControls2
 )
 
 include(GNUInstallDirs)

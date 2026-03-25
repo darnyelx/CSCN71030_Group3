@@ -1,5 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <qqmlcontext.h>
+#include <QtQuickControls2/QQuickStyle>
+#include "view/Controllers/headers/AuthViewController.h"
 
 int main(int argc, char *argv[])
 {
@@ -7,6 +10,13 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/todo_app/Main.qml"));
+
+    // do not trigger "style does not support customization" warnings.
+    QQuickStyle::setStyle("Fusion");
+    AuthViewController authViewController;
+    engine.rootContext()->setContextProperty("authViewController", &authViewController);
+
+
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreated,
