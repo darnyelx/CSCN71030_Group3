@@ -40,3 +40,15 @@ Course& Course::setUserId(int user_id) {
 	this->user_id = user_id;
 	return *this;
 }
+
+
+void Course::save()  {}
+void Course::remove() {
+
+}
+
+std::string Course::getTableName()  {
+	return "courses";
+}
+
+void Course::load() {}

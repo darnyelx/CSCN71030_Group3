@@ -1,7 +1,7 @@
 #pragma once
 #include "AssignmentModel.hpp"
 
-Assignment::Assignment(int id = -1, const std::string& title = "", const std::string& description = "")
+Assignment::Assignment(int id, const std::string& title, const std::string& description)
 	: id(id), title(title), description(description) {
 }
 
@@ -56,4 +56,15 @@ Assignment& Assignment::setPriority(int priority) {
 	this->priority = priority;
 	return *this;
 }
+
+void Assignment::save()  {}
+void Assignment::remove() {
+
+}
+
+std::string Assignment::getTableName()  {
+	return "assignments";
+}
+
+void Assignment::load() {}
 

@@ -17,10 +17,11 @@ private:
 	int priority;
 
 public:
-	Assignment(int id, const std::string& title, const std::string& description);
+	Assignment(int id = -1, const std::string& title = "", const std::string& description = "");
 	int getId() const;
 	std::string getTitle() const;
 	std::string getDescription() const;
+	std::string getTableName() override;
 	Assignment& setId(int id);
 	Assignment& setTitle(const std::string& title);
 	Assignment& setDescription(const std::string& description);
@@ -29,5 +30,9 @@ public:
 	Assignment& setDueDate(const std::string& due_date);
 	Assignment& setCourseId(int course_id);
 	Assignment& setPriority(int priority);
+	void save() override;
+	void load();
+	void remove() override;
+
 
 };

@@ -4,6 +4,11 @@ UserModel::UserModel(int id, const std::string& first_name, const std::string& l
 	: id(id), first_name(first_name), last_name(last_name) {
 }
 
+UserModel::UserModel()
+	: id(0), first_name(""), last_name(""), email(""), password("") {
+}
+
+
 int UserModel::getId() const {
 	return id;
 }
@@ -40,4 +45,14 @@ UserModel& UserModel::setPassword(const std::string& password) {
 	this->password = password;
 	return *this;
 }
+std::string UserModel::getTableName()  {
+	return this->tableName;
+}
+
+
+void UserModel::save() {}
+void UserModel::remove() {
+
+}
+
 

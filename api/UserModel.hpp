@@ -13,6 +13,7 @@ private:
 	std::string password;
 public:
 	UserModel(int id, const std::string& first_name, const std::string& last_name);
+	UserModel();
 	int getId() const;
 	std::string getFirstName() const;
 	std::string getLastName() const;
@@ -21,4 +22,7 @@ public:
 	UserModel& setId(int id);
 	UserModel& setEmail(const std::string& email);
 	UserModel& setPassword(const std::string& password);
+	std::string getTableName() override;
+	void save() override;
+	void remove() override;
 };

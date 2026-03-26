@@ -4,9 +4,12 @@
 #include <QtQuickControls2/QQuickStyle>
 #include "view/Controllers/headers/AuthViewController.h"
 #include "view/Models/headers/UserViewModel.h"
+#include "api/DB.hpp"
 
 int main(int argc, char *argv[])
 {
+    DB& instance = DB::getInstance();
+    
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
