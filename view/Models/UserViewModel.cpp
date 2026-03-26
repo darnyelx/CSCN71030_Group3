@@ -41,6 +41,10 @@ QString UserViewModel::email() const
     return m_email;
 }
 
+QString UserViewModel::password() const {
+    return m_password;
+}
+
 void UserViewModel::setId(int id)
 {
     if (m_id == id)
@@ -75,4 +79,12 @@ void UserViewModel::setEmail(const QString& email)
 
     m_email = email;
     emit emailChanged();
+}
+
+void UserViewModel::setPassword(const QString& password) {
+    if (m_password == password) {
+        return;
+    }
+    m_password = password;
+    emit passwordChanged();
 }

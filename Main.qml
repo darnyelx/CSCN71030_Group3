@@ -27,19 +27,19 @@ ApplicationWindow {
     property color yellowDark: "#4A3412"
     property color red: "#EF4444"
 
+
     StackView {
         id: stack
         anchors.fill: parent
-
-        initialItem: Login {
-            stackView: stack
-
-            onLoginRequested: function(email, password) {
-                authViewController.login(email, password)
-            }
-        }
     }
 
+    Component.onCompleted: {
+        Routes.stack = stack
+        Routes.authViewController = authViewController
+
+        const route = Routes.login()
+        // stack.push(route.url, route.props)
+    }
     Connections {
         target: authViewController
 

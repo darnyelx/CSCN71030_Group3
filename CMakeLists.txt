@@ -28,10 +28,13 @@ qt_add_qml_module(apptodo_app
     QML_FILES
         Main.qml
         view/AssignmentCoordinatorView.qml
-        view/Login.qml
+        view/LoginView.qml
         view/Store/UserStore.qml
+        view/RegisterView.qml
+        view/Store/Routes.qml
     RESOURCES
         view/Store/qmldir
+
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

@@ -1,1 +1,2 @@
 singleton UserStore 1.0 UserStore.qml
+singleton Routes 1.0 Routes.qml

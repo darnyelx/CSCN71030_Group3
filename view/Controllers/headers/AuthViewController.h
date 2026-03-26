@@ -14,6 +14,8 @@ public:
     explicit AuthViewController(QObject *parent = nullptr);
 
     Q_INVOKABLE void login(const QString &email, const QString &password);
+    Q_INVOKABLE void registerUser(const UserViewModel &userViewModel);
+
     // Q_INVOKABLE void logout();
 
 signals:

@@ -28,3 +28,28 @@ void AuthViewController::login(const QString &email, const QString &password) {
         emit loginFailed(errorMessage);
     }
 }
+
+void AuthViewController::registerUser(const UserViewModel &userViewModel ) {
+    //do validations
+    if (userViewModel.email().trimmed().length() < 0 || userViewModel.password().trimmed().length() < 0 || userViewModel.firstName().trimmed().length() < 0 || userViewModel.lastName().trimmed().length() < 0 ) {
+        emit loginFailed("Firstname, Lastname, Email and Password is required");
+    }
+    AuthController authController;
+    //convert email and password to stdstring
+    std::string emailStr = userViewModel.email().toStdString();
+    std::string passwordStr = userViewModel.password().toStdString();
+    std::string firstName = userViewModel.firstName().toStdString();
+    std::string lastName = userViewModel.lastName().toStdString();
+
+    //check if user is Logged In
+    LoginResult isRegistered = authController.registerUser(firstName,lastName,emailStr,passwordStr);
+
+    if (isRegistered.success && isRegistered.userModel.has_value()) {
+        UserViewModel userViewModel(*isRegistered.userModel, nullptr);
+        //convert C++ Model to QTUser Model
+        emit loginSucceeded(&userViewModel);
+    }else {
+        QString errorMessage = QString::fromStdString(isRegistered.message);
+        emit loginFailed(errorMessage);
+    }
+}
