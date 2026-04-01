@@ -1,7 +1,7 @@
 {
   "name": "cscn71030-group3",
-  "version": "1.0.0",
-  "builtin-baseline": "b5d1a94fb7f88fd835e360fd23a45a09ceedbf48",
+  "version": "1.0.1",
+  "builtin-baseline": "fc3be1ebea7eaeb3071fe716ac65713af1f3a146",
     "dependencies": [
         "libpqxx",
         "qtbase",
