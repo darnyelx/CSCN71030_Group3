@@ -2,5 +2,10 @@
   "ExpandedNodes": [
     ""
   ],
-  "PreviewInSolutionExplorer": false
+  "PreviewInSolutionExplorer": false,
+  "OutputFoldersPerTargetSystem": {
+    "Local Machine": [
+      "build"
+    ]
+  }
 }
