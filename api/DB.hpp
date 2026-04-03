@@ -17,6 +17,6 @@ public:
     pqxx::connection&  getConnection();
 	std::vector<Assignment> getAllAssignments();
     std::optional<UserModel> getUserByID(int id);
-
+    std::optional<UserModel> createUser(UserModel &userModel);
     std::vector<UserModel> getAllUsers();
 };

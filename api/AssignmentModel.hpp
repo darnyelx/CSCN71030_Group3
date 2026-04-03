@@ -14,6 +14,7 @@ private:
 	std::string updated_at;
 	std::string due_date;
 	int course_id;
+	int user_id;
 	int priority;
 
 public:
@@ -21,6 +22,8 @@ public:
 	int getId() const;
 	std::string getTitle() const;
 	std::string getDescription() const;
+	int getCourseId() const;
+	int getUserId() const;
 	std::string getTableName() override;
 	Assignment& setId(int id);
 	Assignment& setTitle(const std::string& title);

@@ -17,6 +17,9 @@ public:
 	int getId() const;
 	std::string getFirstName() const;
 	std::string getLastName() const;
+	std::string getEmail() const;
+	std::string getPassword() const;
+
 	UserModel& setFirstName(const std::string& first_name);
 	UserModel& setLastName(const std::string& last_name);
 	UserModel& setId(int id);

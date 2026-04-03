@@ -21,6 +21,14 @@ std::string UserModel::getLastName() const {
 	return last_name;
 }
 
+std::string UserModel::getEmail() const {
+	return email;
+}
+
+std::string UserModel::getPassword() const {
+	return password;
+}
+
 UserModel& UserModel::setFirstName(const std::string& first_name) {
 	this->first_name = first_name;
 	return *this;

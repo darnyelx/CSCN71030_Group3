@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Qt App",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/apptodo_app.app/Contents/MacOS/apptodo_app",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "DBConnectionString": "host=database-1.cdwqms2oexf5.eu-north-1.rds.amazonaws.com port=5432 dbname=assignment_coordinator user=postgres password=Myname1995#"
+      }
+    }
+  ]
+}

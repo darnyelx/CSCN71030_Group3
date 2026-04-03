@@ -8,7 +8,8 @@
 #include <vector>
 #include "UserModel.hpp"
 #include "AssignmentModel.hpp"
-
+#include <vector>
+#include <iostream>
 using namespace std;
 
 
@@ -32,6 +33,28 @@ DB &DB::getInstance() {
 
  pqxx::connection& DB::getConnection() {
      return connection;
+}
+
+std::optional<UserModel> DB::createUser(UserModel &user) {
+    pqxx::connection& connection = getConnection();
+    if (connection.is_open()) {
+        pqxx::work transaction(connection);
+        pqxx::result result = transaction.exec_params(
+            R"(
+                INSERT INTO users (first_name, last_name, email, password)
+                VALUES ($1, $2, $3, $4)
+                ON CONFLICT (email)
+                DO UPDATE SET
+                    first_name = EXCLUDED.first_name,
+                    last_name  = EXCLUDED.last_name,
+                    password   = EXCLUDED.password
+            )",
+            user.getFirstName(),
+            user.getLastName(),
+            user.getEmail(),
+            user.getPassword()
+        );
+    }
 }
 
 std::optional<UserModel> DB::getUserByID(int id) {
@@ -61,8 +84,7 @@ std::optional<UserModel> DB::getUserByID(int id) {
     return nullopt;
 }
 
-#include <vector>
-#include <iostream>
+
 
 std::vector<UserModel> DB::getAllUsers() {
     std::vector<UserModel> users;

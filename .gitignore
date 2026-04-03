@@ -3,3 +3,4 @@ api/.vs/*
 vcpkg_installed/*
 out/*
 .vs/*
+.vscode/launch.json

@@ -1,0 +1,55 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -DCMAKE_TOOLCHAIN_FILE=/Users/darnyelx/vcpkg/scripts/buildsystems/vcpkg.cmake -G Ninja -S /Users/darnyelx/Projects/CSCN71030_Group3 -B /Users/darnyelx/Projects/CSCN71030_Group3/cmake-build-debug
+-- Running vcpkg install
+Detecting compiler hash for triplet arm64-osx...
+Compiler found: /usr/bin/c++
+The following packages will be built and installed:
+  * brotli:arm64-osx@1.2.0
+  * bzip2[core,tool]:arm64-osx@1.0.8#6
+  * dbus:arm64-osx@1.16.2#3
+  * double-conversion:arm64-osx@3.4.0
+  * egl-registry:arm64-osx@2025-05-27
+  * expat:arm64-osx@2.7.4
+  * freetype[brotli,bzip2,core,png,zlib]:arm64-osx@2.13.3
+  * harfbuzz[core,freetype]:arm64-osx@13.0.1
+  * icu[core,tools]:arm64-osx@78.2
+  * libb2:arm64-osx@0.98.1#7
+  * libjpeg-turbo:arm64-osx@3.1.4.1
+  * libpng:arm64-osx@1.6.55
+  * libpq[bonjour,core,lz4,openssl,zlib]:arm64-osx@18.3
+    libpqxx:arm64-osx@8.0.0
+  * lz4:arm64-osx@1.10.0
+  * md4c:arm64-osx@0.5.2
+  * opengl:arm64-osx@2022-12-04#3
+  * opengl-registry:arm64-osx@2026-01-26
+  * openssl:arm64-osx@3.6.1#3
+  * pcre2[core,jit,platform-default-features]:arm64-osx@10.47
+    qtbase[brotli,concurrent,core,cups,dbus,dnslookup,doubleconversion,freetype,gui,harfbuzz,icu,jpeg,network,opengl,openssl,pcre2,png,sessionmanager,sql,sql-psql,sql-sqlite,testlib,thread,widgets,zstd]:arm64-osx@6.10.2
+    qtdeclarative:arm64-osx@6.10.2
+  * qtlanguageserver:arm64-osx@6.10.2
+    qtquickcontrols2:arm64-osx@deprecated#1
+  * qtshadertools:arm64-osx@6.10.2
+  * qtsvg:arm64-osx@6.10.2
+  * sqlite3[core,json1]:arm64-osx@3.52.0
+  * vcpkg-cmake:arm64-osx@2024-04-23
+  * vcpkg-cmake-config:arm64-osx@2024-05-23
+  * vcpkg-cmake-get-vars:arm64-osx@2025-05-29
+  * vcpkg-make:arm64-osx@2026-01-01
+  * vcpkg-tool-meson:arm64-osx@1.9.0#4
+  * zlib:arm64-osx@1.3.1
+  * zstd:arm64-osx@1.5.7
+Additional packages (*) will be modified to complete this operation.
+Restored 34 package(s) from /Users/darnyelx/.cache/vcpkg/archives in 43 s. Use --debug to see more details.
+Installing 1/34 vcpkg-cmake-config:arm64-osx@2024-05-23...
+vcpkg-cmake-config:arm64-osx@2024-05-23 package ABI: 7cf493f785ff96513d261737a406a9c59b041e3fc8177ee5eeee62df1eb7682d
+write_contents("/Users/darnyelx/Projects/CSCN71030_Group3/cmake-build-debug/vcpkg_installed/vcpkg/updates/incomplete"): No such file or directory
+-- Running vcpkg install - failed
+CMake Error at /Users/darnyelx/vcpkg/scripts/buildsystems/vcpkg.cmake:953 (message):
+  vcpkg install failed.  See logs for more information:
+  /Users/darnyelx/Projects/CSCN71030_Group3/cmake-build-debug/vcpkg-manifest-install.log
+Call Stack (most recent call first):
+  /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:146 (include)
+  CMakeLists.txt:3 (project)
+
+
+CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
+-- Configuring incomplete, errors occurred!
