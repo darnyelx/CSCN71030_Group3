@@ -35,9 +35,13 @@ DB &DB::getInstance() {
      return connection;
 }
 
-std::optional<UserModel> DB::createUser(UserModel &user) {
-    pqxx::connection& connection = getConnection();
-    if (connection.is_open()) {
+bool DB::createUser(UserModel &user) {
+    try {
+        pqxx::connection& connection = getConnection();
+        if (!connection.is_open()) {
+            std::cout << "Connection closed" << std::endl;
+            return false;
+        }
         pqxx::work transaction(connection);
         pqxx::result result = transaction.exec_params(
             R"(
@@ -54,6 +58,11 @@ std::optional<UserModel> DB::createUser(UserModel &user) {
             user.getEmail(),
             user.getPassword()
         );
+       return  result.affected_rows() > 0;
+
+    }catch(std::exception const &e) {
+        std::cout << e.what() << std::endl;
+        return false;
     }
 }
 
