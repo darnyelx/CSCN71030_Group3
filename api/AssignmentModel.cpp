@@ -57,14 +57,23 @@ Assignment& Assignment::setPriority(int priority) {
 	return *this;
 }
 
+std::string Assignment::getTableName()  {
+	return "assignments";
+}
+
+int Assignment::getCourseId() const {
+	return course_id;
+}
+int Assignment::getUserId() const {
+	return user_id;
+}
+
+void Assignment::load() {}
+
 void Assignment::save()  {}
 void Assignment::remove() {
 
 }
 
-std::string Assignment::getTableName()  {
-	return "assignments";
-}
 
-void Assignment::load() {}
 
