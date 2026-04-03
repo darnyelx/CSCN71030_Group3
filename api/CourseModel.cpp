@@ -42,8 +42,8 @@ Course& Course::setUserId(int user_id) {
 }
 
 
-void Course::save()  {}
-void Course::remove() {
+bool Course::save()  {}
+bool Course::remove() {
 
 }
 

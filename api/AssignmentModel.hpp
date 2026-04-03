@@ -13,9 +13,9 @@ private:
 	std::string created_at;
 	std::string updated_at;
 	std::string due_date;
-	int course_id;
-	int user_id;
-	int priority;
+	int course_id{};
+	int user_id{};
+	int priority{};
 
 public:
 	Assignment(int id = -1, const std::string& title = "", const std::string& description = "");
@@ -37,6 +37,7 @@ public:
 	Assignment& setDueDate(const std::string& due_date);
 	Assignment& setCourseId(int course_id);
 	Assignment& setPriority(int priority);
+	Assignment& setUserId(int user_id);
 	bool save() override;
 	void load();
 	bool remove() override;

@@ -63,8 +63,9 @@ bool UserModel::save() {
 	DB& DBInstance = DB::getInstance();
 	return DBInstance.createUser(*this);
 }
-void UserModel::remove() {
-
+bool UserModel::remove() {
+	DB& DBInstance = DB::getInstance();
+	return DBInstance.deleteUser(*this);
 }
 
 

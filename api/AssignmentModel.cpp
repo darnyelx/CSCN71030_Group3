@@ -42,6 +42,11 @@ Assignment& Assignment::setUpdatedAt(const std::string& updated_at) {
 	return *this;
 }
 
+Assignment& Assignment::setUserId(int user_id) {
+	this->user_id = user_id;
+	return *this;
+}
+
 Assignment& Assignment::setDueDate(const std::string& due_date) {
 	this->due_date = due_date;
 	return *this;
@@ -70,8 +75,8 @@ int Assignment::getUserId() const {
 
 void Assignment::load() {}
 
-void Assignment::save()  {}
-void Assignment::remove() {
+bool Assignment::save()  {}
+bool Assignment::remove() {
 
 }
 
