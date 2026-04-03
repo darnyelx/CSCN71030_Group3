@@ -26,6 +26,8 @@ qt_add_executable(apptodo_app
         api/AssignmentModel.cpp
         api/CourseModel.hpp
         api/CourseModel.cpp
+        api/AssignmentController.cpp
+        api/AssignmentQueryController.cpp
 
 
 )

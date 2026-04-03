@@ -1,10 +1,10 @@
 #include "BaseModel.hpp"
 #include <string>
 
-void BaseModel::save() {
+bool BaseModel::save() {
 	
 }
 
-void BaseModel::remove() {
+bool BaseModel::remove() {
 	
 }
