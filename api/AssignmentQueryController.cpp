@@ -3,9 +3,9 @@
 #include <algorithm>
 #include <iterator>
 
-// ------------------------------------------------------------------
-// HELPER FUNCTION (Private to this file)
-// ------------------------------------------------------------------
+// -----------------------------------------------------------------
+// HELPER FUNCTION 
+// -----------------------------------------------------------------
 // Fetches all assignments from the DB and filters out only the ones 
 // belonging to the requesting user.
 std::vector<Assignment> getBaseUserAssignments(int userId) {
