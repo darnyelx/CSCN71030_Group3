@@ -15,7 +15,7 @@ class AssignmentViewController  : public QObject {
 		void getFilteredAssignmentsByCourse();
 
 	signals:
-		void assignmentsGotten(std::vector<AssignmentViewModel> assignments);
+		// void assignmentsGotten(std::vector<AssignmentViewModel> assignments);
 };
 
 

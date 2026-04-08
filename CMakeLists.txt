@@ -9,6 +9,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2)
 find_package(libpqxx CONFIG REQUIRED)
+find_package(unofficial-sodium CONFIG REQUIRED)
 
 qt_add_executable(apptodo_app
     main.cpp
@@ -66,6 +67,7 @@ set_target_properties(apptodo_app PROPERTIES
 target_link_libraries(apptodo_app
     PRIVATE Qt6::Quick
     PRIVATE Qt6::QuickControls2
+    PRIVATE unofficial-sodium::sodium
 )
 
 target_link_libraries(apptodo_app PRIVATE libpqxx::pqxx)

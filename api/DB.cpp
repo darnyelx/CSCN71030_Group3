@@ -105,7 +105,7 @@ std::optional<UserModel> DB::getUserByID(int id) {
         UserModel user;
         if (connection.is_open()) {
             pqxx::work transaction(connection);
-            pqxx::result result = transaction.exec("select * from" + user.getTableName() + " where user_id= $1", pqxx::params{transaction, id});
+            pqxx::result result = transaction.exec("select * from " + user.getTableName() + " where user_id= $1", pqxx::params{transaction, id});
             if (result.empty()) {
                 return std::nullopt;
             }else {
@@ -133,7 +133,7 @@ std::optional<UserModel> DB::getUserByEmail(std::string& email) {
         UserModel user;
         if (connection.is_open()) {
             pqxx::work transaction(connection);
-            pqxx::result result = transaction.exec("select * from" + user.getTableName() + " where email= $1", pqxx::params{transaction, email});
+            pqxx::result result = transaction.exec("select * from " + user.getTableName() + " where email= $1", pqxx::params{transaction, email});
             if (result.empty()) {
                 return std::nullopt;
             }else {

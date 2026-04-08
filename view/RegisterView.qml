@@ -6,7 +6,7 @@ import App 1.0
 Page {
     required property var stackView
 
-    signal registerRequested(string firstName, string lastName, string email, string password)
+    signal registerRequested(UserViewModel userViewModel)
     signal goToLogin()
 
     function setError(message) {
@@ -261,10 +261,7 @@ Page {
                             }
 
                             registerRequested(
-                                firstNameField.text,
-                                lastNameField.text,
-                                emailField.text,
-                                passwordField.text
+                                userViewModel
                             )
                         }
                     }
@@ -310,10 +307,7 @@ Page {
                         }
 
                         registerRequested(
-                            firstNameField.text,
-                            lastNameField.text,
-                            emailField.text,
-                            passwordField.text
+                            registerUserModel
                         )
                     }
                 }
