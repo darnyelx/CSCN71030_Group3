@@ -1,3 +1,5 @@
 build/*
 api/.vs/*
 api/controller/*
+repo/*
+api_old/*
