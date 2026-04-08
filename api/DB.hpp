@@ -22,5 +22,6 @@ public:
     bool deleteUser(UserModel &userModel);
     bool createAssignment(Assignment &assignment);
     bool deleteAssignment(Assignment &assignment);
+	std::optional<Assignment> getAssignmentByID(int id);
 
 };

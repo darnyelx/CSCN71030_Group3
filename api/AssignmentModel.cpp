@@ -75,10 +75,12 @@ int Assignment::getUserId() const {
 
 void Assignment::load() {}
 
-bool Assignment::save()  {}
-bool Assignment::remove() {
-
+bool Assignment::save() override {
+	DB& db = DB::getInstance();
+	return db.createAssignment(*this);
 }
 
-
-
+bool Assignment::remove() override {
+	DB& db = DB::getInstance();
+	return db.deleteAssignment(*this);
+}	

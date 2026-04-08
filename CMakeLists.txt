@@ -28,6 +28,11 @@ qt_add_executable(apptodo_app
         api/CourseModel.cpp
         api/AssignmentController.cpp
         api/AssignmentQueryController.cpp
+        view/Controllers/headers/AssignmentViewController.hpp
+        view/Controllers/AssignmentViewController.cpp
+        view/Controllers/headers/AssignmentViewController.hpp
+        view/Models/AssignmentModel.cpp
+        view/Models/headers/AssignmentModel.hpp
 
 
 )

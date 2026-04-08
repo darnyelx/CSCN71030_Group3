@@ -46,6 +46,7 @@ LoginResult AuthController::registerUser(
     UserModel user(2, firstName, lastName);
     user.setEmail(email);
     user.setPassword(password);
+	user.save(); // Save the user to the database (this is a dummy implementation)
 
     return {
         true,
