@@ -3,15 +3,30 @@
 #include "AssignmentModel.hpp"
 #include <vector>
 
+struct AssignmentResultPayload {
+	bool success;
+	std::string errorMessage;
+	std::optional<Assignment> assignment;
+};
+
+struct GetAllAssignmentResultPayload {
+	bool success;
+	std::vector<Assignment> assignments;
+	std::string errorMessage;
+};
+
+
+
 class AssignmentController {
 	public:
-		Assignment createAssignment(const std::string& title, const std::string& description, int courseId, int userId);
+		AssignmentResultPayload createAssignment(const std::string& title, const std::string& description, int courseId, int userId);
 
-		Assignment getAssignment(int id);
+		AssignmentResultPayload getAssignment(int id);
 
-		std::vector<Assignment> getAllAssignments(int userId);
+		GetAllAssignmentResultPayload getAllAssignments(int userId);
 
-		Assignment updateAssignment(int id, const std::string& title, const std::string& description, int priority);
+		AssignmentResultPayload updateAssignment(int id, const std::string& title, const std::string& description, int priority);
 
-		bool deleteAssignment(int id);
+		AssignmentResultPayload deleteAssignment(int id);
 };
+
