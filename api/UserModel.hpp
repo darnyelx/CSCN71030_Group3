@@ -17,12 +17,15 @@ public:
 	int getId() const;
 	std::string getFirstName() const;
 	std::string getLastName() const;
+	std::string getEmail() const;
+	std::string getPassword() const;
+
 	UserModel& setFirstName(const std::string& first_name);
 	UserModel& setLastName(const std::string& last_name);
 	UserModel& setId(int id);
 	UserModel& setEmail(const std::string& email);
 	UserModel& setPassword(const std::string& password);
 	std::string getTableName() override;
-	void save() override;
-	void remove() override;
+	bool save() override;
+	bool remove() override;
 };

@@ -1,7 +1,11 @@
 {
   "name": "cscn71030-group3",
-  "version": "1.0.0",
-  "dependencies": [
-    "libpqxx"
-  ]
+  "version": "1.0.1",
+  "builtin-baseline": "fc3be1ebea7eaeb3071fe716ac65713af1f3a146",
+    "dependencies": [
+        "libpqxx",
+        "qtbase",
+        "qtdeclarative",
+        "qtquickcontrols2"
+    ]
 }

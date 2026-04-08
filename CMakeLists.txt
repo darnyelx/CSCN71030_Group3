@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.21)
 
 project(todo_app VERSION 0.1 LANGUAGES CXX)
 
@@ -26,6 +26,8 @@ qt_add_executable(apptodo_app
         api/AssignmentModel.cpp
         api/CourseModel.hpp
         api/CourseModel.cpp
+        api/AssignmentController.cpp
+        api/AssignmentQueryController.cpp
 
 
 )

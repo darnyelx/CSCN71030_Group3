@@ -3,3 +3,8 @@ api/.vs/*
 api/controller/*
 repo/*
 api_old/*
+vcpkg_installed/*
+out/*
+.vs/*
+.vscode/launch.json
+

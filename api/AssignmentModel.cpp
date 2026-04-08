@@ -42,6 +42,11 @@ Assignment& Assignment::setUpdatedAt(const std::string& updated_at) {
 	return *this;
 }
 
+Assignment& Assignment::setUserId(int user_id) {
+	this->user_id = user_id;
+	return *this;
+}
+
 Assignment& Assignment::setDueDate(const std::string& due_date) {
 	this->due_date = due_date;
 	return *this;
@@ -57,14 +62,23 @@ Assignment& Assignment::setPriority(int priority) {
 	return *this;
 }
 
-void Assignment::save()  {}
-void Assignment::remove() {
-
-}
-
 std::string Assignment::getTableName()  {
 	return "assignments";
 }
 
+int Assignment::getCourseId() const {
+	return course_id;
+}
+int Assignment::getUserId() const {
+	return user_id;
+}
+
 void Assignment::load() {}
+
+bool Assignment::save()  {}
+bool Assignment::remove() {
+
+}
+
+
 

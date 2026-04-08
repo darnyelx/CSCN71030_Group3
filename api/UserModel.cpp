@@ -1,4 +1,5 @@
 #include "UserModel.hpp"
+#include "DB.hpp"
 
 UserModel::UserModel(int id, const std::string& first_name, const std::string& last_name) 
 	: id(id), first_name(first_name), last_name(last_name) {
@@ -19,6 +20,14 @@ std::string UserModel::getFirstName() const {
 
 std::string UserModel::getLastName() const {
 	return last_name;
+}
+
+std::string UserModel::getEmail() const {
+	return email;
+}
+
+std::string UserModel::getPassword() const {
+	return password;
 }
 
 UserModel& UserModel::setFirstName(const std::string& first_name) {
@@ -50,9 +59,13 @@ std::string UserModel::getTableName()  {
 }
 
 
-void UserModel::save() {}
-void UserModel::remove() {
-
+bool UserModel::save() {
+	DB& DBInstance = DB::getInstance();
+	return DBInstance.createUser(*this);
+}
+bool UserModel::remove() {
+	DB& DBInstance = DB::getInstance();
+	return DBInstance.deleteUser(*this);
 }
 
 

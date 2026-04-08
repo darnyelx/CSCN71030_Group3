@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Qt App",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/apptodo_app.app/Contents/MacOS/apptodo_app",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "env": {
+      }
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 #include "AssignmentController.hpp"
-#include "AssignmentModel.cpp"
+#include "AssignmentModel.hpp"
 
 Assignment AssignmentController::createAssignment(const std::string& title, const std::string& description, int courseId, int userId) {
 	//do validations here

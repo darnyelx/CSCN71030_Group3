@@ -4,6 +4,6 @@ class BaseModel {
 	public:
 	virtual ~BaseModel() = default;
 	virtual std::string getTableName() = 0;
-	virtual void save() = 0;
-	virtual  void remove() = 0;
+	virtual bool save() = 0;
+	virtual  bool remove() = 0;
 };

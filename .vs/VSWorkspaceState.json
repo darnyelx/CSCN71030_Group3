@@ -2,6 +2,11 @@
   "ExpandedNodes": [
     ""
   ],
-  "SelectedNode": "\\controller.sln",
-  "PreviewInSolutionExplorer": false
+  "PreviewInSolutionExplorer": false,
+  "OutputFoldersPerTargetSystem": {
+    "Local Machine": [
+      "build"
+    ]
+  }
+
 }
