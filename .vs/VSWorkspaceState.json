@@ -1,12 +1,17 @@
 {
-  "ExpandedNodes": [
-    ""
-  ],
-  "PreviewInSolutionExplorer": false,
   "OutputFoldersPerTargetSystem": {
     "Local Machine": [
       "build"
     ]
+<<<<<<< HEAD
+  },
+  "ExpandedNodes": [
+    ""
+  ],
+  "PreviewInSolutionExplorer": false
+}
+=======
   }
 
 }
+>>>>>>> 66dc8317a279017fb6fdcad6ced4e1e46eeb15d6
