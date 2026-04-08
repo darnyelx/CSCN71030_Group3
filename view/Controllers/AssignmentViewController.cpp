@@ -4,4 +4,7 @@
 
 #include "headers/AssignmentViewController.hpp"
 
+AssignmentViewController::AssignmentViewController(QObject *parent ) {
+
+}
 

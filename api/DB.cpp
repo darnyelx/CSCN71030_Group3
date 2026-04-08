@@ -126,6 +126,35 @@ std::optional<UserModel> DB::getUserByID(int id) {
     return nullopt;
 }
 
+
+std::optional<UserModel> DB::getUserByEmail(std::string& email) {
+    try {
+        pqxx::connection& connection = getConnection();
+        UserModel user;
+        if (connection.is_open()) {
+            pqxx::work transaction(connection);
+            pqxx::result result = transaction.exec("select * from" + user.getTableName() + " where email= $1", pqxx::params{transaction, email});
+            if (result.empty()) {
+                return std::nullopt;
+            }else {
+                user.setFirstName(result[0]["first_name"].as<std::string>());
+                user.setLastName(result[0]["last_name"].as<std::string>());
+                user.setEmail(result[0]["email"].as<std::string>());
+                user.setId(result[0]["id"].as<int>());
+                user.setPassword(result[0]["password"].as<std::string>());
+                user.setId(result[0]["id"].as<int>());
+                return user;
+            }
+        }
+    }catch(std::exception const &e) {
+        std::cout << e.what() << std::endl;
+        return std::nullopt;
+    }
+
+    return nullopt;
+}
+
+
 std::vector<UserModel> DB::getAllUsers() {
     std::vector<UserModel> users;
 

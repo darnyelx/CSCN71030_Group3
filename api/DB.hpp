@@ -17,6 +17,7 @@ public:
     pqxx::connection&  getConnection();
 	std::vector<Assignment> getAllAssignments();
     std::optional<UserModel> getUserByID(int id);
+    std::optional<UserModel> getUserByEmail(std::string& email);
     std::vector<UserModel> getAllUsers();
     bool createUser(UserModel &userModel);
     bool deleteUser(UserModel &userModel);
