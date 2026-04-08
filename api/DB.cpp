@@ -280,5 +280,39 @@ bool DB::deleteAssignment(Assignment &assignment) {
     }
 }
 
+std::optional<Assignment> DB::getAssignmentByID(int id) {
+    try {
+        pqxx::connection& connection = getConnection();
 
+        if (!connection.is_open()) {
+            std::cout << "Connection closed" << std::endl;
+            return std::nullopt;
+        }
 
+        pqxx::work transaction(connection);
+
+        pqxx::result result = transaction.exec_params(
+            "SELECT * FROM assignments WHERE id = $1",
+            id
+        );
+
+        if (result.empty()) {
+            return std::nullopt;
+        }
+
+        Assignment assignment;
+        assignment.setId(result[0]["id"].as<int>());
+        assignment.setUserId(result[0]["user_id"].as<int>());
+        assignment.setTitle(result[0]["title"].as<std::string>());
+        assignment.setDescription(result[0]["description"].as<std::string>());
+        assignment.setDueDate(result[0]["due_date"].as<std::string>());
+        assignment.setCourseId(result[0]["course_id"].as<int>());
+        assignment.setPriority(result[0]["priority"].as<int>());
+
+        return assignment;
+
+    } catch (const std::exception& e) {
+        std::cout << e.what() << std::endl;
+        return std::nullopt;
+    }
+}   
