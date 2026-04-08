@@ -3,7 +3,7 @@
 #include "DB.hpp"
 
 
-LoginResult AuthController::login(const std::string &email, const std::string &password) {
+LoginResult AuthController::login( std::string &email, const std::string &password) {
 
     DB &DBInstance = DB::getInstance();
     std::optional<UserModel> user = DBInstance.getUserByEmail(email);

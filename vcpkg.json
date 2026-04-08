@@ -6,6 +6,7 @@
         "libpqxx",
         "qtbase",
         "qtdeclarative",
-        "qtquickcontrols2"
+        "qtquickcontrols2",
+        "libsodium"
     ]
 }

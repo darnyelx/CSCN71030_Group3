@@ -1,5 +1,6 @@
 #pragma once
 #include "AssignmentModel.hpp"
+#include "DB.hpp"
 
 Assignment::Assignment(int id, const std::string& title, const std::string& description)
 	: id(id), title(title), description(description) {
@@ -75,12 +76,12 @@ int Assignment::getUserId() const {
 
 void Assignment::load() {}
 
-bool Assignment::save() override {
+bool Assignment::save()  {
 	DB& db = DB::getInstance();
 	return db.createAssignment(*this);
 }
 
-bool Assignment::remove() override {
+bool Assignment::remove()  {
 	DB& db = DB::getInstance();
 	return db.deleteAssignment(*this);
 }	
