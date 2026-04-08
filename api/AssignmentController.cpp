@@ -5,37 +5,37 @@
 AssignmentResultPayload AssignmentController::createAssignment(const std::string& title, const std::string& description, int courseId, int userId) {
 	
 	
-	Assignment assignment = Assignment();
+	Assignment assignment;
 	assignment.setTitle(title)
 			  .setDescription(description)
 			  .setCourseId(courseId)
 			   .setPriority(1); // default priority
 	DB& db = DB::getInstance();
-	bool result = db.createAssignment(Assignment);
+	bool result = db.createAssignment(assignment);
 	return { 
 		result, 
 		result ? "" : "Failed to create assignment",	 
-		result ? assignment : std::nullopt
+		assignment
 	};
 
-	return assignment;
 }
 AssignmentResultPayload updateAssignment(int id, const std::string& title, const std::string& description, int priority){
 	//get DB instance
 	DB& db = DB::getInstance();
 	std::optional<Assignment> assignment = db.getAssignmentByID(id);
 	//if it doesn't exist, return error
-	if (!assignment) {
+	if (!assignment.has_value()) {
 		return {
 			false,
 			"Assignment not found",
 			std::nullopt
 		};
 	}
-	assignment.setTitle(title)
+
+	assignment->setTitle(title)
 			  .setDescription(description)
-			.setPriority(priority);
-	assignment.save();
+			.setPriority(priority)
+            .save();
 	return {
 		true,
 		"",
