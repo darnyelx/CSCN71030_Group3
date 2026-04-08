@@ -1,0 +1,13 @@
+//
+// Created by Darnyelx on 2026-04-08.
+//
+
+#ifndef TODO_APP_ASSIGNMENTVIEWCONTROLLER_HPP
+#define TODO_APP_ASSIGNMENTVIEWCONTROLLER_HPP
+
+
+class AssignmentViewController {
+};
+
+
+#endif //TODO_APP_ASSIGNMENTVIEWCONTROLLER_HPP
