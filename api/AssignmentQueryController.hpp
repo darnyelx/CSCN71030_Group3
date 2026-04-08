@@ -6,9 +6,9 @@
 
 class AssignmentQueryController {
 public:
-    // ==========================================
+    // =========================================
     // SEARCHING
-    // ==========================================
+    // =========================================
     // Searches titles and descriptions for a keyword
     std::vector<Assignment> searchAssignmentsByKeyword(int userId, const std::string& keyword);
 
