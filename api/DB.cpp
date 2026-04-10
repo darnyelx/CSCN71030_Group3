@@ -323,18 +323,17 @@ std::optional<Assignment> DB::getAssignmentByID(int id) {
     }
 }
 
-std::vector<HelpRequestModel> DB::getAllHelpRequests() {
+std::vector<HelpRequestModel> DB::getAllHelpRequests(int id) {
     std::vector<HelpRequestModel> helpRequests;
 
     try {
         pqxx::connection &connection = getConnection();
-        HelpRequestModel helpRequest;
 
         if (connection.is_open()) {
             pqxx::work transaction(connection);
 
-            std::string query = "SELECT * FROM " + helpRequest.getTableName();
-            pqxx::result result = transaction.exec(query);
+            std::string query = "SELECT * FROM help_requests WHERE user_id = $1";
+            pqxx::result result = transaction.exec_params(query, id);
 
             for (auto const &row: result) {
                 HelpRequestModel helpRequestRow;
@@ -346,14 +345,16 @@ std::vector<HelpRequestModel> DB::getAllHelpRequests() {
 
                 helpRequests.push_back(helpRequestRow);
             }
+            return helpRequests;
         }
+        throw std::runtime_error("Connection closed");
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
     }
 
     return helpRequests;
 }
-bool : DB::createHelpRequest(HelpRequestModel &helpRequest) {
+bool DB::createHelpRequest(HelpRequestModel &helpRequest) {
     try {
         pqxx::connection &connection = getConnection();
 
@@ -380,6 +381,29 @@ bool : DB::createHelpRequest(HelpRequestModel &helpRequest) {
             )",
                 helpRequest.getUserId(), helpRequest.getAssignmentId(), helpRequest.getMessage(),
                 helpRequest.getCreatedAt());
+
+        transaction.commit();
+        return result.affected_rows() > 0;
+
+    } catch (const std::exception &e) {
+        std::cout << e.what() << std::endl;
+        return false;
+    }
+}
+
+bool DB::deleteHelpRequest(HelpRequestModel &helpRequest) {
+    int id = helpRequest.getId();
+    try {
+        pqxx::connection &connection = getConnection();
+
+        if (!connection.is_open()) {
+            std::cout << "Connection closed" << std::endl;
+            return false;
+        }
+
+        pqxx::work transaction(connection);
+
+        pqxx::result result = transaction.exec_params("DELETE FROM help_requests WHERE id = $1", id);
 
         transaction.commit();
         return result.affected_rows() > 0;

@@ -26,5 +26,7 @@ public:
     bool deleteAssignment(Assignment &assignment);
     bool createHelpRequest(HelpRequestModel &helpRequest);
     std::optional<HelpRequestModel> getHelpRequestById(int id);
+    std::vector<HelpRequestModel> getAllHelpRequests(int id);
     std::optional<Assignment> getAssignmentByID(int id);
+    bool deleteHelpRequest(HelpRequestModel &helpRequest);
 };
