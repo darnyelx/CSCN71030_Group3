@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include "AssignmentModel.hpp"
-
+#include "HelpRequestModel.hpp"
 #include "UserModel.hpp"
 
 class DB {
@@ -24,7 +24,7 @@ public:
     bool deleteUser(UserModel &userModel);
     bool createAssignment(Assignment &assignment);
     bool deleteAssignment(Assignment &assignment);
-    bool createHelpRequest(HelpRequest &helpRequest);
-    bool deleteHelpRequest(HelpRequest &helpRequest);
+    bool createHelpRequest(HelpRequestModel &helpRequest);
+    std::optional<HelpRequestModel> getHelpRequestById(int id);
     std::optional<Assignment> getAssignmentByID(int id);
 };

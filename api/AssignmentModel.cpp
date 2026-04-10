@@ -2,86 +2,73 @@
 #include "AssignmentModel.hpp"
 #include "DB.hpp"
 
-Assignment::Assignment(int id, const std::string& title, const std::string& description)
-	: id(id), title(title), description(description) {
+Assignment::Assignment(int id, const std::string &title, const std::string &description) :
+    id(id), title(title), description(description) {}
+
+int Assignment::getId() const { return id; }
+
+std::string Assignment::getTitle() const { return title; }
+
+std::string Assignment::getDescription() const { return description; }
+
+Assignment &Assignment::setId(int id) {
+    this->id = id;
+    return *this;
 }
 
-int Assignment::getId() const {
-	return id;
+Assignment &Assignment::setTitle(const std::string &title) {
+    this->title = title;
+    return *this;
 }
 
-std::string Assignment::getTitle() const {
-	return title;
+Assignment &Assignment::setDescription(const std::string &description) {
+    this->description = description;
+    return *this;
 }
 
-std::string Assignment::getDescription() const {
-	return description;
+Assignment &Assignment::setCreatedAt(const std::string &created_at) {
+    this->created_at = created_at;
+    return *this;
 }
 
-Assignment& Assignment::setId(int id) {
-	this->id = id;
-	return *this;
+Assignment &Assignment::setUpdatedAt(const std::string &updated_at) {
+    this->updated_at = updated_at;
+    return *this;
 }
 
-Assignment& Assignment::setTitle(const std::string& title) {
-	this->title = title;
-	return *this;
+Assignment &Assignment::setUserId(int user_id) {
+    this->user_id = user_id;
+    return *this;
 }
 
-Assignment& Assignment::setDescription(const std::string& description) {
-	this->description = description;
-	return *this;
+Assignment &Assignment::setDueDate(const std::string &due_date) {
+    this->due_date = due_date;
+    return *this;
 }
 
-Assignment& Assignment::setCreatedAt(const std::string& created_at) {
-	this->created_at = created_at;
-	return *this;
+Assignment &Assignment::setCourseId(int course_id) {
+    this->course_id = course_id;
+    return *this;
 }
 
-Assignment& Assignment::setUpdatedAt(const std::string& updated_at) {
-	this->updated_at = updated_at;
-	return *this;
+Assignment &Assignment::setPriority(int priority) {
+    this->priority = priority;
+    return *this;
 }
 
-Assignment& Assignment::setUserId(int user_id) {
-	this->user_id = user_id;
-	return *this;
-}
+std::string Assignment::getTableName() { return "assignments"; }
 
-Assignment& Assignment::setDueDate(const std::string& due_date) {
-	this->due_date = due_date;
-	return *this;
-}
-
-Assignment& Assignment::setCourseId(int course_id) {
-	this->course_id = course_id;
-	return *this;
-}
-
-Assignment& Assignment::setPriority(int priority) {
-	this->priority = priority;
-	return *this;
-}
-
-std::string Assignment::getTableName()  {
-	return "assignments";
-}
-
-int Assignment::getCourseId() const {
-	return course_id;
-}
-int Assignment::getUserId() const {
-	return user_id;
-}
+int Assignment::getCourseId() const { return course_id; }
+int Assignment::getUserId() const { return user_id; }
 
 void Assignment::load() {}
 
-bool Assignment::save()  {
-	DB& db = DB::getInstance();
-	return db.createAssignment(*this);
+bool Assignment::save() {
+    DB &db = DB::getInstance();
+    return db.createAssignment(*this);
 }
 
-bool Assignment::remove()  {
-	DB& db = DB::getInstance();
-	return db.deleteAssignment(*this);
-}	
+bool Assignment::remove() {
+    DB &db = DB::getInstance();
+    return db.deleteAssignment(*this);
+}

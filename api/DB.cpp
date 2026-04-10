@@ -6,38 +6,33 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "UserModel.hpp"
 #include "AssignmentModel.hpp"
-#include <vector>
-#include <iostream>
+#include "UserModel.hpp"
 using namespace std;
 
 
 std::string DB::connectionString = getenv("DBConnectionString");
 
-DB::DB():connection( DB::connectionString ) {
-  if (connection.is_open()) {
-      std::cout << "Connection opened" << std::endl;
-  }
+DB::DB() : connection(DB::connectionString) {
+    if (connection.is_open()) {
+        std::cout << "Connection opened" << std::endl;
+    }
 }
 
 DB &DB::getInstance() {
     try {
         static DB instance;
         return instance;
-    }catch(std::exception const &e) {
+    } catch (std::exception const &e) {
         std::cout << e.what() << std::endl;
     }
-
 }
 
- pqxx::connection& DB::getConnection() {
-     return connection;
-}
+pqxx::connection &DB::getConnection() { return connection; }
 
 bool DB::createUser(UserModel &user) {
     try {
-        pqxx::connection& connection = getConnection();
+        pqxx::connection &connection = getConnection();
 
         if (!connection.is_open()) {
             std::cout << "Connection closed" << std::endl;
@@ -47,7 +42,7 @@ bool DB::createUser(UserModel &user) {
         pqxx::work transaction(connection);
 
         pqxx::result result = transaction.exec_params(
-            R"(
+                R"(
                 INSERT INTO users (first_name, last_name, email, password)
                 VALUES ($1, $2, $3, $4)
                 ON CONFLICT (email)
@@ -56,11 +51,7 @@ bool DB::createUser(UserModel &user) {
                     last_name  = EXCLUDED.last_name,
                     password   = EXCLUDED.password
             )",
-            user.getFirstName(),
-            user.getLastName(),
-            user.getEmail(),
-            user.getPassword()
-        );
+                user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
 
         transaction.commit();
 
@@ -72,10 +63,10 @@ bool DB::createUser(UserModel &user) {
     }
 }
 
-bool DB::deleteUser(UserModel& user) {
+bool DB::deleteUser(UserModel &user) {
     try {
         int id = user.getId();
-        pqxx::connection& connection = getConnection();
+        pqxx::connection &connection = getConnection();
 
         if (!connection.is_open()) {
             std::cout << "Connection closed" << std::endl;
@@ -84,10 +75,7 @@ bool DB::deleteUser(UserModel& user) {
 
         pqxx::work transaction(connection);
 
-        pqxx::result result = transaction.exec_params(
-            "DELETE FROM users WHERE id = $1",
-            id
-        );
+        pqxx::result result = transaction.exec_params("DELETE FROM users WHERE id = $1", id);
 
         transaction.commit();
 
@@ -101,14 +89,15 @@ bool DB::deleteUser(UserModel& user) {
 
 std::optional<UserModel> DB::getUserByID(int id) {
     try {
-        pqxx::connection& connection = getConnection();
+        pqxx::connection &connection = getConnection();
         UserModel user;
         if (connection.is_open()) {
             pqxx::work transaction(connection);
-            pqxx::result result = transaction.exec("select * from " + user.getTableName() + " where user_id= $1", pqxx::params{transaction, id});
+            pqxx::result result = transaction.exec("select * from " + user.getTableName() + " where user_id= $1",
+                                                   pqxx::params{transaction, id});
             if (result.empty()) {
                 return std::nullopt;
-            }else {
+            } else {
                 user.setFirstName(result[0]["first_name"].as<std::string>());
                 user.setLastName(result[0]["last_name"].as<std::string>());
                 user.setEmail(result[0]["email"].as<std::string>());
@@ -118,7 +107,7 @@ std::optional<UserModel> DB::getUserByID(int id) {
                 return user;
             }
         }
-    }catch(std::exception const &e) {
+    } catch (std::exception const &e) {
         std::cout << e.what() << std::endl;
         return std::nullopt;
     }
@@ -127,16 +116,17 @@ std::optional<UserModel> DB::getUserByID(int id) {
 }
 
 
-std::optional<UserModel> DB::getUserByEmail(std::string& email) {
+std::optional<UserModel> DB::getUserByEmail(std::string &email) {
     try {
-        pqxx::connection& connection = getConnection();
+        pqxx::connection &connection = getConnection();
         UserModel user;
         if (connection.is_open()) {
             pqxx::work transaction(connection);
-            pqxx::result result = transaction.exec("select * from " + user.getTableName() + " where email= $1", pqxx::params{transaction, email});
+            pqxx::result result = transaction.exec("select * from " + user.getTableName() + " where email= $1",
+                                                   pqxx::params{transaction, email});
             if (result.empty()) {
                 return std::nullopt;
-            }else {
+            } else {
                 user.setFirstName(result[0]["first_name"].as<std::string>());
                 user.setLastName(result[0]["last_name"].as<std::string>());
                 user.setEmail(result[0]["email"].as<std::string>());
@@ -146,7 +136,7 @@ std::optional<UserModel> DB::getUserByEmail(std::string& email) {
                 return user;
             }
         }
-    }catch(std::exception const &e) {
+    } catch (std::exception const &e) {
         std::cout << e.what() << std::endl;
         return std::nullopt;
     }
@@ -159,7 +149,7 @@ std::vector<UserModel> DB::getAllUsers() {
     std::vector<UserModel> users;
 
     try {
-        pqxx::connection& connection = getConnection();
+        pqxx::connection &connection = getConnection();
         UserModel user;
 
         if (connection.is_open()) {
@@ -168,7 +158,7 @@ std::vector<UserModel> DB::getAllUsers() {
             std::string query = "SELECT * FROM " + user.getTableName();
             pqxx::result result = transaction.exec(query);
 
-            for (auto const& row : result) {
+            for (auto const &row: result) {
                 UserModel userRow;
                 userRow.setFirstName(row["first_name"].as<std::string>());
                 userRow.setLastName(row["last_name"].as<std::string>());
@@ -179,7 +169,7 @@ std::vector<UserModel> DB::getAllUsers() {
                 users.push_back(userRow);
             }
         }
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
     }
 
@@ -190,7 +180,7 @@ std::vector<Assignment> DB::getAllAssignments() {
     std::vector<Assignment> assignments;
 
     try {
-        pqxx::connection& connection = getConnection();
+        pqxx::connection &connection = getConnection();
         Assignment assignment;
 
         if (connection.is_open()) {
@@ -199,7 +189,7 @@ std::vector<Assignment> DB::getAllAssignments() {
             std::string query = "SELECT * FROM " + assignment.getTableName();
             pqxx::result result = transaction.exec(query);
 
-            for (auto const& row : result) {
+            for (auto const &row: result) {
                 Assignment assignmentRow;
 
                 assignmentRow.setId(row["id"].as<int>());
@@ -212,7 +202,7 @@ std::vector<Assignment> DB::getAllAssignments() {
                 assignments.push_back(assignmentRow);
             }
         }
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
     }
 
@@ -221,7 +211,7 @@ std::vector<Assignment> DB::getAllAssignments() {
 
 bool DB::createAssignment(Assignment &assignment) {
     try {
-        pqxx::connection& connection = getConnection();
+        pqxx::connection &connection = getConnection();
 
         if (!connection.is_open()) {
             std::cout << "Connection closed" << std::endl;
@@ -231,10 +221,10 @@ bool DB::createAssignment(Assignment &assignment) {
         pqxx::work transaction(connection);
 
         std::optional<int> assignmentId =
-            assignment.getId() > 0 ? std::make_optional(assignment.getId()) : std::nullopt;
+                assignment.getId() > 0 ? std::make_optional(assignment.getId()) : std::nullopt;
 
         pqxx::result result = transaction.exec_params(
-            R"(
+                R"(
                 INSERT INTO assignments
                 (
                     id,
@@ -262,16 +252,9 @@ bool DB::createAssignment(Assignment &assignment) {
                     user_id = EXCLUDED.user_id,
                     priority = EXCLUDED.priority
             )",
-            assignmentId,
-            assignment.getTitle(),
-            assignment.getDescription(),
-            assignment.getCreatedAt(),
-            assignment.getUpdatedAt(),
-            assignment.getDueDate(),
-            assignment.getCourseId(),
-            assignment.getUserId(),
-            assignment.getPriority()
-        );
+                assignmentId, assignment.getTitle(), assignment.getDescription(), assignment.getCreatedAt(),
+                assignment.getUpdatedAt(), assignment.getDueDate(), assignment.getCourseId(), assignment.getUserId(),
+                assignment.getPriority());
 
         transaction.commit();
         return result.affected_rows() > 0;
@@ -285,7 +268,7 @@ bool DB::createAssignment(Assignment &assignment) {
 bool DB::deleteAssignment(Assignment &assignment) {
     int id = assignment.getId();
     try {
-        pqxx::connection& connection = getConnection();
+        pqxx::connection &connection = getConnection();
 
         if (!connection.is_open()) {
             std::cout << "Connection closed" << std::endl;
@@ -294,16 +277,13 @@ bool DB::deleteAssignment(Assignment &assignment) {
 
         pqxx::work transaction(connection);
 
-        pqxx::result result = transaction.exec_params(
-            "DELETE FROM assignments WHERE id = $1",
-            id
-        );
+        pqxx::result result = transaction.exec_params("DELETE FROM assignments WHERE id = $1", id);
 
         transaction.commit();
 
         return result.affected_rows() > 0;
 
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
         return false;
     }
@@ -311,7 +291,7 @@ bool DB::deleteAssignment(Assignment &assignment) {
 
 std::optional<Assignment> DB::getAssignmentByID(int id) {
     try {
-        pqxx::connection& connection = getConnection();
+        pqxx::connection &connection = getConnection();
 
         if (!connection.is_open()) {
             std::cout << "Connection closed" << std::endl;
@@ -320,10 +300,7 @@ std::optional<Assignment> DB::getAssignmentByID(int id) {
 
         pqxx::work transaction(connection);
 
-        pqxx::result result = transaction.exec_params(
-            "SELECT * FROM assignments WHERE id = $1",
-            id
-        );
+        pqxx::result result = transaction.exec_params("SELECT * FROM assignments WHERE id = $1", id);
 
         if (result.empty()) {
             return std::nullopt;
@@ -340,8 +317,75 @@ std::optional<Assignment> DB::getAssignmentByID(int id) {
 
         return assignment;
 
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
         return std::nullopt;
     }
-}   
+}
+
+std::vector<HelpRequestModel> DB::getAllHelpRequests() {
+    std::vector<HelpRequestModel> helpRequests;
+
+    try {
+        pqxx::connection &connection = getConnection();
+        HelpRequestModel helpRequest;
+
+        if (connection.is_open()) {
+            pqxx::work transaction(connection);
+
+            std::string query = "SELECT * FROM " + helpRequest.getTableName();
+            pqxx::result result = transaction.exec(query);
+
+            for (auto const &row: result) {
+                HelpRequestModel helpRequestRow;
+                helpRequestRow.setId(row["id"].as<int>());
+                helpRequestRow.setUserId(row["user_id"].as<int>());
+                helpRequestRow.setAssignmentId(row["assignment_id"].as<int>());
+                helpRequestRow.setMessage(row["message"].as<std::string>());
+                helpRequestRow.setCreatedAt(row["created_at"].as<std::string>());
+
+                helpRequests.push_back(helpRequestRow);
+            }
+        }
+    } catch (const std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
+
+    return helpRequests;
+}
+bool : DB::createHelpRequest(HelpRequestModel &helpRequest) {
+    try {
+        pqxx::connection &connection = getConnection();
+
+        if (!connection.is_open()) {
+            std::cout << "Connection closed" << std::endl;
+            return false;
+        }
+
+        pqxx::work transaction(connection);
+
+        pqxx::result result = transaction.exec_params(
+                R"(
+                INSERT INTO help_requests
+                (
+                    user_id,
+                    assignment_id,
+                    message,
+                    created_at
+                )
+                VALUES
+                (
+                    $1, $2, $3, $4
+                )
+            )",
+                helpRequest.getUserId(), helpRequest.getAssignmentId(), helpRequest.getMessage(),
+                helpRequest.getCreatedAt());
+
+        transaction.commit();
+        return result.affected_rows() > 0;
+
+    } catch (const std::exception &e) {
+        std::cout << e.what() << std::endl;
+        return false;
+    }
+}
