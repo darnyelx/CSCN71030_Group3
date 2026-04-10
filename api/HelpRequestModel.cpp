@@ -19,3 +19,11 @@ void HelpRequestModel::setUserId(int userId) { this->userId = userId; }
 void HelpRequestModel::setAssignmentId(int assignment_id) { this->assignment_id = assignment_id; }
 
 void HelpRequestModel::setMessage(const std::string &message) { this->message = message; }
+bool HelpRequestModel::save() {
+    DB &db = DB::getInstance();
+    return db.createHelpRequest(*this);
+}
+bool HelpRequestModel::remove() {
+    DB &db = DB::getInstance();
+    return db.deleteHelpRequest(*this);
+}
