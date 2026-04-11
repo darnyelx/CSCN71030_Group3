@@ -1,87 +1,92 @@
-#pragma once
-#include "AssignmentModel.hpp"
-#include "DB.hpp"
+#include "BaseModel.hpp"
+#include <string>
 
-Assignment::Assignment(int id, const std::string& title, const std::string& description)
-	: id(id), title(title), description(description) {
-}
+class Assignment : public BaseModel {
+protected:
+    const std::string tableName = "assignments";
 
-int Assignment::getId() const {
-	return id;
-}
+private:
+    int id;
+    std::string title;
+    std::string description;
+    std::string created_at;
+    std::string updated_at;
+    std::string due_date;
+    int course_id{};
+    int user_id{};
+    int priority{};
 
-std::string Assignment::getTitle() const {
-	return title;
-}
+public:
+    Assignment(int id = -1, const std::string& title = "", const std::string& description = "");
 
-std::string Assignment::getDescription() const {
-	return description;
-}
+    int getId() const;
+    std::string getTitle() const;
+    std::string getDescription() const;
+    int getCourseId() const;
+    int getUserId() const;
+    int getPriority() const;
+    std::string getDueDate() const;
+    std::string getCreatedAt() const;
+    std::string getUpdatedAt() const;
+    std::string getTableName() override;
 
-Assignment& Assignment::setId(int id) {
-	this->id = id;
-	return *this;
-}
+    Assignment& setId(int id);
+    Assignment& setTitle(const std::string& title);
+    Assignment& setDescription(const std::string& description);
+    Assignment& setCreatedAt(const std::string& created_at);
+    Assignment& setUpdatedAt(const std::string& updated_at);
+    Assignment& setDueDate(const std::string& due_date);
+    Assignment& setCourseId(int course_id);
+    Assignment& setPriority(int priority);
+    Assignment& setUserId(int user_id);
 
-Assignment& Assignment::setTitle(const std::string& title) {
-	this->title = title;
-	return *this;
-}
+    bool save() override;
+    void load();
+    bool remove() override;
+};
+#include "BaseModel.hpp"
+#include <string>
 
-Assignment& Assignment::setDescription(const std::string& description) {
-	this->description = description;
-	return *this;
-}
+class Assignment : public BaseModel {
+protected:
+    const std::string tableName = "assignments";
 
-Assignment& Assignment::setCreatedAt(const std::string& created_at) {
-	this->created_at = created_at;
-	return *this;
-}
+private:
+    int id;
+    std::string title;
+    std::string description;
+    std::string created_at;
+    std::string updated_at;
+    std::string due_date;
+    int course_id{};
+    int user_id{};
+    int priority{};
 
-Assignment& Assignment::setUpdatedAt(const std::string& updated_at) {
-	this->updated_at = updated_at;
-	return *this;
-}
+public:
+    Assignment(int id = -1, const std::string& title = "", const std::string& description = "");
 
-Assignment& Assignment::setUserId(int user_id) {
-	this->user_id = user_id;
-	return *this;
-}
+    int getId() const;
+    std::string getTitle() const;
+    std::string getDescription() const;
+    int getCourseId() const;
+    int getUserId() const;
+    int getPriority() const;
+    std::string getDueDate() const;
+    std::string getCreatedAt() const;
+    std::string getUpdatedAt() const;
+    std::string getTableName() override;
 
-Assignment& Assignment::setDueDate(const std::string& due_date) {
-	this->due_date = due_date;
-	return *this;
-}
+    Assignment& setId(int id);
+    Assignment& setTitle(const std::string& title);
+    Assignment& setDescription(const std::string& description);
+    Assignment& setCreatedAt(const std::string& created_at);
+    Assignment& setUpdatedAt(const std::string& updated_at);
+    Assignment& setDueDate(const std::string& due_date);
+    Assignment& setCourseId(int course_id);
+    Assignment& setPriority(int priority);
+    Assignment& setUserId(int user_id);
 
-Assignment& Assignment::setCourseId(int course_id) {
-	this->course_id = course_id;
-	return *this;
-}
-
-Assignment& Assignment::setPriority(int priority) {
-	this->priority = priority;
-	return *this;
-}
-
-std::string Assignment::getTableName()  {
-	return "assignments";
-}
-
-int Assignment::getCourseId() const {
-	return course_id;
-}
-int Assignment::getUserId() const {
-	return user_id;
-}
-
-void Assignment::load() {}
-
-bool Assignment::save()  {
-	DB& db = DB::getInstance();
-	return db.createAssignment(*this);
-}
-
-bool Assignment::remove()  {
-	DB& db = DB::getInstance();
-	return db.deleteAssignment(*this);
-}	
+    bool save() override;
+    void load();
+    bool remove() override;
+};
