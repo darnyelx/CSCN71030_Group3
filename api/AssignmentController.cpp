@@ -14,8 +14,8 @@ AssignmentResultPayload AssignmentController::createAssignment(const std::string
 	bool result = db.createAssignment(Assignment);
 	return { 
 		result, 
-		result? "" : "Failed to create assignment",	 
-		result? assignment: std::nullopt
+		result ? "" : "Failed to create assignment",	 
+		result ? assignment : std::nullopt
 	};
 
 	return assignment;
