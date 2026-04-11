@@ -1,70 +1,46 @@
 #pragma once
-#include "AssignmentModel.hpp"
+#include "BaseModel.hpp"
+#include <string>	
 
-Assignment::Assignment(int id, const std::string& title, const std::string& description)
-	: id(id), title(title), description(description) {
-}
+class Assignment : public BaseModel {
+protected: 
+	//overwriting the tableName from BaseModel
+	const std::string tableName = "assignments";
+private:
+	int id;
+	std::string title;
+	std::string description;
+	std::string created_at;
+	std::string updated_at;
+	std::string due_date;
+	int course_id{};
+	int user_id{};
+	int priority{};
 
-int Assignment::getId() const {
-	return id;
-}
+public:
+	Assignment(int id = -1, const std::string& title = "", const std::string& description = "");
+	int getId() const;
+	std::string getTitle() const;
+	std::string getDescription() const;
+	int getCourseId() const;
+	int getUserId() const;
+	int getPriority() const;
+	std::string getDueDate() const;
+	std::string getCreatedAt() const;
+	std::string getUpdatedAt() const;
+	std::string getTableName() override;
+	Assignment& setId(int id);
+	Assignment& setTitle(const std::string& title);
+	Assignment& setDescription(const std::string& description);
+	Assignment& setCreatedAt(const std::string& created_at);
+	Assignment& setUpdatedAt(const std::string& updated_at);
+	Assignment& setDueDate(const std::string& due_date);
+	Assignment& setCourseId(int course_id);
+	Assignment& setPriority(int priority);
+	Assignment& setUserId(int user_id);
+	bool save() override;
+	void load();
+	bool remove() override;
 
-std::string Assignment::getTitle() const {
-	return title;
-}
 
-std::string Assignment::getDescription() const {
-	return description;
-}
-
-Assignment& Assignment::setId(int id) {
-	this->id = id;
-	return *this;
-}
-
-Assignment& Assignment::setTitle(const std::string& title) {
-	this->title = title;
-	return *this;
-}
-
-Assignment& Assignment::setDescription(const std::string& description) {
-	this->description = description;
-	return *this;
-}
-
-Assignment& Assignment::setCreatedAt(const std::string& created_at) {
-	this->created_at = created_at;
-	return *this;
-}
-
-Assignment& Assignment::setUpdatedAt(const std::string& updated_at) {
-	this->updated_at = updated_at;
-	return *this;
-}
-
-Assignment& Assignment::setDueDate(const std::string& due_date) {
-	this->due_date = due_date;
-	return *this;
-}
-
-Assignment& Assignment::setCourseId(int course_id) {
-	this->course_id = course_id;
-	return *this;
-}
-
-Assignment& Assignment::setPriority(int priority) {
-	this->priority = priority;
-	return *this;
-}
-
-void Assignment::save()  {}
-void Assignment::remove() {
-
-}
-
-std::string Assignment::getTableName()  {
-	return "assignments";
-}
-
-void Assignment::load() {}
-
+};
