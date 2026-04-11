@@ -26,8 +26,8 @@ QtObject {
             stackView: stack
         })
 
-        page.registerRequested.connect(function(firstName, lastName, email, password) {
-            authViewController.registerUser(firstName, lastName, email, password)
+        page.registerRequested.connect(function(registerUserModel) {
+            authViewController.registerUser(registerUserModel)
         })
 
         page.goToLogin.connect(function() {

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.21)
 
 project(todo_app VERSION 0.1 LANGUAGES CXX)
 
@@ -9,6 +9,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2)
 find_package(libpqxx CONFIG REQUIRED)
+find_package(unofficial-sodium CONFIG REQUIRED)
 
 qt_add_executable(apptodo_app
     main.cpp
@@ -26,6 +27,13 @@ qt_add_executable(apptodo_app
         api/AssignmentModel.cpp
         api/CourseModel.hpp
         api/CourseModel.cpp
+        api/AssignmentController.cpp
+        api/AssignmentQueryController.cpp
+        view/Controllers/headers/AssignmentViewController.hpp
+        view/Controllers/AssignmentViewController.cpp
+        view/Controllers/headers/AssignmentViewController.hpp
+        view/Models/AssignmentModel.cpp
+        view/Models/headers/AssignmentModel.hpp
 
 
 )
@@ -59,6 +67,7 @@ set_target_properties(apptodo_app PROPERTIES
 target_link_libraries(apptodo_app
     PRIVATE Qt6::Quick
     PRIVATE Qt6::QuickControls2
+    PRIVATE unofficial-sodium::sodium
 )
 
 target_link_libraries(apptodo_app PRIVATE libpqxx::pqxx)
