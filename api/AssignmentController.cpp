@@ -1,8 +1,6 @@
 #include "AssignmentController.hpp"
 #include "AssignmentModel.hpp"
 #include "DB.hpp"
-#include <optional>
-
 
 AssignmentResultPayload AssignmentController::createAssignment( const std::string title, const std::string description, int courseId, int userId, std::string dueDate ) {
 	
@@ -36,11 +34,16 @@ AssignmentResultPayload  AssignmentController::updateAssignment(int id, const st
 		};
 	}
 
-    // return {
-    //     result,
-    //     result ? "" : "Failed to create assignment",
-    //     result ? std::optional<Assignment>(assignment) : std::nullopt
-    // };
+	assignment->setTitle(title)
+			  .setDescription(description)
+			.setPriority(priority)
+            .save();
+	return {
+		true,
+		"",
+		assignment
+	};
+		
 }
 
 GetAllAssignmentResultPayload AssignmentController::getAllAssignments(int id) {
