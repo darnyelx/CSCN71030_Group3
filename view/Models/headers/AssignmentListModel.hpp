@@ -31,7 +31,7 @@ public:
     void setAssignments(const std::vector<Assignment> &assignments);
     void clear();
 
-    AssignmentViewModel* get(int index) const;
+    Q_INVOKABLE AssignmentViewModel *get(int index) const;
 
 private:
     QList<AssignmentViewModel*> m_assignments;

@@ -11,6 +11,54 @@ Page {
 
     id: mainView
 
+    property int editingAssignmentId: -1
+
+    function findCourseIndex(courseId) {
+        if (courseId < 0)
+            return -1
+        let i = 0
+        while (true) {
+            const c = courseViewController.courseModel.get(i)
+            if (!c)
+                break
+            if (c.id === courseId)
+                return i
+            i++
+        }
+        return -1
+    }
+
+    function clearAssignmentForm() {
+        editingAssignmentId = -1
+        titleField.text = ""
+        descriptionField.text = ""
+        dueDateField.text = ""
+        courseList.currentIndex = -1
+        priorityCombo.currentIndex = 0
+        statusCombo.currentIndex = 0
+        createAssignment.title = ""
+        createAssignment.description = ""
+        createAssignment.dueDate = ""
+        createAssignment.courseId = -1
+        createAssignment.priority = 1
+    }
+
+    function loadAssignmentForEdit(row) {
+        const vm = assignmentController.assignmentModel.get(row)
+        if (!vm)
+            return
+        editingAssignmentId = vm.id
+        titleField.text = vm.title
+        descriptionField.text = vm.description
+        dueDateField.text = vm.dueDate
+        createAssignment.title = vm.title
+        createAssignment.description = vm.description
+        createAssignment.dueDate = vm.dueDate
+        createAssignment.courseId = vm.courseId
+        createAssignment.priority = Math.max(1, Math.min(3, vm.priority))
+        priorityCombo.currentIndex = createAssignment.priority - 1
+        courseList.currentIndex = findCourseIndex(vm.courseId)
+    }
 
     AssignmentViewModel {
         id: createAssignment
@@ -26,22 +74,21 @@ Page {
         target: assignmentController
 
         function onCreateAssignmentSuccess() {
-            titleField.text = ""
-            descriptionField.text = ""
-            dueDateField.text = ""
-            courseList.currentIndex = -1
-            priorityCombo.currentIndex = 0
-            statusCombo.currentIndex = 0
-
-            createAssignment.title = ""
-            createAssignment.description = ""
-            createAssignment.dueDate = ""
-            createAssignment.courseId = -1
-            createAssignment.priority = 1
+            assignmentController.getUserAssignments(UserStore.id)
+            clearAssignmentForm()
         }
 
         function onCreateAssignmentError(message) {
             console.log("Create assignment failed:", message)
+        }
+
+        function onUpdateAssignmentSuccess() {
+            assignmentController.getUserAssignments(UserStore.id)
+            clearAssignmentForm()
+        }
+
+        function onUpdateAssignmentError(message) {
+            console.log("Update assignment failed:", message)
         }
 
         function onUserAssignmentGetError(message) {
@@ -225,14 +272,14 @@ Page {
 
                                     Text {
                                         anchors.centerIn: parent
-                                        text: "+"
+                                        text: mainView.editingAssignmentId >= 0 ? "✎" : "+"
                                         color: green
-                                        font.pixelSize: 24
+                                        font.pixelSize: mainView.editingAssignmentId >= 0 ? 20 : 24
                                     }
                                 }
 
                                 Text {
-                                    text: "Add New Assignment"
+                                    text: mainView.editingAssignmentId >= 0 ? "Edit Assignment" : "Add New Assignment"
                                     color: textPrimary
                                     font.pixelSize: 22
                                     font.bold: true
@@ -450,7 +497,7 @@ Page {
 
                                 Text {
                                     anchors.centerIn: parent
-                                    text: "+  Add Assignment"
+                                    text: mainView.editingAssignmentId >= 0 ? "Save changes" : "+  Add Assignment"
                                     color: "#07240F"
                                     font.pixelSize: 20
                                     font.bold: true
@@ -460,10 +507,27 @@ Page {
                                     anchors.fill: parent
                                     cursorShape: Qt.PointingHandCursor
                                     onClicked: {
-                                        assignmentController.createAssignment(
-                                          createAssignment
-                                        )
+                                        if (mainView.editingAssignmentId >= 0) {
+                                            assignmentController.updateAssignment(mainView.editingAssignmentId,
+                                                                                  createAssignment)
+                                        } else {
+                                            assignmentController.createAssignment(createAssignment)
+                                        }
                                     }
+                                }
+                            }
+
+                            Text {
+                                visible: mainView.editingAssignmentId >= 0
+                                text: "Cancel editing"
+                                color: "#8D8D8D"
+                                font.pixelSize: 14
+                                font.underline: true
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
+                                    onClicked: mainView.clearAssignmentForm()
                                 }
                             }
                         }
@@ -668,19 +732,49 @@ Page {
                                         font.pixelSize: 15
                                     }
 
-                                    Row {
+                                    RowLayout {
+                                        width: parent.width
                                         spacing: 22
 
                                         Text {
                                             text: "◷ " + dueDate
                                             color: "#8D8D8D"
                                             font.pixelSize: 15
+                                            Layout.alignment: Qt.AlignVCenter
                                         }
 
                                         Text {
                                             text: "+ " + priority
                                             color: priorityColor
                                             font.pixelSize: 15
+                                            Layout.alignment: Qt.AlignVCenter
+                                        }
+
+                                        Item { Layout.fillWidth: true }
+
+                                        Rectangle {
+                                            Layout.alignment: Qt.AlignVCenter
+                                            height: 36
+                                            width: editBtnLabel.width + 28
+                                            radius: 10
+                                            color: "#2A2A2A"
+                                            border.color: borderColor
+                                            border.width: 1
+
+                                            Text {
+                                                id: editBtnLabel
+                                                anchors.centerIn: parent
+                                                text: "Edit"
+                                                color: green
+                                                font.pixelSize: 14
+                                                font.bold: true
+                                            }
+
+                                            MouseArea {
+                                                anchors.fill: parent
+                                                cursorShape: Qt.PointingHandCursor
+                                                onClicked: mainView.loadAssignmentForEdit(index)
+                                            }
                                         }
                                     }
                                 }

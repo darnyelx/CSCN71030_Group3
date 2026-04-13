@@ -54,7 +54,7 @@ TEST(AssignmentController, GetAssignmentFound) {
 TEST(AssignmentController, UpdateAssignmentNotFound) {
 	StubDatabase db;
 	AssignmentController c(db);
-	auto r = c.updateAssignment(1, "x", "y", 2);
+	auto r = c.updateAssignment(1, "x", "y", 1, "2026-01-01", 2);
 	EXPECT_FALSE(r.success);
 	EXPECT_EQ(r.errorMessage, "Assignment not found");
 }
@@ -65,7 +65,7 @@ TEST(AssignmentController, UpdateAssignmentSucceeds) {
 	db.assignments.push_back(db.assignmentById.find(2)->second);
 	db.createAssignmentSucceeds = true;
 	AssignmentController c(db);
-	auto r = c.updateAssignment(2, "New", "New desc", 9);
+	auto r = c.updateAssignment(2, "New", "New desc", 1, "2026-06-15", 9);
 	EXPECT_TRUE(r.success);
 	ASSERT_TRUE(r.assignment.has_value());
 	EXPECT_EQ(r.assignment->getTitle(), "New");

@@ -23,7 +23,8 @@ AssignmentResultPayload AssignmentController::createAssignment(const std::string
 }
 
 AssignmentResultPayload AssignmentController::updateAssignment(int id, const std::string &title,
-                                                               const std::string &description, int priority) {
+                                                               const std::string &description, int courseId,
+                                                               const std::string &dueDate, int priority) {
 	std::optional<Assignment> assignment = db_.getAssignmentByID(id);
 	if (!assignment.has_value()) {
 		return {
@@ -33,7 +34,11 @@ AssignmentResultPayload AssignmentController::updateAssignment(int id, const std
 		};
 	}
 
-	assignment->setTitle(title).setDescription(description).setPriority(priority);
+	assignment->setTitle(title)
+	    .setDescription(description)
+	    .setCourseId(courseId)
+	    .setDueDate(dueDate)
+	    .setPriority(priority);
 	bool ok = db_.createAssignment(*assignment);
 	return {
 	    ok,

@@ -30,7 +30,7 @@ public:
 	GetAllAssignmentResultPayload getAllAssignments(int userId);
 
 	AssignmentResultPayload updateAssignment(int id, const std::string &title, const std::string &description,
-	                                       int priority);
+	                                         int courseId, const std::string &dueDate, int priority);
 
 	AssignmentResultPayload deleteAssignment(int id);
 

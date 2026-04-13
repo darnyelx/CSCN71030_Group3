@@ -16,6 +16,7 @@ public:
 
 	Q_INVOKABLE void getUserAssignments(int userId);
 	Q_INVOKABLE void createAssignment(AssignmentViewModel *assignmentModel);
+	Q_INVOKABLE void updateAssignment(int assignmentId, AssignmentViewModel *assignmentModel);
 	Q_INVOKABLE void getFilteredAssignmentsByCourse();
 
 	AssignmentListModel* getAssignmentModel() const;
@@ -23,6 +24,8 @@ public:
 signals:
 	void createAssignmentError(const QString &message);
 	void createAssignmentSuccess();
+	void updateAssignmentError(const QString &message);
+	void updateAssignmentSuccess();
 	void userAssignmentGetError();
 
 private:
