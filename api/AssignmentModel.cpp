@@ -99,4 +99,4 @@ bool Assignment::save()  {
 bool Assignment::remove()  {
 	DB& db = DB::getInstance();
 	return db.deleteAssignment(*this);
-}	
+}
