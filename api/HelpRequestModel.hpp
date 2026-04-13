@@ -24,6 +24,7 @@ public:
     const std::string &getCreatedAt() const;
     void setId(int id);
     void setUserId(int userId);
+    void setCreatedAt(const std::string &createdAt);
     void setAssignmentId(int assignment_id);
     void setMessage(const std::string &message);
     void setRequestStatus(const std::string &request_status);

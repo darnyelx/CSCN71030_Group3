@@ -5,6 +5,10 @@ Course::Course(int id, const std::string& name, const std::string& description)
 	: id(id), name(name), description(description) {
 }
 
+Course::Course() {
+
+}
+
 int Course::getId() const {
 	return id;
 }

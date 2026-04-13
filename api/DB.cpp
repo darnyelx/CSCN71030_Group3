@@ -13,10 +13,10 @@ using namespace std;
 
 std::string DB::connectionString = getenv("DBConnectionString");
 
-DB::DB() : connection(DB::connectionString) {
-    if (connection.is_open()) {
-        std::cout << "Connection opened" << std::endl;
-    }
+DB::DB():connection( DB::connectionString ) {
+  if (connection.is_open()) {
+      std::cout << "DB connection is opened" << std::endl;
+  }
 }
 
 DB &DB::getInstance() {
@@ -220,41 +220,54 @@ bool DB::createAssignment(Assignment &assignment) {
 
         pqxx::work transaction(connection);
 
-        std::optional<int> assignmentId =
-                assignment.getId() > 0 ? std::make_optional(assignment.getId()) : std::nullopt;
+        pqxx::result result;
 
-        pqxx::result result = transaction.exec_params(
+        if (assignment.getId() > 0) {
+            result = transaction.exec_params(
                 R"(
-                INSERT INTO assignments
-                (
-                    id,
-                    title,
-                    description,
-                    created_at,
-                    updated_at,
-                    due_date,
-                    course_id,
-                    user_id,
-                    priority
-                )
-                VALUES
-                (
-                    $1, $2, $3, $4, $5, $6, $7, $8, $9
-                )
-                ON CONFLICT (id)
-                DO UPDATE SET
-                    title = EXCLUDED.title,
-                    description = EXCLUDED.description,
-                    created_at = EXCLUDED.created_at,
-                    updated_at = EXCLUDED.updated_at,
-                    due_date = EXCLUDED.due_date,
-                    course_id = EXCLUDED.course_id,
-                    user_id = EXCLUDED.user_id,
-                    priority = EXCLUDED.priority
-            )",
-                assignmentId, assignment.getTitle(), assignment.getDescription(), assignment.getCreatedAt(),
-                assignment.getUpdatedAt(), assignment.getDueDate(), assignment.getCourseId(), assignment.getUserId(),
-                assignment.getPriority());
+                    UPDATE assignments
+                    SET
+                        title = $1,
+                        description = $2,
+                        due_date = $3,
+                        course_id = $4,
+                        user_id = $5,
+                        priority = $6
+                    WHERE id = $7
+                )",
+                assignment.getTitle(),
+                assignment.getDescription(),
+                assignment.getDueDate(),
+                assignment.getCourseId(),
+                assignment.getUserId(),
+                assignment.getPriority(),
+                assignment.getId()
+            );
+        } else {
+            result = transaction.exec_params(
+                R"(
+                    INSERT INTO assignments
+                    (
+                        title,
+                        description,
+                        due_date,
+                        course_id,
+                        user_id,
+                        priority
+                    )
+                    VALUES
+                    (
+                        $1, $2, $3, $4, $5, $6
+                    )
+                )",
+                assignment.getTitle(),
+                assignment.getDescription(),
+                assignment.getDueDate(),
+                assignment.getCourseId(),
+                assignment.getUserId(),
+                assignment.getPriority() == 1 ? "HIGH":"LOW"
+            );
+        }
 
         transaction.commit();
         return result.affected_rows() > 0;
@@ -413,3 +426,34 @@ bool DB::deleteHelpRequest(HelpRequestModel &helpRequest) {
         return false;
     }
 }
+std::vector<Course> DB::getAllCourses()
+{
+    std::vector<Course> courses;
+
+    try {
+        pqxx::connection& conn = getConnection(); // your existing method
+        pqxx::work txn(conn);
+
+        pqxx::result result = txn.exec(
+            "SELECT id, name FROM courses ORDER BY name ASC"
+        );
+
+        for (const auto& row : result) {
+            Course course;
+
+            course.setId(row["id"].as<int>());
+            course.setName(row["name"].as<std::string>());
+
+            courses.push_back(course);
+        }
+
+        txn.commit();
+
+    } catch (const std::exception& e) {
+        throw std::runtime_error(std::string("Failed to fetch courses: ") + e.what());
+    }
+
+    return courses;
+}
+
+

@@ -3,6 +3,10 @@
 #include <vector>
 #include "AssignmentModel.hpp"
 #include "HelpRequestModel.hpp"
+#include "CourseModel.hpp"
+
+#include <pqxx/pqxx>
+
 #include "UserModel.hpp"
 
 class DB {
@@ -29,4 +33,6 @@ public:
     std::vector<HelpRequestModel> getAllHelpRequests(int id);
     std::optional<Assignment> getAssignmentByID(int id);
     bool deleteHelpRequest(HelpRequestModel &helpRequest);
+    std::vector<Course> getAllCourses();
+
 };

@@ -16,7 +16,7 @@ std::vector<Assignment> getBaseUserAssignments(int userId) {
     std::copy_if(allAssignments.begin(), allAssignments.end(), std::back_inserter(userAssignments),
         [userId](const Assignment& a) {
             // *** TEAMMATE ACTION REQUIRED ***
-            // The team MUST add getUserId() to AssignmentModel.hpp for this to compile.
+            // The team MUST add getUserId() to AssignmentViewModel.hpp for this to compile.
             return a.getUserId() == userId;
         });
 

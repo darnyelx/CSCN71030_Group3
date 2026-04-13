@@ -1,11 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <qqmlcontext.h>
 #include <QtQuickControls2/QQuickStyle>
+#include <qqmlcontext.h>
+#include <view/Controllers/headers/CourseViewController.hpp>
+
+#include "api/DB.hpp"
+#include "view/Controllers/headers/AssignmentViewController.hpp"
 #include "view/Controllers/headers/AuthViewController.h"
 #include "view/Models/headers/UserViewModel.h"
-#include "view/Controllers/headers/AssignmentViewController.hpp"
-#include "api/DB.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -19,10 +21,19 @@ int main(int argc, char *argv[])
     // do not trigger "style does not support customization" warnings.
     QQuickStyle::setStyle("Fusion");
     AuthViewController authViewController;
-    AssignmentViewController assignmentViewController;
+    AssignmentListModel assignmentListModel;
+    AssignmentViewController assignmentViewController(&assignmentListModel);
+    CourseListModel courseListModel;
+    CourseViewController courseViewController(&courseListModel);
+
     engine.rootContext()->setContextProperty("authViewController", &authViewController);
     engine.rootContext()->setContextProperty("assignmentController", &assignmentViewController);
+    engine.rootContext()->setContextProperty("courseViewController", &courseViewController);
+
     qmlRegisterType<UserViewModel>("App", 1, 0, "UserViewModel");
+    qmlRegisterType<AssignmentViewModel>("App", 1, 0, "AssignmentViewModel");
+
+
 
     QObject::connect(
         &engine,

@@ -32,8 +32,19 @@ qt_add_executable(apptodo_app
         view/Controllers/headers/AssignmentViewController.hpp
         view/Controllers/AssignmentViewController.cpp
         view/Controllers/headers/AssignmentViewController.hpp
-        view/Models/AssignmentModel.cpp
-        view/Models/headers/AssignmentModel.hpp
+        view/Models/AssignmentViewModel.cpp
+        view/Models/headers/AssignmentViewModel.hpp
+        view/Models/AssignmentListModel.cpp
+        view/Models/headers/AssignmentListModel.hpp
+        view/Models/CourseViewModel.cpp
+        view/Models/headers/CourseViewModel.hpp
+        view/Models/CourseListModel.cpp
+        view/Models/headers/CourseListModel.hpp
+        view/Controllers/CourseViewController.cpp
+        view/Controllers/headers/CourseViewController.hpp
+        api/BaseModel.cpp
+        api/CourseController.cpp
+        api/CourseController.cpp
 
 
 )
