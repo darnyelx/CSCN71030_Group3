@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
 #include "AssignmentModel.hpp"
+#include "CourseModel.hpp"
+
 #include <pqxx/pqxx>
 
 #include "UserModel.hpp"
@@ -24,5 +26,6 @@ public:
     bool createAssignment(Assignment &assignment);
     bool deleteAssignment(Assignment &assignment);
 	std::optional<Assignment> getAssignmentByID(int id);
+    std::vector<Course> getAllCourses();
 
 };

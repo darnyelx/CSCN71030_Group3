@@ -2,13 +2,15 @@
 #include "AssignmentModel.hpp"
 #include "DB.hpp"
 
-AssignmentResultPayload AssignmentController::createAssignment(const std::string& title, const std::string& description, int courseId, int userId) {
+AssignmentResultPayload AssignmentController::createAssignment( const std::string title, const std::string description, int courseId, int userId, std::string dueDate ) {
 	
 	
 	Assignment assignment;
 	assignment.setTitle(title)
 			  .setDescription(description)
 			  .setCourseId(courseId)
+    .setUserId(userId)
+    .setDueDate(dueDate)
 			   .setPriority(1); // default priority
 	DB& db = DB::getInstance();
 	bool result = db.createAssignment(assignment);
@@ -19,7 +21,7 @@ AssignmentResultPayload AssignmentController::createAssignment(const std::string
 	};
 
 }
-AssignmentResultPayload updateAssignment(int id, const std::string& title, const std::string& description, int priority){
+AssignmentResultPayload  AssignmentController::updateAssignment(int id, const std::string& title, const std::string& description, int priority){
 	//get DB instance
 	DB& db = DB::getInstance();
 	std::optional<Assignment> assignment = db.getAssignmentByID(id);
@@ -42,4 +44,14 @@ AssignmentResultPayload updateAssignment(int id, const std::string& title, const
 		assignment
 	};
 		
+}
+
+GetAllAssignmentResultPayload AssignmentController::getAllAssignments(int id) {
+    DB& db = DB::getInstance();
+    std::vector<Assignment> assignments;
+     return {
+         true,
+         assignments,
+         ""
+     };
 }

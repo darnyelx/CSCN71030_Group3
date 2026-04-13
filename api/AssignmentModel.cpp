@@ -74,6 +74,21 @@ int Assignment::getUserId() const {
 	return user_id;
 }
 
+std::string Assignment::getDueDate() const {
+    return due_date;
+}
+int Assignment::getPriority() const {
+    return priority;
+}
+
+std::string Assignment::getCreatedAt() const {
+    return created_at;
+}
+
+std::string Assignment::getUpdatedAt() const {
+    return updated_at;
+}
+
 void Assignment::load() {}
 
 bool Assignment::save()  {

@@ -19,7 +19,7 @@ struct GetAllAssignmentResultPayload {
 
 class AssignmentController {
 	public:
-		AssignmentResultPayload createAssignment(const std::string& title, const std::string& description, int courseId, int userId);
+		AssignmentResultPayload createAssignment( const std::string title, const  std::string description, int courseId, int userId, std::string dueDate );
 
 		AssignmentResultPayload getAssignment(int id);
 

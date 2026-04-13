@@ -1,4 +1,4 @@
-#include "headers/AssignmentModel.hpp"
+#include "view/Models/headers/AssignmentViewModel.hpp"
 #include "api/AssignmentModel.hpp"
 
 AssignmentViewModel::AssignmentViewModel(QObject *parent)

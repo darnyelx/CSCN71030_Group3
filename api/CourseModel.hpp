@@ -13,7 +13,8 @@ private:
 
 public:
 	Course(int id, const std::string& name, const std::string& description);
-	int getId() const;
+    Course();
+    int getId() const;
 	int getUserId() const;
 	std::string getName() const;
 	std::string getDescription() const;
