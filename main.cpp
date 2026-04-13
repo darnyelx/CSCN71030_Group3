@@ -4,6 +4,9 @@
 #include <qqmlcontext.h>
 #include <view/Controllers/headers/CourseViewController.hpp>
 
+#include "api/AssignmentController.hpp"
+#include "api/AuthController.hpp"
+#include "api/CourseController.hpp"
 #include "api/DB.hpp"
 #include "view/Controllers/headers/AssignmentViewController.hpp"
 #include "view/Controllers/headers/AuthViewController.h"
@@ -11,20 +14,23 @@
 
 int main(int argc, char *argv[])
 {
-    DB& instance = DB::getInstance();
-    
+    DB &database = DB::getInstance();
+    AuthController authController(database);
+    AssignmentController assignmentController(database);
+    CourseController courseController(database);
+
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/todo_app/Main.qml"));
 
-    // do not trigger "style does not support customization" warnings.
     QQuickStyle::setStyle("Fusion");
-    AuthViewController authViewController;
+
     AssignmentListModel assignmentListModel;
-    AssignmentViewController assignmentViewController(&assignmentListModel);
     CourseListModel courseListModel;
-    CourseViewController courseViewController(&courseListModel);
+    AuthViewController authViewController(authController);
+    AssignmentViewController assignmentViewController(assignmentController, &assignmentListModel);
+    CourseViewController courseViewController(courseController, &courseListModel);
 
     engine.rootContext()->setContextProperty("authViewController", &authViewController);
     engine.rootContext()->setContextProperty("assignmentController", &assignmentViewController);
@@ -32,8 +38,6 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<UserViewModel>("App", 1, 0, "UserViewModel");
     qmlRegisterType<AssignmentViewModel>("App", 1, 0, "AssignmentViewModel");
-
-
 
     QObject::connect(
         &engine,

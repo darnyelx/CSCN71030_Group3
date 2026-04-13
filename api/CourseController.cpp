@@ -5,18 +5,17 @@
 
 #include "CourseController.hpp"
 #include "CourseModel.hpp"
-#include "DB.hpp"
+#include "IDatabase.hpp"
 #include <exception>
+
+CourseController::CourseController(IDatabase &database) : db_(database) {}
 
 GetCoursesResult CourseController::getAllCourses()
 {
     GetCoursesResult result;
 
     try {
-        DB& db = DB::getInstance();
-
-        // assuming DB has this method
-       std::vector<Course> courses = db.getAllCourses();
+       std::vector<Course> courses = db_.getAllCourses();
 
       return {
           true,

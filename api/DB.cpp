@@ -3,6 +3,7 @@
 //
 
 #include "DB.hpp"
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,7 +12,14 @@
 using namespace std;
 
 
-std::string DB::connectionString = getenv("DBConnectionString");
+namespace {
+const char *envConnectionString() {
+    const char *s = std::getenv("DBConnectionString");
+    return (s != nullptr) ? s : "";
+}
+} // namespace
+
+std::string DB::connectionString = envConnectionString();
 
 DB::DB():connection( DB::connectionString ) {
   if (connection.is_open()) {
@@ -176,7 +184,7 @@ std::vector<UserModel> DB::getAllUsers() {
     return users;
 }
 
-std::vector<Assignment> DB::getAllAssignments() {
+std::vector<Assignment> DB::getAllAssignments(int id) {
     std::vector<Assignment> assignments;
 
     try {
@@ -186,8 +194,8 @@ std::vector<Assignment> DB::getAllAssignments() {
         if (connection.is_open()) {
             pqxx::work transaction(connection);
 
-            std::string query = "SELECT * FROM " + assignment.getTableName();
-            pqxx::result result = transaction.exec(query);
+            std::string query = "SELECT * FROM " + assignment.getTableName()+" WHERE user_id = $1";
+            pqxx::result result = transaction.exec_params(query, id);
 
             for (auto const &row: result) {
                 Assignment assignmentRow;
@@ -367,6 +375,37 @@ std::vector<HelpRequestModel> DB::getAllHelpRequests(int id) {
 
     return helpRequests;
 }
+std::optional<HelpRequestModel> DB::getHelpRequestById(int id) {
+	try {
+		pqxx::connection &connection = getConnection();
+
+		if (!connection.is_open()) {
+			std::cout << "Connection closed" << std::endl;
+			return std::nullopt;
+		}
+
+		pqxx::work transaction(connection);
+		pqxx::result result = transaction.exec_params("SELECT * FROM help_requests WHERE id = $1", id);
+
+		if (result.empty()) {
+			return std::nullopt;
+		}
+
+		HelpRequestModel hr;
+		hr.setId(result[0]["id"].as<int>());
+		hr.setUserId(result[0]["user_id"].as<int>());
+		hr.setAssignmentId(result[0]["assignment_id"].as<int>());
+		hr.setMessage(result[0]["message"].as<std::string>());
+		hr.setCreatedAt(result[0]["created_at"].as<std::string>());
+
+		return hr;
+
+	} catch (const std::exception &e) {
+		std::cout << e.what() << std::endl;
+		return std::nullopt;
+	}
+}
+
 bool DB::createHelpRequest(HelpRequestModel &helpRequest) {
     try {
         pqxx::connection &connection = getConnection();

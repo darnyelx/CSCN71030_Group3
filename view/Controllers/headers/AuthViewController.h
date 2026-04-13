@@ -11,17 +11,18 @@ class AuthViewController : public QObject
     Q_OBJECT
 
 public:
-    explicit AuthViewController(QObject *parent = nullptr);
+    explicit AuthViewController(AuthController &authController, QObject *parent = nullptr);
 
     Q_INVOKABLE void login(const QString &email, const QString &password);
     Q_INVOKABLE void registerUser(const UserViewModel *userViewModel);
-
-    // Q_INVOKABLE void logout();
 
 signals:
     void loginSucceeded(UserViewModel* usermodel);
     void loginFailed(const QString &message);
     void logoutSucceeded();
+
+private:
+    AuthController &m_authController;
 };
 
-#endif //
+#endif // AUTHCONTROLLER_H

@@ -1,5 +1,10 @@
+#pragma once
+
+#include <string>
 #include <vector>
 #include "CourseModel.hpp"
+
+class IDatabase;
 
 struct GetCoursesResult {
 	bool success;
@@ -9,5 +14,10 @@ struct GetCoursesResult {
 
 class CourseController {
 public:
+	explicit CourseController(IDatabase &database);
+
 	GetCoursesResult getAllCourses();
+
+private:
+	IDatabase &db_;
 };

@@ -571,6 +571,29 @@ Page {
                                 border.color: borderColor
                                 border.width: 1
 
+                                // ✅ Define missing properties
+                                property string subject: "Course " + courseId   // or map later
+                                property string status: "Pending"               // until you add it to model
+
+                                property color dotColor: status === "Completed" ? green
+                                    : status === "In Progress" ? blue
+                                        : yellow
+
+                                property color subjectBg: "#1E293B"
+                                property color subjectText: "#93C5FD"
+
+                                property color statusBg: status === "Completed" ? "#022C22"
+                                    : status === "In Progress" ? "#1E3A8A"
+                                        : "#3F2F0B"
+
+                                property color statusText: status === "Completed" ? "#22C55E"
+                                    : status === "In Progress" ? "#60A5FA"
+                                        : "#F59E0B"
+
+                                property color priorityColor: priority === 3 ? red
+                                    : priority === 2 ? yellow
+                                        : green
+
                                 Column {
                                     anchors.fill: parent
                                     anchors.margins: 22
@@ -598,6 +621,7 @@ Page {
                                             height: 30
                                             radius: 8
                                             color: subjectBg
+                                            width: subjectLabel.implicitWidth + 24
 
                                             Text {
                                                 anchors.centerIn: parent
@@ -607,14 +631,10 @@ Page {
                                                 font.bold: true
                                             }
 
-                                            width: subjectLabel.implicitWidth + 24
-
                                             Text {
                                                 id: subjectLabel
                                                 visible: false
                                                 text: subject
-                                                font.pixelSize: 14
-                                                font.bold: true
                                             }
                                         }
 
@@ -636,8 +656,6 @@ Page {
                                                 id: statusLabel
                                                 visible: false
                                                 text: status
-                                                font.pixelSize: 14
-                                                font.bold: true
                                             }
                                         }
                                     }
@@ -663,80 +681,6 @@ Page {
                                             text: "+ " + priority
                                             color: priorityColor
                                             font.pixelSize: 15
-                                        }
-                                    }
-
-                                    Rectangle {
-                                        width: parent.width
-                                        height: 1
-                                        color: "#242424"
-                                    }
-
-                                    Row {
-                                        spacing: 12
-
-                                        Rectangle {
-                                            width: 138
-                                            height: 42
-                                            radius: 10
-                                            color: greenDark
-                                            border.color: "#1F6C3A"
-                                            border.width: 1
-
-                                            Text {
-                                                anchors.centerIn: parent
-                                                text: "⚗  Request Help"
-                                                color: green
-                                                font.pixelSize: 15
-                                                font.bold: true
-                                            }
-
-                                            MouseArea {
-                                                anchors.fill: parent
-                                                cursorShape: Qt.PointingHandCursor
-                                            }
-                                        }
-
-                                        Rectangle {
-                                            width: 42
-                                            height: 42
-                                            radius: 10
-                                            color: "#1C1C1C"
-                                            border.color: "#2B2B2B"
-                                            border.width: 1
-
-                                            Text {
-                                                anchors.centerIn: parent
-                                                text: "✎"
-                                                color: "#CFCFCF"
-                                                font.pixelSize: 18
-                                            }
-
-                                            MouseArea {
-                                                anchors.fill: parent
-                                                cursorShape: Qt.PointingHandCursor
-                                            }
-                                        }
-
-                                        Rectangle {
-                                            width: 42
-                                            height: 42
-                                            radius: 10
-                                            color: "#1C1C1C"
-                                            border.color: "#2B2B2B"
-                                            border.width: 1
-
-                                            Text {
-                                                anchors.centerIn: parent
-                                                text: "🗑"
-                                                color: "#CFCFCF"
-                                                font.pixelSize: 16
-                                            }
-
-                                            MouseArea {
-                                                anchors.fill: parent
-                                                cursorShape: Qt.PointingHandCursor
-                                            }
                                         }
                                     }
                                 }

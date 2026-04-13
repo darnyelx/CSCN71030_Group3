@@ -46,9 +46,11 @@ Course& Course::setUserId(int user_id) {
 }
 
 
-bool Course::save()  {}
-bool Course::remove() {
-
+bool Course::save(IDatabase &) {
+	return false;
+}
+bool Course::remove(IDatabase &) {
+	return false;
 }
 
 std::string Course::getTableName()  {

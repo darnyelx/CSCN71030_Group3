@@ -2,22 +2,18 @@
 
 #include "view/Models/headers/UserViewModel.h"
 
-AuthViewController::AuthViewController(QObject *parent ) {
-
-}
+AuthViewController::AuthViewController(AuthController &authController, QObject *parent)
+    : QObject(parent), m_authController(authController) {}
 
 void AuthViewController::login(const QString &email, const QString &password) {
     //do validations
     if (email.trimmed().length() < 0 || password.trimmed().length() < 0) {
         emit loginFailed("Email and Password is required");
     }
-    AuthController authController;
-    //convert email and password to stdstring
     std::string emailStr = email.toStdString();
     std::string passwordStr = password.toStdString();
 
-    //check if user is Logged In
-    LoginResult isLoggedIn = authController.login(emailStr,passwordStr);
+    LoginResult isLoggedIn = m_authController.login(emailStr, passwordStr);
 
     if (isLoggedIn.success && isLoggedIn.userModel.has_value()) {
         //convert C++ Model to QTUser Model
@@ -34,15 +30,13 @@ void AuthViewController::registerUser(const UserViewModel *userViewModel ) {
     if (userViewModel->email().trimmed().length() < 0 || userViewModel->password().trimmed().length() < 0 || userViewModel->firstName().trimmed().length() < 0 || userViewModel->lastName().trimmed().length() < 0 ) {
         emit loginFailed("Firstname, Lastname, Email and Password is required");
     }
-    AuthController authController;
-    //convert email and password to stdstring
     std::string emailStr = userViewModel->email().toStdString();
     std::string passwordStr = userViewModel->password().toStdString();
     std::string firstName = userViewModel->firstName().toStdString();
     std::string lastName = userViewModel->lastName().toStdString();
 
     //check if user is Logged In
-    LoginResult isRegistered = authController.registerUser(firstName,lastName,emailStr,passwordStr);
+    LoginResult isRegistered = m_authController.registerUser(firstName, lastName, emailStr, passwordStr);
 
     if (isRegistered.success && isRegistered.userModel.has_value()) {
         UserViewModel userViewModel(*isRegistered.userModel, nullptr);

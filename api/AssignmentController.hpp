@@ -1,7 +1,10 @@
 #pragma once
 
 #include "AssignmentModel.hpp"
+#include <optional>
 #include <vector>
+
+class IDatabase;
 
 struct AssignmentResultPayload {
 	bool success;
@@ -15,18 +18,22 @@ struct GetAllAssignmentResultPayload {
 	std::string errorMessage;
 };
 
-
-
 class AssignmentController {
-	public:
-		AssignmentResultPayload createAssignment( const std::string title, const  std::string description, int courseId, int userId, std::string dueDate );
+public:
+	explicit AssignmentController(IDatabase &database);
 
-		AssignmentResultPayload getAssignment(int id);
+	AssignmentResultPayload createAssignment(const std::string title, const std::string description, int courseId,
+	                                         int userId, std::string dueDate);
 
-		GetAllAssignmentResultPayload getAllAssignments(int userId);
+	AssignmentResultPayload getAssignment(int id);
 
-		AssignmentResultPayload updateAssignment(int id, const std::string& title, const std::string& description, int priority);
+	GetAllAssignmentResultPayload getAllAssignments(int userId);
 
-		AssignmentResultPayload deleteAssignment(int id);
+	AssignmentResultPayload updateAssignment(int id, const std::string &title, const std::string &description,
+	                                       int priority);
+
+	AssignmentResultPayload deleteAssignment(int id);
+
+private:
+	IDatabase &db_;
 };
-

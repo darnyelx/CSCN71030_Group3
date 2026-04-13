@@ -1,6 +1,5 @@
-#pragma once
 #include "AssignmentModel.hpp"
-#include "DB.hpp"
+#include "IDatabase.hpp"
 
 Assignment::Assignment(int id, const std::string& title, const std::string& description)
 	: id(id), title(title), description(description) {
@@ -91,12 +90,10 @@ std::string Assignment::getUpdatedAt() const {
 
 void Assignment::load() {}
 
-bool Assignment::save()  {
-	DB& db = DB::getInstance();
+bool Assignment::save(IDatabase &db) {
 	return db.createAssignment(*this);
 }
 
-bool Assignment::remove()  {
-	DB& db = DB::getInstance();
+bool Assignment::remove(IDatabase &db) {
 	return db.deleteAssignment(*this);
 }

@@ -28,8 +28,8 @@ public:
     void setAssignmentId(int assignment_id);
     void setMessage(const std::string &message);
     void setRequestStatus(const std::string &request_status);
-    bool save() override;
-    bool remove() override;
+    bool save(IDatabase &db) override;
+    bool remove(IDatabase &db) override;
 
     std::string getTableName() override;
 };

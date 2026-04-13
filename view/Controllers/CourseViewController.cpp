@@ -4,11 +4,9 @@
 
 #include "view/Controllers/headers/CourseViewController.hpp"
 
-CourseViewController::CourseViewController(CourseListModel *courseModel, QObject *parent)
-    : QObject(parent),
-      m_courseModel(courseModel)
-{
-}
+CourseViewController::CourseViewController(CourseController &courseController, CourseListModel *courseModel,
+                                         QObject *parent)
+    : QObject(parent), m_courseController(courseController), m_courseModel(courseModel) {}
 
 CourseListModel* CourseViewController::getCourseModel() const
 {
@@ -22,8 +20,7 @@ void CourseViewController::getCourses()
         return;
     }
 
-    CourseController courseController;
-    auto coursesPayload = courseController.getAllCourses();
+    auto coursesPayload = m_courseController.getAllCourses();
 
     if (coursesPayload.success) {
         m_courseModel->setCourses(coursesPayload.courses);

@@ -38,9 +38,9 @@ public:
 	Assignment& setCourseId(int course_id);
 	Assignment& setPriority(int priority);
 	Assignment& setUserId(int user_id);
-	bool save() override;
+	bool save(IDatabase &db) override;
 	void load();
-	bool remove() override;
+	bool remove(IDatabase &db) override;
 
 
 };

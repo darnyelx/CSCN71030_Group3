@@ -1,12 +1,12 @@
 #include "AuthController.hpp"
 #include <sodium.h>
-#include "DB.hpp"
+#include "IDatabase.hpp"
 
+AuthController::AuthController(IDatabase &database) : db_(database) {}
 
-LoginResult AuthController::login( std::string &email, const std::string &password) {
+LoginResult AuthController::login(std::string &email, const std::string &password) {
 
-    DB &DBInstance = DB::getInstance();
-    std::optional<UserModel> user = DBInstance.getUserByEmail(email);
+    std::optional<UserModel> user = db_.getUserByEmail(email);
     if (!user.has_value()) {
         return {false, "Invalid email or password", std::nullopt};
     }
@@ -40,7 +40,7 @@ LoginResult AuthController::registerUser(const std::string &firstName, const std
     UserModel user(-1, firstName, lastName);
     user.setEmail(email);
     user.setPassword(hashed);
-    user.save(); // Save the user to the database
+    db_.createUser(user);
 
     return {true, "Registration successful", user};
 }

@@ -8,7 +8,8 @@ AssignmentListModel::AssignmentListModel(QObject *parent)
 
 AssignmentListModel::~AssignmentListModel()
 {
-    clear();
+    qDeleteAll(m_assignments);
+    m_assignments.clear();
 }
 
 int AssignmentListModel::rowCount(const QModelIndex &parent) const
@@ -73,12 +74,14 @@ QHash<int, QByteArray> AssignmentListModel::roleNames() const
 void AssignmentListModel::setAssignments(const std::vector<Assignment> &assignments)
 {
     beginResetModel();
-    clear();
+
+    qDeleteAll(m_assignments);
+    m_assignments.clear();
 
     for (const auto &assignment : assignments) {
-        AssignmentViewModel assignmentViewModel(assignment);
-        assignmentViewModel.fromModel(assignment);
-        m_assignments.append(&assignmentViewModel);
+        auto *assignmentViewModel = new AssignmentViewModel(this);
+        assignmentViewModel->fromModel(assignment);
+        m_assignments.append(assignmentViewModel);
     }
 
     endResetModel();

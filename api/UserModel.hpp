@@ -26,6 +26,6 @@ public:
 	UserModel& setEmail(const std::string& email);
 	UserModel& setPassword(const std::string& password);
 	std::string getTableName() override;
-	bool save() override;
-	bool remove() override;
+	bool save(IDatabase &db) override;
+	bool remove(IDatabase &db) override;
 };

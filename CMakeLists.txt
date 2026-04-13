@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.21)
 
 project(todo_app VERSION 0.1 LANGUAGES CXX)
 
+option(TODO_APP_BUILD_TESTS "Build GoogleTest suite for api/" ON)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -13,7 +15,6 @@ find_package(unofficial-sodium CONFIG REQUIRED)
 
 qt_add_executable(apptodo_app
     main.cpp
-        main.cpp
         view/Controllers/headers/AuthViewController.h
         view/Controllers/AuthViewController.cpp
         view/Models/UserViewModel.cpp
@@ -27,6 +28,7 @@ qt_add_executable(apptodo_app
         api/AssignmentModel.cpp
         api/CourseModel.hpp
         api/CourseModel.cpp
+        api/HelpRequestModel.cpp
         api/AssignmentController.cpp
         api/AssignmentQueryController.cpp
         view/Controllers/headers/AssignmentViewController.hpp
@@ -42,11 +44,7 @@ qt_add_executable(apptodo_app
         view/Models/headers/CourseListModel.hpp
         view/Controllers/CourseViewController.cpp
         view/Controllers/headers/CourseViewController.hpp
-        api/BaseModel.cpp
         api/CourseController.cpp
-        api/CourseController.cpp
-
-
 )
 
 qt_add_qml_module(apptodo_app
@@ -82,6 +80,11 @@ target_link_libraries(apptodo_app
 )
 
 target_link_libraries(apptodo_app PRIVATE libpqxx::pqxx)
+
+if(TODO_APP_BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
 
 include(GNUInstallDirs)
 install(TARGETS apptodo_app

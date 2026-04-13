@@ -1,8 +1,8 @@
 #include "HelpRequestModel.hpp"
-#include "DB.hpp"
+#include "IDatabase.hpp"
 
 HelpRequestModel::HelpRequestModel(int id, int userId, const std::string &message, const std::string &createdAt) :
-    id(id), userId(userId), message(message), createdAt(createdAt) {}
+    id(id), userId(userId), assignment_id(-1), message(message), request_status(""), createdAt(createdAt) {}
 
 int HelpRequestModel::getId() const { return id; }
 
@@ -16,14 +16,25 @@ void HelpRequestModel::setId(int id) { this->id = id; }
 
 void HelpRequestModel::setUserId(int userId) { this->userId = userId; }
 
+void HelpRequestModel::setCreatedAt(const std::string &createdAt) { this->createdAt = createdAt; }
+
 void HelpRequestModel::setAssignmentId(int assignment_id) { this->assignment_id = assignment_id; }
 
 void HelpRequestModel::setMessage(const std::string &message) { this->message = message; }
-bool HelpRequestModel::save() {
-    DB &db = DB::getInstance();
+
+int HelpRequestModel::getAssignmentId() const { return assignment_id; }
+
+const std::string &HelpRequestModel::getRequestStatus() const { return request_status; }
+
+void HelpRequestModel::setRequestStatus(const std::string &request_status) {
+    this->request_status = request_status;
+}
+
+std::string HelpRequestModel::getTableName() { return tableName; }
+
+bool HelpRequestModel::save(IDatabase &db) {
     return db.createHelpRequest(*this);
 }
-bool HelpRequestModel::remove() {
-    DB &db = DB::getInstance();
+bool HelpRequestModel::remove(IDatabase &db) {
     return db.deleteHelpRequest(*this);
 }

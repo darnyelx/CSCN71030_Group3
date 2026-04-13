@@ -10,8 +10,9 @@ class AssignmentViewController : public QObject {
 	Q_OBJECT
 	Q_PROPERTY(AssignmentListModel* assignmentModel READ getAssignmentModel CONSTANT)
 
-    public:
-	explicit AssignmentViewController(AssignmentListModel *assignmentModel, QObject *parent = nullptr);
+public:
+	explicit AssignmentViewController(AssignmentController &assignmentController,
+	                                  AssignmentListModel *assignmentModel, QObject *parent = nullptr);
 
 	Q_INVOKABLE void getUserAssignments(int userId);
 	Q_INVOKABLE void createAssignment(AssignmentViewModel *assignmentModel);
@@ -19,12 +20,13 @@ class AssignmentViewController : public QObject {
 
 	AssignmentListModel* getAssignmentModel() const;
 
-	signals:
-	    void createAssignmentError(const QString &message);
-		void createAssignmentSuccess();
-		void userAssignmentGetError();
+signals:
+	void createAssignmentError(const QString &message);
+	void createAssignmentSuccess();
+	void userAssignmentGetError();
 
 private:
+	AssignmentController &m_assignmentController;
 	AssignmentListModel *m_assignmentModel;
 };
 

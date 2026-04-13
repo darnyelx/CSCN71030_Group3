@@ -22,9 +22,9 @@ public:
 	Course& setName(const std::string& name);
 	Course& setDescription(const std::string& description);
 	Course& setUserId(int user_id);
-	bool save() override;
+	bool save(IDatabase &db) override;
 	void load();
-	bool remove() override;
+	bool remove(IDatabase &db) override;
 	std::string getTableName() override;
 
 

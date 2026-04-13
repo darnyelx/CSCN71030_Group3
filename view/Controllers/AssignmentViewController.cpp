@@ -1,36 +1,31 @@
 #include "view/Controllers/headers/AssignmentViewController.hpp"
-#include "api/AssignmentController.hpp"
-#include  <iostream>
+#include <iostream>
 
-
-AssignmentViewController::AssignmentViewController(AssignmentListModel *assignmentModel, QObject *parent)
-    : QObject(parent),
-      m_assignmentModel(assignmentModel)
-{
-}
+AssignmentViewController::AssignmentViewController(AssignmentController &assignmentController,
+                                                   AssignmentListModel *assignmentModel, QObject *parent)
+    : QObject(parent), m_assignmentController(assignmentController), m_assignmentModel(assignmentModel) {}
 
 AssignmentListModel* AssignmentViewController::getAssignmentModel() const
 {
     return m_assignmentModel;
 }
 void AssignmentViewController::createAssignment(AssignmentViewModel *assignmentModel) {
-    AssignmentController controller;
     std::cout << "user ID" << assignmentModel->userId() << std::endl;
-    controller.createAssignment(assignmentModel->title().toStdString(), assignmentModel->description().toStdString(), assignmentModel->courseId(),assignmentModel->userId(), assignmentModel->dueDate().toStdString());
-
+    m_assignmentController.createAssignment(assignmentModel->title().toStdString(),
+                                           assignmentModel->description().toStdString(), assignmentModel->courseId(),
+                                           assignmentModel->userId(), assignmentModel->dueDate().toStdString());
 }
 void AssignmentViewController::getUserAssignments(int userId)
 {
     std::cout << "Getting user's assignments: "<< userId << std::endl;
-    AssignmentController controller;
-     GetAllAssignmentResultPayload assignmentsPayload = controller.getAllAssignments(userId);
+     GetAllAssignmentResultPayload assignmentsPayload = m_assignmentController.getAllAssignments(userId);
 
     if (!m_assignmentModel) {
         emit createAssignmentError("Assignment model is not initialized");
         return;
     }
-    std::cout<<"Assignment gotten: " << assignmentsPayload.assignments.size() << std::endl;
     if (assignmentsPayload.success) {
+        std::cout<<"Assignment gotten: " << assignmentsPayload.assignments.size() << std::endl;
 
         m_assignmentModel->setAssignments(assignmentsPayload.assignments);
     } else {

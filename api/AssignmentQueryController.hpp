@@ -4,27 +4,23 @@
 #include <vector>
 #include "AssignmentModel.hpp"
 
+class IDatabase;
+
 class AssignmentQueryController {
 public:
-    // ==========================================
-    // SEARCHING
-    // ==========================================
-    // Searches titles and descriptions for a keyword
-    std::vector<Assignment> searchAssignmentsByKeyword(int userId, const std::string& keyword);
+	explicit AssignmentQueryController(IDatabase &database);
 
-    // ==========================================
-    // FILTERING
-    // ==========================================
-    std::vector<Assignment> getFilteredAssignmentsByCourse(int userId, int courseId);
-    std::vector<Assignment> getFilteredAssignmentsByPriority(int userId, int priority);
-    std::vector<Assignment> getFilteredAssignmentsByStatus(int userId, const std::string& status);
-    std::vector<Assignment> getFilteredAssignmentsByDueDateRange(int userId, const std::string& startDate, const std::string& endDate);
+	std::vector<Assignment> searchAssignmentsByKeyword(int userId, const std::string &keyword);
 
-    // ==========================================
-    // SORTING
-    // ==========================================
-    // Sorts by closest due date first
-    std::vector<Assignment> getOrderedAssignmentsByDueDate(int userId);
-    // Sorts by highest priority first
-    std::vector<Assignment> getOrderedAssignmentsByPriority(int userId);
+	std::vector<Assignment> getFilteredAssignmentsByCourse(int userId, int courseId);
+	std::vector<Assignment> getFilteredAssignmentsByPriority(int userId, int priority);
+	std::vector<Assignment> getFilteredAssignmentsByStatus(int userId, const std::string &status);
+	std::vector<Assignment> getFilteredAssignmentsByDueDateRange(int userId, const std::string &startDate,
+	                                                             const std::string &endDate);
+
+	std::vector<Assignment> getOrderedAssignmentsByDueDate(int userId);
+	std::vector<Assignment> getOrderedAssignmentsByPriority(int userId);
+
+private:
+	IDatabase &db_;
 };
