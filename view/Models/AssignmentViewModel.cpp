@@ -55,6 +55,11 @@ int AssignmentViewModel::courseId() const
     return m_courseId;
 }
 
+QString AssignmentViewModel::courseName() const
+{
+    return m_courseName;
+}
+
 int AssignmentViewModel::userId() const
 {
     return m_userId;
@@ -114,6 +119,13 @@ void AssignmentViewModel::setCourseId(int value)
     emit courseIdChanged();
 }
 
+void AssignmentViewModel::setCourseName(const QString &value)
+{
+    if (m_courseName == value) return;
+    m_courseName = value;
+    emit courseNameChanged();
+}
+
 void AssignmentViewModel::setUserId(int value)
 {
     if (m_userId == value) return;
@@ -137,6 +149,7 @@ void AssignmentViewModel::fromModel(const Assignment& assignment)
     setUpdatedAt(QString::fromStdString(assignment.getUpdatedAt()));
     setDueDate(QString::fromStdString(assignment.getDueDate()));
     setCourseId(assignment.getCourseId());
+    setCourseName(QString::fromStdString(assignment.getCourseName()));
     setUserId(assignment.getUserId());
     setPriority(assignment.getPriority());
 }

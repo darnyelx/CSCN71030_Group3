@@ -57,6 +57,11 @@ Assignment& Assignment::setCourseId(int course_id) {
 	return *this;
 }
 
+Assignment& Assignment::setCourseName(const std::string &name) {
+	this->course_name = name;
+	return *this;
+}
+
 Assignment& Assignment::setPriority(int priority) {
 	this->priority = priority;
 	return *this;
@@ -69,6 +74,11 @@ std::string Assignment::getTableName()  {
 int Assignment::getCourseId() const {
 	return course_id;
 }
+
+std::string Assignment::getCourseName() const {
+	return course_name;
+}
+
 int Assignment::getUserId() const {
 	return user_id;
 }

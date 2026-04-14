@@ -20,6 +20,7 @@ public:
         UpdatedAtRole,
         DueDateRole,
         CourseIdRole,
+        CourseNameRole,
         UserIdRole,
         PriorityRole
     };

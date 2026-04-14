@@ -216,12 +216,16 @@ std::vector<Assignment> DB::getAllAssignments(int id) {
 
     try {
         pqxx::connection &connection = getConnection();
-        Assignment assignment;
 
         if (connection.is_open()) {
             pqxx::work transaction(connection);
 
-            std::string query = "SELECT * FROM " + assignment.getTableName()+" WHERE user_id = $1";
+            const std::string query =
+                "SELECT a.id, a.user_id, a.title, a.description, a.due_date, a.course_id, a.priority, "
+                "COALESCE(c.name, '') AS course_name "
+                "FROM assignments a "
+                "LEFT JOIN courses c ON c.id = a.course_id "
+                "WHERE a.user_id = $1";
             pqxx::result result = transaction.exec_params(query, id);
 
             for (auto const &row: result) {
@@ -234,6 +238,7 @@ std::vector<Assignment> DB::getAllAssignments(int id) {
                 assignmentRow.setDueDate(row["due_date"].as<std::string>());
                 assignmentRow.setCourseId(row["course_id"].as<int>());
                 assignmentRow.setPriority(fromDbPriority(row));
+                assignmentRow.setCourseName(row["course_name"].as<std::string>());
 
                 assignments.push_back(assignmentRow);
             }
@@ -349,7 +354,13 @@ std::optional<Assignment> DB::getAssignmentByID(int id) {
 
         pqxx::work transaction(connection);
 
-        pqxx::result result = transaction.exec_params("SELECT * FROM assignments WHERE id = $1", id);
+        pqxx::result result = transaction.exec_params(
+            "SELECT a.id, a.user_id, a.title, a.description, a.due_date, a.course_id, a.priority, "
+            "COALESCE(c.name, '') AS course_name "
+            "FROM assignments a "
+            "LEFT JOIN courses c ON c.id = a.course_id "
+            "WHERE a.id = $1",
+            id);
 
         if (result.empty()) {
             return std::nullopt;
@@ -363,6 +374,7 @@ std::optional<Assignment> DB::getAssignmentByID(int id) {
         assignment.setDueDate(result[0]["due_date"].as<std::string>());
         assignment.setCourseId(result[0]["course_id"].as<int>());
         assignment.setPriority(fromDbPriority(result[0]));
+        assignment.setCourseName(result[0]["course_name"].as<std::string>());
 
         return assignment;
 

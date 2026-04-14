@@ -47,6 +47,8 @@ QVariant AssignmentListModel::data(const QModelIndex &index, int role) const
             return assignment->dueDate();
         case CourseIdRole:
             return assignment->courseId();
+        case CourseNameRole:
+            return assignment->courseName();
         case UserIdRole:
             return assignment->userId();
         case PriorityRole:
@@ -66,6 +68,7 @@ QHash<int, QByteArray> AssignmentListModel::roleNames() const
         { UpdatedAtRole, "updatedAt" },
         { DueDateRole, "dueDate" },
         { CourseIdRole, "courseId" },
+        { CourseNameRole, "courseName" },
         { UserIdRole, "userId" },
         { PriorityRole, "priority" }
     };

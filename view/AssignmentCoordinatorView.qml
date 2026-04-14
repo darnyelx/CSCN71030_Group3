@@ -641,8 +641,9 @@ Page {
                                 border.color: borderColor
                                 border.width: 1
 
-                                // ✅ Define missing properties
-                                property string subject: "Course " + courseId   // or map later
+                                property string subject: (courseName && courseName.length > 0)
+                                    ? courseName
+                                    : ("Course " + courseId)
                                 property string status: "Pending"               // until you add it to model
 
                                 property color dotColor: status === "Completed" ? green

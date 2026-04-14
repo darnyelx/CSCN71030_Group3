@@ -15,6 +15,7 @@ class AssignmentViewModel : public QObject
     Q_PROPERTY(QString updatedAt READ updatedAt WRITE setUpdatedAt NOTIFY updatedAtChanged)
     Q_PROPERTY(QString dueDate READ dueDate WRITE setDueDate NOTIFY dueDateChanged)
     Q_PROPERTY(int courseId READ courseId WRITE setCourseId NOTIFY courseIdChanged)
+    Q_PROPERTY(QString courseName READ courseName WRITE setCourseName NOTIFY courseNameChanged)
     Q_PROPERTY(int userId READ userId WRITE setUserId NOTIFY userIdChanged)
     Q_PROPERTY(int priority READ priority WRITE setPriority NOTIFY priorityChanged)
 
@@ -29,6 +30,7 @@ public:
     QString updatedAt() const;
     QString dueDate() const;
     int courseId() const;
+    QString courseName() const;
     int userId() const;
     int priority() const;
 
@@ -39,6 +41,7 @@ public:
     void setUpdatedAt(const QString& value);
     void setDueDate(const QString& value);
     void setCourseId(int value);
+    void setCourseName(const QString &value);
     void setUserId(int value);
     void setPriority(int value);
 
@@ -53,6 +56,7 @@ signals:
     void updatedAtChanged();
     void dueDateChanged();
     void courseIdChanged();
+    void courseNameChanged();
     void userIdChanged();
     void priorityChanged();
 
@@ -64,6 +68,7 @@ private:
     QString m_updatedAt;
     QString m_dueDate;
     int m_courseId;
+    QString m_courseName;
     int m_userId;
     int m_priority;
 };

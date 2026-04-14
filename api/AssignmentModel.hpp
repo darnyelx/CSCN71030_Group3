@@ -16,6 +16,8 @@ private:
 	int course_id{};
 	int user_id{};
 	int priority{};
+	/** Filled when loaded via JOIN with courses; not a DB column on assignments. */
+	std::string course_name;
 
 public:
 	Assignment(int id = -1, const std::string& title = "", const std::string& description = "");
@@ -23,6 +25,7 @@ public:
 	std::string getTitle() const;
 	std::string getDescription() const;
 	int getCourseId() const;
+	std::string getCourseName() const;
 	int getUserId() const;
 	int getPriority() const;
 	std::string getDueDate() const;
@@ -36,6 +39,7 @@ public:
 	Assignment& setUpdatedAt(const std::string& updated_at);
 	Assignment& setDueDate(const std::string& due_date);
 	Assignment& setCourseId(int course_id);
+	Assignment& setCourseName(const std::string &name);
 	Assignment& setPriority(int priority);
 	Assignment& setUserId(int user_id);
 	bool save(IDatabase &db) override;
