@@ -1,12 +1,33 @@
 #include "HelpRequestController.hpp"
 #include "IDatabase.hpp"
 
+#include <ctime>
+#include <iomanip>
+#include <sstream>
+
+namespace {
+std::string utcTimestampForDb()
+{
+	const std::time_t t = std::time(nullptr);
+	std::tm tm{};
+#if defined(_WIN32)
+	gmtime_s(&tm, &t);
+#else
+	gmtime_r(&t, &tm);
+#endif
+	std::ostringstream oss;
+	oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
+	return oss.str();
+}
+} // namespace
+
 HelpRequestController::HelpRequestController(IDatabase &database) : db_(database) {}
 
 HelpRequestResultPayload HelpRequestController::createHelpRequest(int userId, int assignmentId,
                                                                   const std::string &message) {
 	HelpRequestModel helpRequest(-1, userId, message);
 	helpRequest.setAssignmentId(assignmentId);
+	helpRequest.setCreatedAt(utcTimestampForDb());
 	bool success = db_.createHelpRequest(helpRequest);
 	if (success) {
 		return {true, "", helpRequest};
@@ -24,8 +45,5 @@ HelpRequestResultPayload HelpRequestController::getHelpRequestById(int id) {
 
 GetAllHelpRequestResultPayload HelpRequestController::getAllHelpRequests(int userId) {
 	std::vector<HelpRequestModel> helpRequests = db_.getAllHelpRequests(userId);
-	if (helpRequests.empty()) {
-		return {false, {}, "No help requests found"};
-	}
-	return {true, helpRequests, ""};
+	return {true, std::move(helpRequests), ""};
 }

@@ -12,6 +12,8 @@ Page {
     id: mainView
 
     property int editingAssignmentId: -1
+    property int helpFormAssignmentId: -1
+    property string helpModalError: ""
 
     function findCourseIndex(courseId) {
         if (courseId < 0)
@@ -69,6 +71,7 @@ Page {
         console.log("User Store",UserStore.userId)
         courseViewController.getCourses()
         assignmentController.getUserAssignments(UserStore.userId)
+        helpRequestController.loadHelpRequests(UserStore.userId)
     }
 
     Connections {
@@ -99,6 +102,25 @@ Page {
 
         function onUserAssignmentGetError(message) {
             console.log("Get assignments failed:", message)
+        }
+    }
+
+    Connections {
+        target: helpRequestController
+
+        function onCreateHelpRequestSuccess() {
+            mainView.helpModalError = ""
+            helpRequestModal.close()
+            helpRequestController.loadHelpRequests(UserStore.userId)
+        }
+
+        function onCreateHelpRequestError(message) {
+            mainView.helpModalError = message
+            console.log("Create help request failed:", message)
+        }
+
+        function onLoadHelpRequestsError(message) {
+            console.log("Load help requests failed:", message)
         }
     }
 
@@ -156,6 +178,30 @@ Page {
 
                     Row {
                         spacing: 18
+
+                        Rectangle {
+                            width: 158
+                            height: 44
+                            radius: 12
+                            color: panelColor
+                            border.color: borderColor
+                            border.width: 1
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            Text {
+                                anchors.centerIn: parent
+                                text: "Request help"
+                                color: green
+                                font.pixelSize: 15
+                                font.bold: true
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: helpRequestModal.open()
+                            }
+                        }
 
                         Repeater {
                             model: [
@@ -785,6 +831,301 @@ Page {
                                         }
                                     }
                                 }
+                            }
+                        }
+
+                        Text {
+                            width: parent.width
+                            text: "My help requests"
+                            color: textPrimary
+                            font.pixelSize: 22
+                            font.bold: true
+                            topPadding: 28
+                        }
+
+                        Text {
+                            width: parent.width
+                            visible: helpRequestController.helpRequestModel.entryCount() === 0
+                            text: "You have not raised any help requests yet. Use “Request help” above to contact support about an assignment."
+                            color: textSecondary
+                            font.pixelSize: 15
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Repeater {
+                            model: helpRequestController.helpRequestModel
+
+                            delegate: Rectangle {
+                                width: parent.width
+                                implicitHeight: helpCardColumn.implicitHeight + 36
+                                radius: 16
+                                color: cardColor
+                                border.color: borderColor
+                                border.width: 1
+
+                                Column {
+                                    id: helpCardColumn
+                                    anchors.fill: parent
+                                    anchors.margins: 18
+                                    spacing: 10
+
+                                    RowLayout {
+                                        width: parent.width
+                                        spacing: 12
+
+                                        Text {
+                                            text: "Raised"
+                                            color: textSecondary
+                                            font.pixelSize: 13
+                                        }
+
+                                        Text {
+                                            text: createdAt
+                                            color: textPrimary
+                                            font.pixelSize: 14
+                                            font.bold: true
+                                        }
+
+                                        Item { Layout.fillWidth: true }
+
+                                        Text {
+                                            visible: assignmentId >= 0
+                                            text: "Assignment #" + assignmentId
+                                            color: "#93C5FD"
+                                            font.pixelSize: 13
+                                        }
+                                    }
+
+                                    Text {
+                                        width: parent.width
+                                        text: message
+                                        color: "#B9B9B9"
+                                        wrapMode: Text.WordWrap
+                                        font.pixelSize: 15
+                                    }
+
+                                    Text {
+                                        visible: requestStatus && requestStatus.length > 0
+                                        text: "Status: " + requestStatus
+                                        color: textSecondary
+                                        font.pixelSize: 13
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Popup {
+        id: helpRequestModal
+        parent: Overlay.overlay
+        anchors.centerIn: Overlay.overlay
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+        padding: 0
+        width: Math.min(520, Overlay.overlay.width - 48)
+
+        onOpened: {
+            mainView.helpModalError = ""
+            mainView.helpFormAssignmentId = -1
+            helpAssignmentCombo.currentIndex = -1
+            helpMessageField.text = ""
+        }
+
+        background: Rectangle {
+            color: panelColor
+            radius: 16
+            border.color: borderColor
+            border.width: 1
+        }
+
+        contentItem: Column {
+            width: helpRequestModal.width
+            spacing: 0
+
+            Rectangle {
+                width: parent.width
+                height: 56
+                color: "#0A0A0A"
+                radius: 16
+
+                Text {
+                    anchors.left: parent.left
+                    anchors.leftMargin: 20
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: "Request help"
+                    color: textPrimary
+                    font.pixelSize: 18
+                    font.bold: true
+                }
+
+                Item {
+                    width: 40
+                    height: 40
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    Text {
+                        anchors.centerIn: parent
+                        text: "✕"
+                        color: textSecondary
+                        font.pixelSize: 18
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: helpRequestModal.close()
+                    }
+                }
+            }
+
+            Column {
+                width: parent.width - 40
+                anchors.horizontalCenter: parent.horizontalCenter
+                topPadding: 20
+                bottomPadding: 24
+                spacing: 14
+
+                Text {
+                    visible: mainView.helpModalError.length > 0
+                    width: parent.width
+                    text: mainView.helpModalError
+                    wrapMode: Text.WordWrap
+                    color: red
+                    font.pixelSize: 14
+                }
+
+                Text {
+                    text: "Related assignment (optional)"
+                    color: "#D4D4D4"
+                    font.pixelSize: 14
+                    font.bold: true
+                }
+
+                ComboBox {
+                    id: helpAssignmentCombo
+                    width: parent.width
+                    height: 48
+                    model: assignmentController.assignmentModel
+                    textRole: "title"
+                    currentIndex: -1
+
+                    displayText: {
+                        if (currentIndex < 0)
+                            return "No specific assignment"
+                        const a = assignmentController.assignmentModel.get(currentIndex)
+                        return a ? a.title : ""
+                    }
+
+                    onCurrentIndexChanged: {
+                        if (currentIndex < 0) {
+                            mainView.helpFormAssignmentId = -1
+                        } else {
+                            const a = assignmentController.assignmentModel.get(currentIndex)
+                            mainView.helpFormAssignmentId = a ? a.id : -1
+                        }
+                    }
+
+                    background: Rectangle {
+                        radius: 12
+                        color: "#050505"
+                        border.color: borderColor
+                        border.width: 1
+                    }
+
+                    contentItem: Text {
+                        leftPadding: 14
+                        rightPadding: 36
+                        verticalAlignment: Text.AlignVCenter
+                        text: helpAssignmentCombo.displayText
+                        color: textPrimary
+                        font.pixelSize: 15
+                    }
+                }
+
+                Text {
+                    text: "What do you need help with?"
+                    color: "#D4D4D4"
+                    font.pixelSize: 14
+                    font.bold: true
+                }
+
+                Rectangle {
+                    width: parent.width
+                    height: 140
+                    radius: 12
+                    color: "#050505"
+                    border.color: borderColor
+                    border.width: 1
+
+                    TextArea {
+                        id: helpMessageField
+                        anchors.fill: parent
+                        anchors.margins: 10
+                        wrapMode: TextEdit.Wrap
+                        placeholderText: "Describe your question or issue…"
+                        placeholderTextColor: "#6F6F6F"
+                        color: textPrimary
+                        background: Item {}
+                    }
+                }
+
+                RowLayout {
+                    width: parent.width
+                    spacing: 12
+
+                    Item { Layout.fillWidth: true }
+
+                    Rectangle {
+                        width: 100
+                        height: 44
+                        radius: 10
+                        color: "#2A2A2A"
+                        border.color: borderColor
+                        border.width: 1
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: "Cancel"
+                            color: textSecondary
+                            font.pixelSize: 15
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: helpRequestModal.close()
+                        }
+                    }
+
+                    Rectangle {
+                        width: 140
+                        height: 44
+                        radius: 10
+                        color: greenDark
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: "Submit"
+                            color: green
+                            font.pixelSize: 15
+                            font.bold: true
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                helpRequestController.createHelpRequest(
+                                    UserStore.userId,
+                                    mainView.helpFormAssignmentId,
+                                    helpMessageField.text)
                             }
                         }
                     }

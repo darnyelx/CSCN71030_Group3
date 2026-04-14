@@ -24,6 +24,7 @@ TEST(HelpRequestController, CreateSucceeds) {
 	EXPECT_EQ(r.helpRequest->getAssignmentId(), 3);
 	EXPECT_EQ(r.helpRequest->getMessage(), "Stuck on part B");
 	EXPECT_GE(r.helpRequest->getId(), 1);
+	EXPECT_FALSE(r.helpRequest->getCreatedAt().empty());
 }
 
 TEST(HelpRequestController, GetByIdNotFound) {
@@ -46,12 +47,12 @@ TEST(HelpRequestController, GetByIdFound) {
 	EXPECT_EQ(r.helpRequest->getMessage(), "msg");
 }
 
-TEST(HelpRequestController, GetAllEmptyYieldsFailurePayload) {
+TEST(HelpRequestController, GetAllEmptyReturnsSuccessWithEmptyList) {
 	StubDatabase db;
 	HelpRequestController c(db);
 	auto r = c.getAllHelpRequests(1);
-	EXPECT_FALSE(r.success);
-	EXPECT_EQ(r.errorMessage, "No help requests found");
+	EXPECT_TRUE(r.success);
+	EXPECT_TRUE(r.errorMessage.empty());
 	EXPECT_TRUE(r.helpRequests.empty());
 }
 

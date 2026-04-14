@@ -400,7 +400,11 @@ std::vector<HelpRequestModel> DB::getAllHelpRequests(int id) {
                 HelpRequestModel helpRequestRow;
                 helpRequestRow.setId(row["id"].as<int>());
                 helpRequestRow.setUserId(row["user_id"].as<int>());
-                helpRequestRow.setAssignmentId(row["assignment_id"].as<int>());
+                if (row["assignment_id"].is_null()) {
+                    helpRequestRow.setAssignmentId(-1);
+                } else {
+                    helpRequestRow.setAssignmentId(row["assignment_id"].as<int>());
+                }
                 helpRequestRow.setMessage(row["message"].as<std::string>());
                 helpRequestRow.setCreatedAt(row["created_at"].as<std::string>());
 
@@ -434,7 +438,11 @@ std::optional<HelpRequestModel> DB::getHelpRequestById(int id) {
 		HelpRequestModel hr;
 		hr.setId(result[0]["id"].as<int>());
 		hr.setUserId(result[0]["user_id"].as<int>());
-		hr.setAssignmentId(result[0]["assignment_id"].as<int>());
+		if (result[0]["assignment_id"].is_null()) {
+			hr.setAssignmentId(-1);
+		} else {
+			hr.setAssignmentId(result[0]["assignment_id"].as<int>());
+		}
 		hr.setMessage(result[0]["message"].as<std::string>());
 		hr.setCreatedAt(result[0]["created_at"].as<std::string>());
 
@@ -468,7 +476,7 @@ bool DB::createHelpRequest(HelpRequestModel &helpRequest) {
                 )
                 VALUES
                 (
-                    $1, $2, $3, $4
+                    $1, NULLIF($2::int, -1), $3, $4::timestamp
                 )
             )",
                 helpRequest.getUserId(), helpRequest.getAssignmentId(), helpRequest.getMessage(),

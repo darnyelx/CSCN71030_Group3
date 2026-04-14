@@ -31,6 +31,7 @@ qt_add_executable(apptodo_app
     api/HelpRequestModel.cpp
     api/AssignmentController.cpp
     api/AssignmentQueryController.cpp
+    api/HelpRequestController.cpp
     view/Controllers/headers/AssignmentViewController.hpp
     view/Controllers/AssignmentViewController.cpp
     view/Models/AssignmentViewModel.cpp
@@ -43,6 +44,12 @@ qt_add_executable(apptodo_app
     view/Models/headers/CourseListModel.hpp
     view/Controllers/CourseViewController.cpp
     view/Controllers/headers/CourseViewController.hpp
+    view/Models/HelpRequestViewModel.cpp
+    view/Models/headers/HelpRequestViewModel.hpp
+    view/Models/HelpRequestListModel.cpp
+    view/Models/headers/HelpRequestListModel.hpp
+    view/Controllers/HelpRequestViewController.cpp
+    view/Controllers/headers/HelpRequestViewController.hpp
     api/CourseController.cpp
 )
 
