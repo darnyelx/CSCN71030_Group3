@@ -17,6 +17,26 @@ const char *envConnectionString() {
     const char *s = std::getenv("DBConnectionString");
     return (s != nullptr) ? s : "";
 }
+
+std::string toDbPriority(int priority) {
+    return priority >= 3 ? "HIGH" : "LOW";
+}
+
+int fromDbPriority(const pqxx::row &row) {
+    const std::string raw = row["priority"].as<std::string>();
+    if (raw == "HIGH") {
+        return 3;
+    }
+    if (raw == "LOW") {
+        return 1;
+    }
+
+    try {
+        return std::stoi(raw);
+    } catch (...) {
+        return 1;
+    }
+}
 } // namespace
 
 std::string DB::connectionString = envConnectionString();
@@ -36,7 +56,14 @@ DB &DB::getInstance() {
     }
 }
 
-pqxx::connection &DB::getConnection() { return connection; }
+pqxx::connection &DB::getConnection() {
+    if (connection.is_open()) {
+
+    }else {
+       DB::connection = pqxx::connection(connectionString);
+    }
+    return connection;
+}
 
 bool DB::createUser(UserModel &user) {
     try {
@@ -206,6 +233,7 @@ std::vector<Assignment> DB::getAllAssignments(int id) {
                 assignmentRow.setDescription(row["description"].as<std::string>());
                 assignmentRow.setDueDate(row["due_date"].as<std::string>());
                 assignmentRow.setCourseId(row["course_id"].as<int>());
+                assignmentRow.setPriority(fromDbPriority(row));
 
                 assignments.push_back(assignmentRow);
             }
@@ -248,7 +276,7 @@ bool DB::createAssignment(Assignment &assignment) {
                 assignment.getDueDate(),
                 assignment.getCourseId(),
                 assignment.getUserId(),
-                assignment.getPriority(),
+                toDbPriority(assignment.getPriority()),
                 assignment.getId()
             );
         } else {
@@ -273,7 +301,7 @@ bool DB::createAssignment(Assignment &assignment) {
                 assignment.getDueDate(),
                 assignment.getCourseId(),
                 assignment.getUserId(),
-                assignment.getPriority() == 1 ? "HIGH":"LOW"
+                toDbPriority(assignment.getPriority())
             );
         }
 
@@ -334,7 +362,7 @@ std::optional<Assignment> DB::getAssignmentByID(int id) {
         assignment.setDescription(result[0]["description"].as<std::string>());
         assignment.setDueDate(result[0]["due_date"].as<std::string>());
         assignment.setCourseId(result[0]["course_id"].as<int>());
-        assignment.setPriority(result[0]["priority"].as<int>());
+        assignment.setPriority(fromDbPriority(result[0]));
 
         return assignment;
 

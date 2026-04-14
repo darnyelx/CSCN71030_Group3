@@ -62,28 +62,34 @@ Page {
 
     AssignmentViewModel {
         id: createAssignment
-        userId: UserStore.currentUser.id
+        userId: UserStore.userId
     }
 
     Component.onCompleted: {
+        console.log("User Store",UserStore.userId)
         courseViewController.getCourses()
-        assignmentController.getUserAssignments(UserStore.id)
+        assignmentController.getUserAssignments(UserStore.userId)
     }
 
     Connections {
         target: assignmentController
 
         function onCreateAssignmentSuccess() {
-            assignmentController.getUserAssignments(UserStore.id)
+            console.log("User Store",UserStore.userId)
+
+            assignmentController.getUserAssignments(UserStore.userId)
             clearAssignmentForm()
         }
 
         function onCreateAssignmentError(message) {
+            console.log("User Store",UserStore.id)
             console.log("Create assignment failed:", message)
         }
 
         function onUpdateAssignmentSuccess() {
-            assignmentController.getUserAssignments(UserStore.id)
+            console.log("User Store Edit ",UserStore.userId)
+
+            assignmentController.getUserAssignments(UserStore.userId)
             clearAssignmentForm()
         }
 
@@ -497,7 +503,7 @@ Page {
 
                                 Text {
                                     anchors.centerIn: parent
-                                    text: mainView.editingAssignmentId >= 0 ? "Save changes" : "+  Add Assignment"
+                                    text: mainView.editingAssignmentId >= 0 ? "Save changes" : "  Add Assignment"
                                     color: "#07240F"
                                     font.pixelSize: 20
                                     font.bold: true

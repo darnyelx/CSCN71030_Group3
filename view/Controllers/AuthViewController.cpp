@@ -17,7 +17,7 @@ void AuthViewController::login(const QString &email, const QString &password) {
 
     if (isLoggedIn.success && isLoggedIn.userModel.has_value()) {
         //convert C++ Model to QTUser Model
-        UserViewModel userViewModel(*isLoggedIn.userModel, nullptr);
+         UserViewModel userViewModel(*isLoggedIn.userModel, nullptr);
         emit loginSucceeded(&userViewModel);
     }else {
         QString errorMessage = QString::fromStdString(isLoggedIn.message);
