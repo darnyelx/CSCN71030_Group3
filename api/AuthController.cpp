@@ -40,7 +40,18 @@ LoginResult AuthController::registerUser(const std::string &firstName, const std
     UserModel user(-1, firstName, lastName);
     user.setEmail(email);
     user.setPassword(hashed);
-    db_.createUser(user);
+    bool result = db_.createUser(user);
+    if (result) {
+        //get user by email
+        std::string userEmail = user.getEmail();
+        std::optional<UserModel> registeredUser =  db_.getUserByEmail(userEmail);
+        if (registeredUser.has_value()) {
+            return {true, "Registration successful", registeredUser};
+        }
+        return {false, "Registration ", user};
 
-    return {true, "Registration successful", user};
+    }
+
+
+
 }

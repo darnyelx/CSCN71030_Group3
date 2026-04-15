@@ -2,8 +2,11 @@
 #include <QQmlApplicationEngine>
 #include <QtQuickControls2/QQuickStyle>
 #include <qqmlcontext.h>
-#include <view/Controllers/headers/CourseViewController.hpp>
+#include <iostream>
+#include <string>
 
+#include <view/Controllers/headers/CourseViewController.hpp>
+#include "api/Config.hpp"
 #include "api/AssignmentController.hpp"
 #include "api/AuthController.hpp"
 #include "api/CourseController.hpp"
@@ -18,28 +21,49 @@
 
 int main(int argc, char *argv[])
 {
+    QGuiApplication app(argc, argv);
+
+    const std::string configPath =
+        QCoreApplication::applicationDirPath().toStdString() + "/config.env";
+
+    if (!Config::load(configPath)) {
+        std::cerr << "Could not load config.env from: "
+                  << configPath << std::endl;
+    }
+
+    const std::string dbconnectionkey = "DBConnectionString";
+    std::string dbConnection = Config::get(dbconnectionkey);
+
+    // Optional debug
+    std::cout << "DB connection: " << dbConnection << std::endl;
+    // std::cout << "Env DB connection: "
+    //           << (std::getenv("DB_CONNECTION") ? std::getenv("DB_CONNECTION") : "NOT SET")
+    //           << std::endl;
+
     DB &database = DB::getInstance();
     AuthController authController(database);
     AssignmentController assignmentController(database);
     CourseController courseController(database);
     HelpRequestController helpRequestController(database);
 
-    QGuiApplication app(argc, argv);
+    QQuickStyle::setStyle("Fusion");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/todo_app/Main.qml"));
-
-    QQuickStyle::setStyle("Fusion");
 
     AssignmentListModel assignmentListModel;
     CourseListModel courseListModel;
     HelpRequestListModel helpRequestListModel;
     HelpRequestListModel othersHelpRequestListModel;
+
     AuthViewController authViewController(authController);
     AssignmentViewController assignmentViewController(assignmentController, &assignmentListModel);
     CourseViewController courseViewController(courseController, &courseListModel);
-    HelpRequestViewController helpRequestViewController(helpRequestController, &helpRequestListModel,
-                                                        &othersHelpRequestListModel);
+    HelpRequestViewController helpRequestViewController(
+        helpRequestController,
+        &helpRequestListModel,
+        &othersHelpRequestListModel
+    );
 
     engine.rootContext()->setContextProperty("authViewController", &authViewController);
     engine.rootContext()->setContextProperty("assignmentController", &assignmentViewController);
@@ -60,7 +84,9 @@ int main(int argc, char *argv[])
             if (!obj && url == objUrl)
                 QCoreApplication::exit(-1);
         },
-        Qt::QueuedConnection);
+        Qt::QueuedConnection
+    );
+
     engine.load(url);
 
     return app.exec();

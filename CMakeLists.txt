@@ -53,6 +53,8 @@ qt_add_executable(apptodo_app
     view/Controllers/HelpRequestViewController.cpp
     view/Controllers/headers/HelpRequestViewController.hpp
     api/CourseController.cpp
+        api/Config.cpp
+        api/Config.hpp
 )
 
 qt_add_qml_module(apptodo_app
@@ -132,4 +134,10 @@ install(TARGETS apptodo_app
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+add_custom_command(TARGET apptodo_app POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${CMAKE_SOURCE_DIR}/config.env
+        $<TARGET_FILE_DIR:apptodo_app>/config.env
 )

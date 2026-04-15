@@ -1,5 +1,7 @@
 #include "headers/AuthViewController.h"
 
+#include <iostream>
+
 #include "view/Models/headers/UserViewModel.h"
 
 AuthViewController::AuthViewController(AuthController &authController, QObject *parent)
@@ -39,9 +41,10 @@ void AuthViewController::registerUser(const UserViewModel *userViewModel ) {
     LoginResult isRegistered = m_authController.registerUser(firstName, lastName, emailStr, passwordStr);
 
     if (isRegistered.success && isRegistered.userModel.has_value()) {
-        UserViewModel userViewModel(*isRegistered.userModel, nullptr);
+        std::cout << "Registered successfully!: "<< isRegistered.userModel->getId() << std::endl;
+        UserViewModel registerUserViewModel(*isRegistered.userModel, nullptr);
         //convert C++ Model to QTUser Model
-        emit loginSucceeded(&userViewModel);
+        emit loginSucceeded(&registerUserViewModel);
     }else {
         QString errorMessage = QString::fromStdString(isRegistered.message);
         emit loginFailed(errorMessage);
