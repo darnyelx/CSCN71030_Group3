@@ -53,6 +53,8 @@ QVariant AssignmentListModel::data(const QModelIndex &index, int role) const
             return assignment->userId();
         case PriorityRole:
             return assignment->priority();
+        case StatusRole:
+            return assignment->status();
         default:
             return {};
     }
@@ -70,7 +72,8 @@ QHash<int, QByteArray> AssignmentListModel::roleNames() const
         { CourseIdRole, "courseId" },
         { CourseNameRole, "courseName" },
         { UserIdRole, "userId" },
-        { PriorityRole, "priority" }
+        { PriorityRole, "priority" },
+        { StatusRole, "status" }
     };
 }
 

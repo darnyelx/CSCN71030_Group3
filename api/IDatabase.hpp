@@ -24,6 +24,7 @@ public:
     virtual bool createHelpRequest(HelpRequestModel &helpRequest) = 0;
     virtual std::optional<HelpRequestModel> getHelpRequestById(int id) = 0;
     virtual std::vector<HelpRequestModel> getAllHelpRequests(int userId) = 0;
+    virtual std::vector<HelpRequestModel> getHelpRequestsFromOtherUsers(int userId) = 0;
     virtual std::optional<Assignment> getAssignmentByID(int id) = 0;
     virtual bool deleteHelpRequest(HelpRequestModel &helpRequest) = 0;
     virtual std::vector<Course> getAllCourses() = 0;

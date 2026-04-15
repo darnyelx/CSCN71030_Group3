@@ -33,6 +33,7 @@ public:
     bool createHelpRequest(HelpRequestModel &helpRequest) override;
     std::optional<HelpRequestModel> getHelpRequestById(int id) override;
     std::vector<HelpRequestModel> getAllHelpRequests(int id) override;
+    std::vector<HelpRequestModel> getHelpRequestsFromOtherUsers(int userId) override;
     std::optional<Assignment> getAssignmentByID(int id) override;
     bool deleteHelpRequest(HelpRequestModel &helpRequest) override;
     std::vector<Course> getAllCourses() override;

@@ -3,47 +3,75 @@
 #include <string>
 
 HelpRequestViewController::HelpRequestViewController(HelpRequestController &helpRequestController,
-                                                     HelpRequestListModel *helpRequestModel,
+                                                     HelpRequestListModel *myHelpRequestsModel,
+                                                     HelpRequestListModel *othersHelpRequestsModel,
                                                      QObject *parent)
     : QObject(parent),
       m_helpRequestController(helpRequestController),
-      m_helpRequestModel(helpRequestModel)
+      m_myHelpRequestsModel(myHelpRequestsModel),
+      m_othersHelpRequestsModel(othersHelpRequestsModel)
 {
 }
 
 HelpRequestListModel *HelpRequestViewController::helpRequestModel() const
 {
-    return m_helpRequestModel;
+    return m_myHelpRequestsModel;
+}
+
+HelpRequestListModel *HelpRequestViewController::othersHelpRequestModel() const
+{
+    return m_othersHelpRequestsModel;
 }
 
 void HelpRequestViewController::loadHelpRequests(int userId)
 {
-    if (!m_helpRequestModel) {
+    if (!m_myHelpRequestsModel) {
         emit loadHelpRequestsError(QStringLiteral("Help request model is not initialized"));
         return;
     }
     if (userId <= 0) {
-        m_helpRequestModel->clear();
+        m_myHelpRequestsModel->clear();
         return;
     }
 
     GetAllHelpRequestResultPayload payload = m_helpRequestController.getAllHelpRequests(userId);
     if (payload.success) {
-        m_helpRequestModel->setHelpRequests(payload.helpRequests);
+        m_myHelpRequestsModel->setHelpRequests(payload.helpRequests);
     } else {
-        m_helpRequestModel->clear();
+        m_myHelpRequestsModel->clear();
         emit loadHelpRequestsError(QString::fromStdString(payload.errorMessage));
+    }
+}
+
+void HelpRequestViewController::loadOthersHelpRequests(int userId)
+{
+    if (!m_othersHelpRequestsModel) {
+        emit loadOthersHelpRequestsError(QStringLiteral("Others help request model is not initialized"));
+        return;
+    }
+    if (userId <= 0) {
+        m_othersHelpRequestsModel->clear();
+        return;
+    }
+
+    GetAllHelpRequestResultPayload payload =
+        m_helpRequestController.getHelpRequestsFromOtherUsers(userId);
+    if (payload.success) {
+        m_othersHelpRequestsModel->setHelpRequests(payload.helpRequests);
+    } else {
+        m_othersHelpRequestsModel->clear();
+        emit loadOthersHelpRequestsError(QString::fromStdString(payload.errorMessage));
     }
 }
 
 void HelpRequestViewController::createHelpRequest(int userId, int assignmentId, const QString &message)
 {
-    if (!m_helpRequestModel) {
-        emit createHelpRequestError(QStringLiteral("Help request model is not initialized"));
-        return;
-    }
     if (userId <= 0) {
         emit createHelpRequestError(QStringLiteral("You must be signed in to request help"));
+        return;
+    }
+    if (assignmentId <= 0) {
+        emit createHelpRequestError(QStringLiteral("Missing assignment for this help request"));
         return;
     }
 

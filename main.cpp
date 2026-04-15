@@ -33,10 +33,12 @@ int main(int argc, char *argv[])
     AssignmentListModel assignmentListModel;
     CourseListModel courseListModel;
     HelpRequestListModel helpRequestListModel;
+    HelpRequestListModel othersHelpRequestListModel;
     AuthViewController authViewController(authController);
     AssignmentViewController assignmentViewController(assignmentController, &assignmentListModel);
     CourseViewController courseViewController(courseController, &courseListModel);
-    HelpRequestViewController helpRequestViewController(helpRequestController, &helpRequestListModel);
+    HelpRequestViewController helpRequestViewController(helpRequestController, &helpRequestListModel,
+                                                        &othersHelpRequestListModel);
 
     engine.rootContext()->setContextProperty("authViewController", &authViewController);
     engine.rootContext()->setContextProperty("assignmentController", &assignmentViewController);

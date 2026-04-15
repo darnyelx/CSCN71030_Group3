@@ -23,14 +23,15 @@ public:
 	explicit AssignmentController(IDatabase &database);
 
 	AssignmentResultPayload createAssignment(const std::string title, const std::string description, int courseId,
-	                                         int userId, std::string dueDate);
+	                                         int userId, std::string dueDate, const std::string &status);
 
 	AssignmentResultPayload getAssignment(int id);
 
 	GetAllAssignmentResultPayload getAllAssignments(int userId);
 
 	AssignmentResultPayload updateAssignment(int id, const std::string &title, const std::string &description,
-	                                         int courseId, const std::string &dueDate, int priority);
+	                                         int courseId, const std::string &dueDate, int priority,
+	                                         const std::string &status);
 
 	AssignmentResultPayload deleteAssignment(int id);
 

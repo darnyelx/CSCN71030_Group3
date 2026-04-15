@@ -2,7 +2,8 @@
 #include "IDatabase.hpp"
 
 HelpRequestModel::HelpRequestModel(int id, int userId, const std::string &message, const std::string &createdAt) :
-    id(id), userId(userId), assignment_id(-1), message(message), request_status(""), createdAt(createdAt) {}
+    id(id), userId(userId), assignment_id(-1), message(message), request_status(""), createdAt(createdAt),
+    raiser_display_name("") {}
 
 int HelpRequestModel::getId() const { return id; }
 
@@ -29,6 +30,10 @@ const std::string &HelpRequestModel::getRequestStatus() const { return request_s
 void HelpRequestModel::setRequestStatus(const std::string &request_status) {
     this->request_status = request_status;
 }
+
+const std::string &HelpRequestModel::getRaiserDisplayName() const { return raiser_display_name; }
+
+void HelpRequestModel::setRaiserDisplayName(const std::string &name) { this->raiser_display_name = name; }
 
 std::string HelpRequestModel::getTableName() { return tableName; }
 

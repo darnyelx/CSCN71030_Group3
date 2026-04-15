@@ -6,7 +6,8 @@ AssignmentViewModel::AssignmentViewModel(QObject *parent)
       m_id(-1),
       m_courseId(0),
       m_userId(0),
-      m_priority(0)
+      m_priority(0),
+      m_status(QStringLiteral("Pending"))
 {
 }
 
@@ -68,6 +69,11 @@ int AssignmentViewModel::userId() const
 int AssignmentViewModel::priority() const
 {
     return m_priority;
+}
+
+QString AssignmentViewModel::status() const
+{
+    return m_status;
 }
 
 void AssignmentViewModel::setId(int value)
@@ -140,6 +146,13 @@ void AssignmentViewModel::setPriority(int value)
     emit priorityChanged();
 }
 
+void AssignmentViewModel::setStatus(const QString &value)
+{
+    if (m_status == value) return;
+    m_status = value;
+    emit statusChanged();
+}
+
 void AssignmentViewModel::fromModel(const Assignment& assignment)
 {
     setId(assignment.getId());
@@ -152,6 +165,7 @@ void AssignmentViewModel::fromModel(const Assignment& assignment)
     setCourseName(QString::fromStdString(assignment.getCourseName()));
     setUserId(assignment.getUserId());
     setPriority(assignment.getPriority());
+    setStatus(QString::fromStdString(assignment.getStatus()));
 }
 
 Assignment AssignmentViewModel::toModel() const
@@ -166,7 +180,8 @@ Assignment AssignmentViewModel::toModel() const
         .setDueDate(m_dueDate.toStdString())
         .setCourseId(m_courseId)
         .setUserId(m_userId)
-        .setPriority(m_priority);
+        .setPriority(m_priority)
+        .setStatus(m_status.toStdString());
 
     return assignment;
 }

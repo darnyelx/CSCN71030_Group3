@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "HelpRequestController.hpp"
+#include "UserModel.hpp"
 #include "stub_database.hpp"
 
 TEST(HelpRequestController, CreateFailsWhenDatabaseRejects) {
@@ -68,4 +69,24 @@ TEST(HelpRequestController, GetAllReturnsUserRows) {
 	auto r = c.getAllHelpRequests(8);
 	EXPECT_TRUE(r.success);
 	ASSERT_EQ(r.helpRequests.size(), 2u);
+}
+
+TEST(HelpRequestController, GetHelpRequestsFromOtherUsersExcludesCurrentUser) {
+	StubDatabase db;
+	HelpRequestModel mine(-1, 1, "mine", "t1");
+	mine.setAssignmentId(10);
+	HelpRequestModel other(-1, 9, "other msg", "t2");
+	other.setAssignmentId(20);
+	db.helpRequests.push_back(mine);
+	db.helpRequests.push_back(other);
+	UserModel u(9, "Sam", "Jones");
+	u.setEmail("sam@example.com");
+	db.users.push_back(u);
+	HelpRequestController c(db);
+	auto r = c.getHelpRequestsFromOtherUsers(1);
+	EXPECT_TRUE(r.success);
+	ASSERT_EQ(r.helpRequests.size(), 1u);
+	EXPECT_EQ(r.helpRequests[0].getUserId(), 9);
+	EXPECT_EQ(r.helpRequests[0].getMessage(), "other msg");
+	EXPECT_FALSE(r.helpRequests[0].getRaiserDisplayName().empty());
 }

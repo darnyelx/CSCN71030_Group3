@@ -15,6 +15,7 @@ class HelpRequestViewModel : public QObject
     Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
     Q_PROPERTY(QString createdAt READ createdAt WRITE setCreatedAt NOTIFY createdAtChanged)
     Q_PROPERTY(QString requestStatus READ requestStatus WRITE setRequestStatus NOTIFY requestStatusChanged)
+    Q_PROPERTY(QString raiserDisplayName READ raiserDisplayName WRITE setRaiserDisplayName NOTIFY raiserDisplayNameChanged)
 
 public:
     explicit HelpRequestViewModel(QObject *parent = nullptr);
@@ -26,6 +27,7 @@ public:
     QString message() const;
     QString createdAt() const;
     QString requestStatus() const;
+    QString raiserDisplayName() const;
 
     void setId(int value);
     void setUserId(int value);
@@ -33,6 +35,7 @@ public:
     void setMessage(const QString &value);
     void setCreatedAt(const QString &value);
     void setRequestStatus(const QString &value);
+    void setRaiserDisplayName(const QString &value);
 
     void fromModel(const HelpRequestModel &model);
 
@@ -43,6 +46,7 @@ signals:
     void messageChanged();
     void createdAtChanged();
     void requestStatusChanged();
+    void raiserDisplayNameChanged();
 
 private:
     int m_id;
@@ -51,6 +55,7 @@ private:
     QString m_message;
     QString m_createdAt;
     QString m_requestStatus;
+    QString m_raiserDisplayName;
 };
 
 #endif

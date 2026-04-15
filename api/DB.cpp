@@ -3,6 +3,7 @@
 //
 
 #include "DB.hpp"
+#include <cctype>
 #include <cstdlib>
 #include <iostream>
 #include <string>
@@ -36,6 +37,47 @@ int fromDbPriority(const pqxx::row &row) {
     } catch (...) {
         return 1;
     }
+}
+
+/** Maps UI labels to DB values expected by assignments_status_check (typically snake_case). */
+std::string toDbAssignmentStatus(const std::string &ui) {
+    std::string s;
+    s.reserve(ui.size());
+    for (unsigned char c : ui) {
+        s.push_back(static_cast<char>(std::tolower(c)));
+    }
+    if (s.empty()) {
+        return "pending";
+    }
+    if (s == "pending") {
+        return "pending";
+    }
+    if (s == "in progress" || s == "in_progress" || s == "inprogress") {
+        return "in_progress";
+    }
+    if (s == "completed") {
+        return "completed";
+    }
+    return "pending";
+}
+
+/** Maps DB status strings back to QML-friendly labels. */
+std::string fromDbAssignmentStatus(const std::string &db) {
+    std::string s;
+    s.reserve(db.size());
+    for (unsigned char c : db) {
+        s.push_back(static_cast<char>(std::tolower(c)));
+    }
+    if (s == "in_progress" || s == "in progress") {
+        return "In Progress";
+    }
+    if (s == "completed") {
+        return "Completed";
+    }
+    if (s == "pending") {
+        return "Pending";
+    }
+    return db;
 }
 } // namespace
 
@@ -222,6 +264,7 @@ std::vector<Assignment> DB::getAllAssignments(int id) {
 
             const std::string query =
                 "SELECT a.id, a.user_id, a.title, a.description, a.due_date, a.course_id, a.priority, "
+                "a.status, "
                 "COALESCE(c.name, '') AS course_name "
                 "FROM assignments a "
                 "LEFT JOIN courses c ON c.id = a.course_id "
@@ -238,6 +281,11 @@ std::vector<Assignment> DB::getAllAssignments(int id) {
                 assignmentRow.setDueDate(row["due_date"].as<std::string>());
                 assignmentRow.setCourseId(row["course_id"].as<int>());
                 assignmentRow.setPriority(fromDbPriority(row));
+                if (row["status"].is_null()) {
+                    assignmentRow.setStatus("Pending");
+                } else {
+                    assignmentRow.setStatus(fromDbAssignmentStatus(row["status"].as<std::string>()));
+                }
                 assignmentRow.setCourseName(row["course_name"].as<std::string>());
 
                 assignments.push_back(assignmentRow);
@@ -264,6 +312,7 @@ bool DB::createAssignment(Assignment &assignment) {
         pqxx::result result;
 
         if (assignment.getId() > 0) {
+            std::cout << "Assignment ID " << assignment.getId() << std::endl;
             result = transaction.exec_params(
                 R"(
                     UPDATE assignments
@@ -273,8 +322,9 @@ bool DB::createAssignment(Assignment &assignment) {
                         due_date = $3,
                         course_id = $4,
                         user_id = $5,
-                        priority = $6
-                    WHERE id = $7
+                        priority = $6,
+                        status = $7
+                    WHERE id = $8
                 )",
                 assignment.getTitle(),
                 assignment.getDescription(),
@@ -282,6 +332,7 @@ bool DB::createAssignment(Assignment &assignment) {
                 assignment.getCourseId(),
                 assignment.getUserId(),
                 toDbPriority(assignment.getPriority()),
+                toDbAssignmentStatus(assignment.getStatus()),
                 assignment.getId()
             );
         } else {
@@ -294,11 +345,12 @@ bool DB::createAssignment(Assignment &assignment) {
                         due_date,
                         course_id,
                         user_id,
-                        priority
+                        priority,
+                        status
                     )
                     VALUES
                     (
-                        $1, $2, $3, $4, $5, $6
+                        $1, $2, $3, $4, $5, $6, $7
                     )
                 )",
                 assignment.getTitle(),
@@ -306,7 +358,8 @@ bool DB::createAssignment(Assignment &assignment) {
                 assignment.getDueDate(),
                 assignment.getCourseId(),
                 assignment.getUserId(),
-                toDbPriority(assignment.getPriority())
+                toDbPriority(assignment.getPriority()),
+                toDbAssignmentStatus(assignment.getStatus())
             );
         }
 
@@ -356,6 +409,7 @@ std::optional<Assignment> DB::getAssignmentByID(int id) {
 
         pqxx::result result = transaction.exec_params(
             "SELECT a.id, a.user_id, a.title, a.description, a.due_date, a.course_id, a.priority, "
+            "a.status, "
             "COALESCE(c.name, '') AS course_name "
             "FROM assignments a "
             "LEFT JOIN courses c ON c.id = a.course_id "
@@ -374,6 +428,11 @@ std::optional<Assignment> DB::getAssignmentByID(int id) {
         assignment.setDueDate(result[0]["due_date"].as<std::string>());
         assignment.setCourseId(result[0]["course_id"].as<int>());
         assignment.setPriority(fromDbPriority(result[0]));
+        if (result[0]["status"].is_null()) {
+            assignment.setStatus("Pending");
+        } else {
+            assignment.setStatus(fromDbAssignmentStatus(result[0]["status"].as<std::string>()));
+        }
         assignment.setCourseName(result[0]["course_name"].as<std::string>());
 
         return assignment;
@@ -419,6 +478,54 @@ std::vector<HelpRequestModel> DB::getAllHelpRequests(int id) {
 
     return helpRequests;
 }
+
+std::vector<HelpRequestModel> DB::getHelpRequestsFromOtherUsers(int userId) {
+    std::vector<HelpRequestModel> helpRequests;
+
+    try {
+        pqxx::connection &connection = getConnection();
+
+        if (connection.is_open()) {
+            pqxx::work transaction(connection);
+
+            const std::string query =
+                "SELECT hr.id, hr.user_id, hr.assignment_id, hr.message, hr.created_at, "
+                "COALESCE("
+                "NULLIF(TRIM(BOTH ' ' FROM (COALESCE(TRIM(u.first_name), '') || ' ' || "
+                "COALESCE(TRIM(u.last_name), ''))), ''), "
+                "u.email, "
+                "'User #' || hr.user_id::text) AS raiser_name "
+                "FROM help_requests hr "
+                "LEFT JOIN users u ON u.id = hr.user_id "
+                "WHERE hr.user_id <> $1 "
+                "ORDER BY hr.created_at DESC";
+
+            pqxx::result result = transaction.exec_params(query, userId);
+
+            for (const auto &row : result) {
+                HelpRequestModel helpRequestRow;
+                helpRequestRow.setId(row["id"].as<int>());
+                helpRequestRow.setUserId(row["user_id"].as<int>());
+                if (row["assignment_id"].is_null()) {
+                    helpRequestRow.setAssignmentId(-1);
+                } else {
+                    helpRequestRow.setAssignmentId(row["assignment_id"].as<int>());
+                }
+                helpRequestRow.setMessage(row["message"].as<std::string>());
+                helpRequestRow.setCreatedAt(row["created_at"].as<std::string>());
+                helpRequestRow.setRaiserDisplayName(row["raiser_name"].as<std::string>());
+                helpRequests.push_back(helpRequestRow);
+            }
+            return helpRequests;
+        }
+        throw std::runtime_error("Connection closed");
+    } catch (const std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
+
+    return helpRequests;
+}
+
 std::optional<HelpRequestModel> DB::getHelpRequestById(int id) {
 	try {
 		pqxx::connection &connection = getConnection();

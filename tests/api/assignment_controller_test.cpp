@@ -6,7 +6,14 @@
 static Assignment makeAssignment(int id, int userId, int courseId, const std::string &title,
                                  const std::string &desc = "") {
 	Assignment a;
-	a.setId(id).setUserId(userId).setCourseId(courseId).setTitle(title).setDescription(desc).setDueDate("2026-06-01").setPriority(1);
+	a.setId(id)
+	    .setUserId(userId)
+	    .setCourseId(courseId)
+	    .setTitle(title)
+	    .setDescription(desc)
+	    .setDueDate("2026-06-01")
+	    .setPriority(1)
+	    .setStatus("Pending");
 	return a;
 }
 
@@ -14,7 +21,7 @@ TEST(AssignmentController, CreateAssignmentFailsWhenDatabaseRejects) {
 	StubDatabase db;
 	db.createAssignmentSucceeds = false;
 	AssignmentController c(db);
-	auto r = c.createAssignment("T", "D", 1, 10, "2026-06-15");
+	auto r = c.createAssignment("T", "D", 1, 10, "2026-06-15", "Pending");
 	EXPECT_FALSE(r.success);
 	EXPECT_EQ(r.errorMessage, "Failed to create assignment");
 	EXPECT_EQ(r.assignment->getTitle(), "T");
@@ -24,12 +31,13 @@ TEST(AssignmentController, CreateAssignmentSucceeds) {
 	StubDatabase db;
 	db.createAssignmentSucceeds = true;
 	AssignmentController c(db);
-	auto r = c.createAssignment("Essay", "Write five pages", 3, 7, "2026-07-01");
+	auto r = c.createAssignment("Essay", "Write five pages", 3, 7, "2026-07-01", "In Progress");
 	EXPECT_TRUE(r.success);
 	EXPECT_TRUE(r.assignment.has_value());
 	EXPECT_EQ(r.assignment->getTitle(), "Essay");
 	EXPECT_EQ(r.assignment->getUserId(), 7);
 	EXPECT_EQ(r.assignment->getCourseId(), 3);
+	EXPECT_EQ(r.assignment->getStatus(), "In Progress");
 	EXPECT_EQ(db.assignments.size(), 1u);
 }
 
@@ -54,7 +62,7 @@ TEST(AssignmentController, GetAssignmentFound) {
 TEST(AssignmentController, UpdateAssignmentNotFound) {
 	StubDatabase db;
 	AssignmentController c(db);
-	auto r = c.updateAssignment(1, "x", "y", 1, "2026-01-01", 2);
+	auto r = c.updateAssignment(1, "x", "y", 1, "2026-01-01", 2, "Pending");
 	EXPECT_FALSE(r.success);
 	EXPECT_EQ(r.errorMessage, "Assignment not found");
 }
@@ -65,11 +73,12 @@ TEST(AssignmentController, UpdateAssignmentSucceeds) {
 	db.assignments.push_back(db.assignmentById.find(2)->second);
 	db.createAssignmentSucceeds = true;
 	AssignmentController c(db);
-	auto r = c.updateAssignment(2, "New", "New desc", 1, "2026-06-15", 9);
+	auto r = c.updateAssignment(2, "New", "New desc", 1, "2026-06-15", 9, "Completed");
 	EXPECT_TRUE(r.success);
 	ASSERT_TRUE(r.assignment.has_value());
 	EXPECT_EQ(r.assignment->getTitle(), "New");
 	EXPECT_EQ(r.assignment->getPriority(), 9);
+	EXPECT_EQ(r.assignment->getStatus(), "Completed");
 }
 
 TEST(AssignmentController, GetAllAssignmentsReturnsUserRows) {

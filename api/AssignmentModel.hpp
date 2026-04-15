@@ -16,6 +16,8 @@ private:
 	int course_id{};
 	int user_id{};
 	int priority{};
+	/** DB column `status`: Pending | In Progress | Completed */
+	std::string status;
 	/** Filled when loaded via JOIN with courses; not a DB column on assignments. */
 	std::string course_name;
 
@@ -28,6 +30,7 @@ public:
 	std::string getCourseName() const;
 	int getUserId() const;
 	int getPriority() const;
+	std::string getStatus() const;
 	std::string getDueDate() const;
 	std::string getCreatedAt() const;
 	std::string getUpdatedAt() const;
@@ -41,6 +44,7 @@ public:
 	Assignment& setCourseId(int course_id);
 	Assignment& setCourseName(const std::string &name);
 	Assignment& setPriority(int priority);
+	Assignment& setStatus(const std::string &status);
 	Assignment& setUserId(int user_id);
 	bool save(IDatabase &db) override;
 	void load();

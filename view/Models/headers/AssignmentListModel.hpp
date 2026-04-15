@@ -22,7 +22,8 @@ public:
         CourseIdRole,
         CourseNameRole,
         UserIdRole,
-        PriorityRole
+        PriorityRole,
+        StatusRole
     };
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;

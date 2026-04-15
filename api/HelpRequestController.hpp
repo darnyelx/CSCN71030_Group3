@@ -26,6 +26,7 @@ public:
 	HelpRequestResultPayload createHelpRequest(int userId, int assignmentId, const std::string &message);
 	HelpRequestResultPayload getHelpRequestById(int id);
 	GetAllHelpRequestResultPayload getAllHelpRequests(int userId);
+	GetAllHelpRequestResultPayload getHelpRequestsFromOtherUsers(int userId);
 
 private:
 	IDatabase &db_;

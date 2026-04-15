@@ -131,6 +131,30 @@ public:
 		return out;
 	}
 
+	std::vector<HelpRequestModel> getHelpRequestsFromOtherUsers(int userId) override {
+		std::vector<HelpRequestModel> out;
+		for (auto h : helpRequests) {
+			if (h.getUserId() == userId) {
+				continue;
+			}
+			std::string label;
+			for (const auto &u : users) {
+				if (u.getId() == h.getUserId()) {
+					const std::string fn = u.getFirstName();
+					const std::string ln = u.getLastName();
+					label = (fn.empty() && ln.empty()) ? u.getEmail() : (fn + " " + ln);
+					break;
+				}
+			}
+			if (label.empty()) {
+				label = "User #" + std::to_string(h.getUserId());
+			}
+			h.setRaiserDisplayName(label);
+			out.push_back(std::move(h));
+		}
+		return out;
+	}
+
 	std::optional<Assignment> getAssignmentByID(int id) override {
 		auto it = assignmentById.find(id);
 		if (it == assignmentById.end()) {

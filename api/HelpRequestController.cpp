@@ -47,3 +47,8 @@ GetAllHelpRequestResultPayload HelpRequestController::getAllHelpRequests(int use
 	std::vector<HelpRequestModel> helpRequests = db_.getAllHelpRequests(userId);
 	return {true, std::move(helpRequests), ""};
 }
+
+GetAllHelpRequestResultPayload HelpRequestController::getHelpRequestsFromOtherUsers(int userId) {
+	std::vector<HelpRequestModel> helpRequests = db_.getHelpRequestsFromOtherUsers(userId);
+	return {true, std::move(helpRequests), ""};
+}

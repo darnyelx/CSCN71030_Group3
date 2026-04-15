@@ -23,7 +23,8 @@ public:
         AssignmentIdRole,
         MessageRole,
         CreatedAtRole,
-        RequestStatusRole
+        RequestStatusRole,
+        RaiserDisplayNameRole
     };
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;

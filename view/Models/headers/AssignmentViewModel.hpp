@@ -18,6 +18,7 @@ class AssignmentViewModel : public QObject
     Q_PROPERTY(QString courseName READ courseName WRITE setCourseName NOTIFY courseNameChanged)
     Q_PROPERTY(int userId READ userId WRITE setUserId NOTIFY userIdChanged)
     Q_PROPERTY(int priority READ priority WRITE setPriority NOTIFY priorityChanged)
+    Q_PROPERTY(QString status READ status WRITE setStatus NOTIFY statusChanged)
 
 public:
     explicit AssignmentViewModel(QObject *parent = nullptr);
@@ -33,6 +34,7 @@ public:
     QString courseName() const;
     int userId() const;
     int priority() const;
+    QString status() const;
 
     void setId(int value);
     void setTitle(const QString& value);
@@ -44,6 +46,7 @@ public:
     void setCourseName(const QString &value);
     void setUserId(int value);
     void setPriority(int value);
+    void setStatus(const QString &value);
 
     Q_INVOKABLE void fromModel(const Assignment& assignment);
     Assignment toModel() const;
@@ -59,6 +62,7 @@ signals:
     void courseNameChanged();
     void userIdChanged();
     void priorityChanged();
+    void statusChanged();
 
 private:
     int m_id;
@@ -71,4 +75,5 @@ private:
     QString m_courseName;
     int m_userId;
     int m_priority;
+    QString m_status;
 };

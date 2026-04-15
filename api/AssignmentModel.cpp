@@ -90,6 +90,15 @@ int Assignment::getPriority() const {
     return priority;
 }
 
+std::string Assignment::getStatus() const {
+    return status;
+}
+
+Assignment &Assignment::setStatus(const std::string &s) {
+    status = s;
+    return *this;
+}
+
 std::string Assignment::getCreatedAt() const {
     return created_at;
 }

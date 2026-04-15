@@ -24,6 +24,7 @@ int HelpRequestViewModel::assignmentId() const { return m_assignmentId; }
 QString HelpRequestViewModel::message() const { return m_message; }
 QString HelpRequestViewModel::createdAt() const { return m_createdAt; }
 QString HelpRequestViewModel::requestStatus() const { return m_requestStatus; }
+QString HelpRequestViewModel::raiserDisplayName() const { return m_raiserDisplayName; }
 
 void HelpRequestViewModel::setId(int value)
 {
@@ -73,6 +74,14 @@ void HelpRequestViewModel::setRequestStatus(const QString &value)
     emit requestStatusChanged();
 }
 
+void HelpRequestViewModel::setRaiserDisplayName(const QString &value)
+{
+    if (m_raiserDisplayName == value)
+        return;
+    m_raiserDisplayName = value;
+    emit raiserDisplayNameChanged();
+}
+
 void HelpRequestViewModel::fromModel(const HelpRequestModel &model)
 {
     setId(model.getId());
@@ -81,4 +90,5 @@ void HelpRequestViewModel::fromModel(const HelpRequestModel &model)
     setMessage(QString::fromStdString(model.getMessage()));
     setCreatedAt(QString::fromStdString(model.getCreatedAt()));
     setRequestStatus(QString::fromStdString(model.getRequestStatus()));
+    setRaiserDisplayName(QString::fromStdString(model.getRaiserDisplayName()));
 }

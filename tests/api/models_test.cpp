@@ -25,7 +25,8 @@ TEST(Assignment, TableNameAndFields) {
         .setDueDate("2026-05-01")
         .setCourseId(10)
         .setUserId(20)
-        .setPriority(2);
+        .setPriority(2)
+        .setStatus("In Progress");
     EXPECT_EQ(a.getId(), 1);
     EXPECT_EQ(a.getTitle(), "Read chapter 3");
     EXPECT_EQ(a.getDescription(), "Focus on diagrams");
@@ -33,6 +34,7 @@ TEST(Assignment, TableNameAndFields) {
     EXPECT_EQ(a.getCourseId(), 10);
     EXPECT_EQ(a.getUserId(), 20);
     EXPECT_EQ(a.getPriority(), 2);
+    EXPECT_EQ(a.getStatus(), "In Progress");
 }
 
 TEST(Course, TableNameAndFields) {

@@ -12,7 +12,8 @@ static Assignment A(int id, int userId, int courseId, int priority, std::string 
 	    .setPriority(priority)
 	    .setDueDate(std::move(due))
 	    .setTitle(std::move(title))
-	    .setDescription(std::move(desc));
+	    .setDescription(std::move(desc))
+	    .setStatus("Pending");
 	return a;
 }
 

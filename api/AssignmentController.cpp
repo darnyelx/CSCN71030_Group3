@@ -5,15 +5,21 @@
 AssignmentController::AssignmentController(IDatabase &database) : db_(database) {}
 
 AssignmentResultPayload AssignmentController::createAssignment(const std::string title, const std::string description,
-                                                             int courseId, int userId, std::string dueDate) {
+                                                             int courseId, int userId, std::string dueDate,
+                                                             const std::string &status) {
 
 	Assignment assignment;
+	std::string st = status;
+	if (st.empty()) {
+		st = "Pending";
+	}
 	assignment.setTitle(title)
 	    .setDescription(description)
 	    .setCourseId(courseId)
 	    .setUserId(userId)
 	    .setDueDate(dueDate)
-	    .setPriority(1);
+	    .setPriority(1)
+	    .setStatus(st);
 	bool result = db_.createAssignment(assignment);
 	return {
 	    result,
@@ -24,7 +30,8 @@ AssignmentResultPayload AssignmentController::createAssignment(const std::string
 
 AssignmentResultPayload AssignmentController::updateAssignment(int id, const std::string &title,
                                                                const std::string &description, int courseId,
-                                                               const std::string &dueDate, int priority) {
+                                                               const std::string &dueDate, int priority,
+                                                               const std::string &status) {
 	std::optional<Assignment> assignment = db_.getAssignmentByID(id);
 	if (!assignment.has_value()) {
 		return {
@@ -34,11 +41,16 @@ AssignmentResultPayload AssignmentController::updateAssignment(int id, const std
 		};
 	}
 
+	std::string st = status;
+	if (st.empty()) {
+		st = assignment->getStatus().empty() ? "Pending" : assignment->getStatus();
+	}
 	assignment->setTitle(title)
 	    .setDescription(description)
 	    .setCourseId(courseId)
 	    .setDueDate(dueDate)
-	    .setPriority(priority);
+	    .setPriority(priority)
+	    .setStatus(st);
 	bool ok = db_.createAssignment(*assignment);
 	return {
 	    ok,

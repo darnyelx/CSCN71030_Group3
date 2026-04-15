@@ -13,6 +13,8 @@ private:
     std::string message;
     std::string request_status;
     std::string createdAt;
+    /** Populated when listing other users' requests (not persisted). */
+    std::string raiser_display_name;
 
 public:
     HelpRequestModel(int id = -1, int userId = -1, const std::string &message = "", const std::string &createdAt = "");
@@ -28,6 +30,8 @@ public:
     void setAssignmentId(int assignment_id);
     void setMessage(const std::string &message);
     void setRequestStatus(const std::string &request_status);
+    const std::string &getRaiserDisplayName() const;
+    void setRaiserDisplayName(const std::string &name);
     bool save(IDatabase &db) override;
     bool remove(IDatabase &db) override;
 

@@ -41,6 +41,8 @@ QVariant HelpRequestListModel::data(const QModelIndex &index, int role) const
         return row->createdAt();
     case RequestStatusRole:
         return row->requestStatus();
+    case RaiserDisplayNameRole:
+        return row->raiserDisplayName();
     default:
         return {};
     }
@@ -55,6 +57,7 @@ QHash<int, QByteArray> HelpRequestListModel::roleNames() const
         {MessageRole, "message"},
         {CreatedAtRole, "createdAt"},
         {RequestStatusRole, "requestStatus"},
+        {RaiserDisplayNameRole, "raiserDisplayName"},
     };
 }
 

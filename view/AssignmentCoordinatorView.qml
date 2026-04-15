@@ -13,7 +13,9 @@ Page {
 
     property int editingAssignmentId: -1
     property int helpFormAssignmentId: -1
+    property string helpModalAssignmentTitle: ""
     property string helpModalError: ""
+    property int helpRequestsTab: 0
 
     function findCourseIndex(courseId) {
         if (courseId < 0)
@@ -30,6 +32,15 @@ Page {
         return -1
     }
 
+    function assignmentStatusIndex(label) {
+        const labels = ["Pending", "In Progress", "Completed"]
+        for (let i = 0; i < labels.length; i++) {
+            if (labels[i] === label)
+                return i
+        }
+        return 0
+    }
+
     function clearAssignmentForm() {
         editingAssignmentId = -1
         titleField.text = ""
@@ -43,6 +54,8 @@ Page {
         createAssignment.dueDate = ""
         createAssignment.courseId = -1
         createAssignment.priority = 1
+        createAssignment.status = "Pending"
+        statusCombo.currentIndex = 0
     }
 
     function loadAssignmentForEdit(row) {
@@ -60,6 +73,16 @@ Page {
         createAssignment.priority = Math.max(1, Math.min(3, vm.priority))
         priorityCombo.currentIndex = createAssignment.priority - 1
         courseList.currentIndex = findCourseIndex(vm.courseId)
+        createAssignment.status = vm.status && vm.status.length > 0 ? vm.status : "Pending"
+        statusCombo.currentIndex = mainView.assignmentStatusIndex(createAssignment.status)
+    }
+
+    function openHelpRequestModal(assignmentId, assignmentTitle) {
+        helpFormAssignmentId = assignmentId
+        helpModalAssignmentTitle = assignmentTitle ? assignmentTitle : ""
+        helpModalError = ""
+        helpMessageField.text = ""
+        helpRequestModal.open()
     }
 
     AssignmentViewModel {
@@ -72,6 +95,7 @@ Page {
         courseViewController.getCourses()
         assignmentController.getUserAssignments(UserStore.userId)
         helpRequestController.loadHelpRequests(UserStore.userId)
+        helpRequestController.loadOthersHelpRequests(UserStore.userId)
     }
 
     Connections {
@@ -112,6 +136,7 @@ Page {
             mainView.helpModalError = ""
             helpRequestModal.close()
             helpRequestController.loadHelpRequests(UserStore.userId)
+            helpRequestController.loadOthersHelpRequests(UserStore.userId)
         }
 
         function onCreateHelpRequestError(message) {
@@ -121,6 +146,10 @@ Page {
 
         function onLoadHelpRequestsError(message) {
             console.log("Load help requests failed:", message)
+        }
+
+        function onLoadOthersHelpRequestsError(message) {
+            console.log("Load others help requests failed:", message)
         }
     }
 
@@ -178,30 +207,6 @@ Page {
 
                     Row {
                         spacing: 18
-
-                        Rectangle {
-                            width: 158
-                            height: 44
-                            radius: 12
-                            color: panelColor
-                            border.color: borderColor
-                            border.width: 1
-                            anchors.verticalCenter: parent.verticalCenter
-
-                            Text {
-                                anchors.centerIn: parent
-                                text: "Request help"
-                                color: green
-                                font.pixelSize: 15
-                                font.bold: true
-                            }
-
-                            MouseArea {
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: helpRequestModal.open()
-                            }
-                        }
 
                         Repeater {
                             model: [
@@ -539,6 +544,10 @@ Page {
                                     color: textPrimary
                                     font.pixelSize: 16
                                 }
+
+                                onActivated: function (index) {
+                                    createAssignment.status = statusCombo.textAt(index)
+                                }
                             }
 
                             Rectangle {
@@ -690,7 +699,6 @@ Page {
                                 property string subject: (courseName && courseName.length > 0)
                                     ? courseName
                                     : ("Course " + courseId)
-                                property string status: "Pending"               // until you add it to model
 
                                 property color dotColor: status === "Completed" ? green
                                     : status === "In Progress" ? blue
@@ -805,28 +813,58 @@ Page {
 
                                         Item { Layout.fillWidth: true }
 
-                                        Rectangle {
+                                        RowLayout {
                                             Layout.alignment: Qt.AlignVCenter
-                                            height: 36
-                                            width: editBtnLabel.width + 28
-                                            radius: 10
-                                            color: "#2A2A2A"
-                                            border.color: borderColor
-                                            border.width: 1
+                                            spacing: 10
 
-                                            Text {
-                                                id: editBtnLabel
-                                                anchors.centerIn: parent
-                                                text: "Edit"
-                                                color: green
-                                                font.pixelSize: 14
-                                                font.bold: true
+                                            Rectangle {
+                                                Layout.alignment: Qt.AlignVCenter
+                                                height: 36
+                                                width: helpReqBtnLabel.width + 28
+                                                radius: 10
+                                                color: "#2A2A2A"
+                                                border.color: borderColor
+                                                border.width: 1
+
+                                                Text {
+                                                    id: helpReqBtnLabel
+                                                    anchors.centerIn: parent
+                                                    text: "Request help"
+                                                    color: green
+                                                    font.pixelSize: 14
+                                                    font.bold: true
+                                                }
+
+                                                MouseArea {
+                                                    anchors.fill: parent
+                                                    cursorShape: Qt.PointingHandCursor
+                                                    onClicked: mainView.openHelpRequestModal(id, title)
+                                                }
                                             }
 
-                                            MouseArea {
-                                                anchors.fill: parent
-                                                cursorShape: Qt.PointingHandCursor
-                                                onClicked: mainView.loadAssignmentForEdit(index)
+                                            Rectangle {
+                                                Layout.alignment: Qt.AlignVCenter
+                                                height: 36
+                                                width: editBtnLabel.width + 28
+                                                radius: 10
+                                                color: "#2A2A2A"
+                                                border.color: borderColor
+                                                border.width: 1
+
+                                                Text {
+                                                    id: editBtnLabel
+                                                    anchors.centerIn: parent
+                                                    text: "Edit"
+                                                    color: green
+                                                    font.pixelSize: 14
+                                                    font.bold: true
+                                                }
+
+                                                MouseArea {
+                                                    anchors.fill: parent
+                                                    cursorShape: Qt.PointingHandCursor
+                                                    onClicked: mainView.loadAssignmentForEdit(index)
+                                                }
                                             }
                                         }
                                     }
@@ -836,79 +874,200 @@ Page {
 
                         Text {
                             width: parent.width
-                            text: "My help requests"
+                            text: "Help requests"
                             color: textPrimary
                             font.pixelSize: 22
                             font.bold: true
                             topPadding: 28
                         }
 
-                        Text {
+                        Row {
                             width: parent.width
-                            visible: helpRequestController.helpRequestModel.entryCount() === 0
-                            text: "You have not raised any help requests yet. Use “Request help” above to contact support about an assignment."
-                            color: textSecondary
-                            font.pixelSize: 15
-                            wrapMode: Text.WordWrap
+                            spacing: 10
+                            topPadding: 8
+
+                            Repeater {
+                                model: ["Mine", "Other users"]
+
+                                delegate: Rectangle {
+                                    width: tabLabel.width + 32
+                                    height: 40
+                                    radius: 10
+                                    color: mainView.helpRequestsTab === index ? "#343434" : "transparent"
+                                    border.color: mainView.helpRequestsTab === index ? "#494949" : borderColor
+                                    border.width: 1
+
+                                    Text {
+                                        id: tabLabel
+                                        anchors.centerIn: parent
+                                        text: modelData
+                                        color: mainView.helpRequestsTab === index ? textPrimary : textSecondary
+                                        font.pixelSize: 15
+                                        font.bold: mainView.helpRequestsTab === index
+                                    }
+
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: mainView.helpRequestsTab = index
+                                    }
+                                }
+                            }
                         }
 
-                        Repeater {
-                            model: helpRequestController.helpRequestModel
+                        StackLayout {
+                            width: parent.width
+                            currentIndex: mainView.helpRequestsTab
 
-                            delegate: Rectangle {
+                            Column {
                                 width: parent.width
-                                implicitHeight: helpCardColumn.implicitHeight + 36
-                                radius: 16
-                                color: cardColor
-                                border.color: borderColor
-                                border.width: 1
+                                spacing: 12
+                                topPadding: 8
 
-                                Column {
-                                    id: helpCardColumn
-                                    anchors.fill: parent
-                                    anchors.margins: 18
-                                    spacing: 10
+                                Text {
+                                    width: parent.width
+                                    visible: helpRequestController.helpRequestModel.entryCount() === 0
+                                    text: "You have not raised any help requests yet. Use “Request help” on an assignment card to ask for support."
+                                    color: textSecondary
+                                    font.pixelSize: 15
+                                    wrapMode: Text.WordWrap
+                                }
 
-                                    RowLayout {
+                                Repeater {
+                                    model: helpRequestController.helpRequestModel
+
+                                    delegate: Rectangle {
                                         width: parent.width
-                                        spacing: 12
+                                        implicitHeight: helpCardColumn.implicitHeight + 36
+                                        radius: 16
+                                        color: cardColor
+                                        border.color: borderColor
+                                        border.width: 1
 
-                                        Text {
-                                            text: "Raised"
-                                            color: textSecondary
-                                            font.pixelSize: 13
-                                        }
+                                        Column {
+                                            id: helpCardColumn
+                                            anchors.fill: parent
+                                            anchors.margins: 18
+                                            spacing: 10
 
-                                        Text {
-                                            text: createdAt
-                                            color: textPrimary
-                                            font.pixelSize: 14
-                                            font.bold: true
-                                        }
+                                            RowLayout {
+                                                width: parent.width
+                                                spacing: 12
 
-                                        Item { Layout.fillWidth: true }
+                                                Text {
+                                                    text: "Raised"
+                                                    color: textSecondary
+                                                    font.pixelSize: 13
+                                                }
 
-                                        Text {
-                                            visible: assignmentId >= 0
-                                            text: "Assignment #" + assignmentId
-                                            color: "#93C5FD"
-                                            font.pixelSize: 13
+                                                Text {
+                                                    text: createdAt
+                                                    color: textPrimary
+                                                    font.pixelSize: 14
+                                                    font.bold: true
+                                                }
+
+                                                Item { Layout.fillWidth: true }
+
+                                                Text {
+                                                    visible: assignmentId >= 0
+                                                    text: "Assignment #" + assignmentId
+                                                    color: "#93C5FD"
+                                                    font.pixelSize: 13
+                                                }
+                                            }
+
+                                            Text {
+                                                width: parent.width
+                                                text: message
+                                                color: "#B9B9B9"
+                                                wrapMode: Text.WordWrap
+                                                font.pixelSize: 15
+                                            }
+
                                         }
                                     }
+                                }
+                            }
 
-                                    Text {
+                            Column {
+                                width: parent.width
+                                spacing: 12
+                                topPadding: 8
+
+                                Text {
+                                    width: parent.width
+                                    visible: helpRequestController.othersHelpRequestModel.entryCount() === 0
+                                    text: "No help requests from other users yet."
+                                    color: textSecondary
+                                    font.pixelSize: 15
+                                    wrapMode: Text.WordWrap
+                                }
+
+                                Repeater {
+                                    model: helpRequestController.othersHelpRequestModel
+
+                                    delegate: Rectangle {
                                         width: parent.width
-                                        text: message
-                                        color: "#B9B9B9"
-                                        wrapMode: Text.WordWrap
-                                        font.pixelSize: 15
-                                    }
+                                        implicitHeight: otherHelpCardColumn.implicitHeight + 36
+                                        radius: 16
+                                        color: cardColor
+                                        border.color: borderColor
+                                        border.width: 1
 
-                                    Text {
-                                        visible: requestStatus && requestStatus.length > 0
-                                        text: "Status: " + requestStatus
-                                        color: textSecondary
-                                        font.pixelSize: 13
+                                        Column {
+                                            id: otherHelpCardColumn
+                                            anchors.fill: parent
+                                            anchors.margins: 18
+                                            spacing: 10
+
+                                            Text {
+                                                width: parent.width
+                                                text: raiserDisplayName && raiserDisplayName.length > 0
+                                                    ? ("From: " + raiserDisplayName)
+                                                    : ("User #" + userId)
+                                                color: textPrimary
+                                                font.pixelSize: 15
+                                                font.bold: true
+                                                wrapMode: Text.WordWrap
+                                            }
+
+                                            RowLayout {
+                                                width: parent.width
+                                                spacing: 12
+
+                                                Text {
+                                                    text: "Raised"
+                                                    color: textSecondary
+                                                    font.pixelSize: 13
+                                                }
+
+                                                Text {
+                                                    text: createdAt
+                                                    color: textPrimary
+                                                    font.pixelSize: 14
+                                                    font.bold: true
+                                                }
+
+                                                Item { Layout.fillWidth: true }
+
+                                                Text {
+                                                    visible: assignmentId >= 0
+                                                    text: "Assignment #" + assignmentId
+                                                    color: "#93C5FD"
+                                                    font.pixelSize: 13
+                                                }
+                                            }
+
+                                            Text {
+                                                width: parent.width
+                                                text: message
+                                                color: "#B9B9B9"
+                                                wrapMode: Text.WordWrap
+                                                font.pixelSize: 15
+                                            }
+
+                                        }
                                     }
                                 }
                             }
@@ -931,8 +1090,6 @@ Page {
 
         onOpened: {
             mainView.helpModalError = ""
-            mainView.helpFormAssignmentId = -1
-            helpAssignmentCombo.currentIndex = -1
             helpMessageField.text = ""
         }
 
@@ -1002,48 +1159,28 @@ Page {
                 }
 
                 Text {
-                    text: "Related assignment (optional)"
+                    text: "Assignment"
                     color: "#D4D4D4"
                     font.pixelSize: 14
                     font.bold: true
                 }
 
-                ComboBox {
-                    id: helpAssignmentCombo
+                Rectangle {
                     width: parent.width
-                    height: 48
-                    model: assignmentController.assignmentModel
-                    textRole: "title"
-                    currentIndex: -1
+                    implicitHeight: Math.max(48, helpAssignSummary.implicitHeight + 24)
+                    radius: 12
+                    color: "#050505"
+                    border.color: borderColor
+                    border.width: 1
 
-                    displayText: {
-                        if (currentIndex < 0)
-                            return "No specific assignment"
-                        const a = assignmentController.assignmentModel.get(currentIndex)
-                        return a ? a.title : ""
-                    }
-
-                    onCurrentIndexChanged: {
-                        if (currentIndex < 0) {
-                            mainView.helpFormAssignmentId = -1
-                        } else {
-                            const a = assignmentController.assignmentModel.get(currentIndex)
-                            mainView.helpFormAssignmentId = a ? a.id : -1
-                        }
-                    }
-
-                    background: Rectangle {
-                        radius: 12
-                        color: "#050505"
-                        border.color: borderColor
-                        border.width: 1
-                    }
-
-                    contentItem: Text {
-                        leftPadding: 14
-                        rightPadding: 36
-                        verticalAlignment: Text.AlignVCenter
-                        text: helpAssignmentCombo.displayText
+                    Text {
+                        id: helpAssignSummary
+                        anchors.fill: parent
+                        anchors.margins: 12
+                        wrapMode: Text.WordWrap
+                        text: mainView.helpModalAssignmentTitle.length > 0
+                            ? mainView.helpModalAssignmentTitle
+                            : ("Assignment #" + mainView.helpFormAssignmentId)
                         color: textPrimary
                         font.pixelSize: 15
                     }

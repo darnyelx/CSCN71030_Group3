@@ -18,7 +18,8 @@ void AssignmentViewController::createAssignment(AssignmentViewModel *assignmentM
     auto r = m_assignmentController.createAssignment(assignmentModel->title().toStdString(),
                                                      assignmentModel->description().toStdString(),
                                                      assignmentModel->courseId(), assignmentModel->userId(),
-                                                     assignmentModel->dueDate().toStdString());
+                                                     assignmentModel->dueDate().toStdString(),
+                                                     assignmentModel->status().toStdString());
     if (r.success) {
         emit createAssignmentSuccess();
     } else {
@@ -35,7 +36,8 @@ void AssignmentViewController::updateAssignment(int assignmentId, AssignmentView
                                                      assignmentModel->description().toStdString(),
                                                      assignmentModel->courseId(),
                                                      assignmentModel->dueDate().toStdString(),
-                                                     assignmentModel->priority());
+                                                     assignmentModel->priority(),
+                                                     assignmentModel->status().toStdString());
     if (r.success) {
         emit updateAssignmentSuccess();
     } else {
