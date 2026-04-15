@@ -7,6 +7,10 @@
 class AssignmentListModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int totalCount READ totalCount NOTIFY assignmentCountsChanged)
+    Q_PROPERTY(int pendingCount READ pendingCount NOTIFY assignmentCountsChanged)
+    Q_PROPERTY(int inProgressCount READ inProgressCount NOTIFY assignmentCountsChanged)
+    Q_PROPERTY(int completedCount READ completedCount NOTIFY assignmentCountsChanged)
 
 public:
     explicit AssignmentListModel(QObject *parent = nullptr);
@@ -35,6 +39,20 @@ public:
 
     Q_INVOKABLE AssignmentViewModel *get(int index) const;
 
+    int totalCount() const { return m_totalCount; }
+    int pendingCount() const { return m_pendingCount; }
+    int inProgressCount() const { return m_inProgressCount; }
+    int completedCount() const { return m_completedCount; }
+
+signals:
+    void assignmentCountsChanged();
+
 private:
-    QList<AssignmentViewModel*> m_assignments;
+    void refreshCounts();
+
+    QList<AssignmentViewModel *> m_assignments;
+    int m_totalCount = 0;
+    int m_pendingCount = 0;
+    int m_inProgressCount = 0;
+    int m_completedCount = 0;
 };

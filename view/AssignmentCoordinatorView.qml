@@ -59,7 +59,7 @@ Page {
     }
 
     function loadAssignmentForEdit(row) {
-        const vm = assignmentController.assignmentModel.get(row)
+        const vm = assignmentController.assignmentFilter.get(row)
         if (!vm)
             return
         editingAssignmentId = vm.id
@@ -91,7 +91,7 @@ Page {
     }
 
     Component.onCompleted: {
-        console.log("User Store",UserStore.userId)
+        console.log("User Store", UserStore.userId)
         courseViewController.getCourses()
         assignmentController.getUserAssignments(UserStore.userId)
         helpRequestController.loadHelpRequests(UserStore.userId)
@@ -102,19 +102,19 @@ Page {
         target: assignmentController
 
         function onCreateAssignmentSuccess() {
-            console.log("User Store",UserStore.userId)
+            console.log("User Store", UserStore.userId)
 
             assignmentController.getUserAssignments(UserStore.userId)
             clearAssignmentForm()
         }
 
         function onCreateAssignmentError(message) {
-            console.log("User Store",UserStore.id)
+            console.log("User Store", UserStore.id)
             console.log("Create assignment failed:", message)
         }
 
         function onUpdateAssignmentSuccess() {
-            console.log("User Store Edit ",UserStore.userId)
+            console.log("User Store Edit ", UserStore.userId)
 
             assignmentController.getUserAssignments(UserStore.userId)
             clearAssignmentForm()
@@ -157,174 +157,248 @@ Page {
         anchors.fill: parent
         color: bgColor
 
+        Rectangle {
+            anchors.fill: parent
+            color: "transparent"
+
+            Rectangle {
+                width: 460
+                height: 460
+                radius: 230
+                x: -140
+                y: -120
+                color: green
+                opacity: 0.045
+            }
+
+            Rectangle {
+                width: 520
+                height: 520
+                radius: 260
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.rightMargin: -150
+                anchors.topMargin: -180
+                color: blue
+                opacity: 0.05
+            }
+        }
+
         Flickable {
             anchors.fill: parent
             contentWidth: width
-            contentHeight: rootColumn.implicitHeight + 60
+            contentHeight: rootColumn.implicitHeight + 72
             clip: true
 
             Column {
                 id: rootColumn
-                width: parent.width - 120
+                width: Math.min(1380, parent.width - 96)
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                anchors.topMargin: 34
-                spacing: 28
-
-                RowLayout {
-                    width: parent.width
-                    spacing: 20
-
-                    Row {
-                        spacing: 16
-                        Layout.alignment: Qt.AlignVCenter
-
-                        Rectangle {
-                            width: 56
-                            height: 56
-                            radius: 16
-                            color: green
-
-                            Text {
-                                anchors.centerIn: parent
-                                text: "▤"
-                                color: "#06250F"
-                                font.pixelSize: 24
-                                font.bold: true
-                            }
-                        }
-
-                        Text {
-                            text: "Assignment Coordinator"
-                            color: textPrimary
-                            font.pixelSize: 26
-                            font.bold: true
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
-                    }
-
-                    Item { Layout.fillWidth: true }
-
-                    Row {
-                        spacing: 18
-
-                        Repeater {
-                            model: [
-                                { value: "0", label: "TOTAL" },
-                                { value: "0", label: "PENDING" },
-                                { value: "0", label: "COMPLETED" }
-                            ]
-
-                            delegate: Rectangle {
-                                width: 110
-                                height: 86
-                                radius: 14
-                                color: panelColor
-                                border.color: borderColor
-                                border.width: 1
-
-                                Column {
-                                    anchors.centerIn: parent
-                                    spacing: 8
-
-                                    Text {
-                                        anchors.horizontalCenter: parent.horizontalCenter
-                                        text: modelData.value
-                                        color: green
-                                        font.pixelSize: 26
-                                        font.bold: true
-                                    }
-
-                                    Text {
-                                        anchors.horizontalCenter: parent.horizontalCenter
-                                        text: modelData.label
-                                        color: textSecondary
-                                        font.pixelSize: 16
-                                        font.capitalization: Font.AllUppercase
-                                    }
-                                }
-                            }
-                        }
-
-                        Rectangle {
-                            width: 170
-                            height: 64
-                            radius: 14
-                            color: panelColor
-                            border.color: borderColor
-                            border.width: 1
-
-                            Row {
-                                anchors.fill: parent
-                                anchors.margins: 14
-                                spacing: 12
-
-                                Rectangle {
-                                    width: 38
-                                    height: 38
-                                    radius: 19
-                                    color: green
-
-                                    Text {
-                                        anchors.centerIn: parent
-                                        text: "U"
-                                        color: "#06250F"
-                                        font.bold: true
-                                        font.pixelSize: 18
-                                    }
-                                }
-
-                                Text {
-                                    text: "User"
-                                    color: textPrimary
-                                    font.pixelSize: 18
-                                    anchors.verticalCenter: parent.verticalCenter
-                                }
-
-                                Item { width: 10 }
-
-                                Text {
-                                    text: "⇥"
-                                    color: textSecondary
-                                    font.pixelSize: 22
-                                    anchors.verticalCenter: parent.verticalCenter
-                                }
-                            }
-                        }
-                    }
-                }
+                anchors.topMargin: 28
+                spacing: 26
 
                 Rectangle {
                     width: parent.width
-                    height: 1
-                    color: "#1C1C1C"
+                    radius: 26
+                    color: panelColor
+                    border.color: borderColor
+                    border.width: 1
+
+                    Column {
+                        anchors.fill: parent
+                        anchors.margins: 24
+                        spacing: 22
+
+                        RowLayout {
+                            width: parent.width
+                            spacing: 20
+
+                            Row {
+                                spacing: 16
+                                Layout.alignment: Qt.AlignVCenter
+
+                                Rectangle {
+                                    width: 60
+                                    height: 60
+                                    radius: 18
+                                    color: green
+
+                                    Rectangle {
+                                        anchors.fill: parent
+                                        anchors.margins: 1
+                                        radius: parent.radius - 1
+                                        color: "transparent"
+                                        border.color: "#1FFFFFFF"
+                                        border.width: 1
+                                    }
+
+                                    Text {
+                                        anchors.centerIn: parent
+                                        text: "▤"
+                                        color: "#06250F"
+                                        font.pixelSize: 24
+                                        font.bold: true
+                                    }
+                                }
+
+                                Column {
+                                    spacing: 4
+                                    anchors.verticalCenter: parent.verticalCenter
+
+                                    Text {
+                                        text: "Assignment Coordinator"
+                                        color: textPrimary
+                                        font.pixelSize: 28
+                                        font.bold: true
+                                    }
+
+                                    Text {
+                                        text: "Track coursework, priorities, and support requests in one place"
+                                        color: textSecondary
+                                        font.pixelSize: 14
+                                    }
+                                }
+                            }
+
+                            Item { Layout.fillWidth: true }
+
+                            Row {
+                                spacing: 14
+                                Layout.alignment: Qt.AlignVCenter
+
+                                Repeater {
+                                    model: [
+                                        { value: "0", label: "TOTAL" },
+                                        { value: "0", label: "PENDING" },
+                                        { value: "0", label: "COMPLETED" }
+                                    ]
+
+                                    delegate: Rectangle {
+                                        width: 118
+                                        height: 88
+                                        radius: 18
+                                        color: cardColor
+                                        border.color: borderColor
+                                        border.width: 1
+
+                                        Column {
+                                            anchors.centerIn: parent
+                                            spacing: 6
+
+                                            Text {
+                                                anchors.horizontalCenter: parent.horizontalCenter
+                                                text: modelData.value
+                                                color: green
+                                                font.pixelSize: 26
+                                                font.bold: true
+                                            }
+
+                                            Text {
+                                                anchors.horizontalCenter: parent.horizontalCenter
+                                                text: modelData.label
+                                                color: textSecondary
+                                                font.pixelSize: 12
+                                                font.bold: true
+                                                font.capitalization: Font.AllUppercase
+                                            }
+                                        }
+                                    }
+                                }
+
+                                Rectangle {
+                                    width: 188
+                                    height: 64
+                                    radius: 18
+                                    color: cardColor
+                                    border.color: borderColor
+                                    border.width: 1
+
+                                    Row {
+                                        anchors.fill: parent
+                                        anchors.margins: 14
+                                        spacing: 12
+
+                                        Rectangle {
+                                            width: 38
+                                            height: 38
+                                            radius: 19
+                                            color: green
+
+                                            Text {
+                                                anchors.centerIn: parent
+                                                text: "U"
+                                                color: "#06250F"
+                                                font.bold: true
+                                                font.pixelSize: 18
+                                            }
+                                        }
+
+                                        Column {
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            spacing: 2
+
+                                            Text {
+                                                text: "Workspace"
+                                                color: textSecondary
+                                                font.pixelSize: 12
+                                            }
+
+                                            Text {
+                                                text: "User"
+                                                color: textPrimary
+                                                font.pixelSize: 16
+                                                font.bold: true
+                                            }
+                                        }
+
+                                        Item { width: 8 }
+
+                                        Text {
+                                            text: "⇥"
+                                            color: textSecondary
+                                            font.pixelSize: 20
+                                            anchors.verticalCenter: parent.verticalCenter
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
                 RowLayout {
                     width: parent.width
-                    spacing: 34
+                    spacing: 26
                     Layout.fillWidth: true
 
                     Rectangle {
+
                         Layout.preferredWidth: 430
-                        Layout.fillHeight: true
-                        radius: 22
+                        Layout.fillWidth: true
+                        implicitHeight: formColumn.implicitHeight + 52
+
+                        radius: 26
                         color: panelColor
                         border.color: borderColor
                         border.width: 1
 
                         Column {
+                            id: formColumn
                             anchors.fill: parent
-                            anchors.margins: 26
-                            spacing: 18
+                            anchors.leftMargin: 26
+                            anchors.rightMargin: 26
+                            anchors.topMargin: 26
+                            anchors.bottomMargin: 26
+                            spacing: 16
 
                             Row {
                                 spacing: 12
 
                                 Rectangle {
-                                    width: 40
-                                    height: 40
-                                    radius: 12
+                                    width: 42
+                                    height: 42
+                                    radius: 14
                                     color: greenDark
 
                                     Text {
@@ -332,40 +406,55 @@ Page {
                                         text: mainView.editingAssignmentId >= 0 ? "✎" : "+"
                                         color: green
                                         font.pixelSize: mainView.editingAssignmentId >= 0 ? 20 : 24
+                                        font.bold: true
                                     }
                                 }
 
-                                Text {
-                                    text: mainView.editingAssignmentId >= 0 ? "Edit Assignment" : "Add New Assignment"
-                                    color: textPrimary
-                                    font.pixelSize: 22
-                                    font.bold: true
+                                Column {
+                                    spacing: 4
                                     anchors.verticalCenter: parent.verticalCenter
+
+                                    Text {
+                                        text: mainView.editingAssignmentId >= 0 ? "Edit Assignment" : "Add New Assignment"
+                                        color: textPrimary
+                                        font.pixelSize: 22
+                                        font.bold: true
+                                    }
+
+                                    Text {
+                                        text: mainView.editingAssignmentId >= 0
+                                            ? "Update the selected assignment details"
+                                            : "Fill in the details below to create a new task"
+                                        color: textSecondary
+                                        font.pixelSize: 13
+                                    }
                                 }
                             }
 
                             Text {
                                 text: "Assignment Title"
                                 color: "#D4D4D4"
-                                font.pixelSize: 16
+                                font.pixelSize: 15
                                 font.bold: true
                             }
 
                             Rectangle {
                                 width: parent.width
-                                height: 54
-                                radius: 12
-                                color: "#050505"
+                                height: 56
+                                radius: 14
+                                color: cardColor
                                 border.color: borderColor
                                 border.width: 1
 
                                 TextField {
                                     id: titleField
                                     anchors.fill: parent
-                                    anchors.margins: 12
+                                    anchors.leftMargin: 14
+                                    anchors.rightMargin: 14
                                     placeholderText: "Enter assignment title"
                                     color: textPrimary
                                     placeholderTextColor: "#6F6F6F"
+                                    verticalAlignment: Text.AlignVCenter
                                     background: Item {}
 
                                     onTextChanged: createAssignment.title = text
@@ -375,28 +464,28 @@ Page {
                             Text {
                                 text: "Subject"
                                 color: "#D4D4D4"
-                                font.pixelSize: 16
+                                font.pixelSize: 15
                                 font.bold: true
                             }
 
                             ComboBox {
                                 id: courseList
                                 width: parent.width
-                                height: 54
+                                height: 56
                                 model: courseViewController.courseModel
                                 textRole: "name"
                                 currentIndex: -1
 
                                 background: Rectangle {
-                                    radius: 12
-                                    color: "#050505"
+                                    radius: 14
+                                    color: cardColor
                                     border.color: borderColor
                                     border.width: 1
                                 }
 
                                 contentItem: Text {
                                     leftPadding: 14
-                                    rightPadding: 30
+                                    rightPadding: 34
                                     verticalAlignment: Text.AlignVCenter
                                     text: courseList.currentIndex < 0
                                         ? "Select subject"
@@ -414,22 +503,22 @@ Page {
                             Text {
                                 text: "Description"
                                 color: "#D4D4D4"
-                                font.pixelSize: 16
+                                font.pixelSize: 15
                                 font.bold: true
                             }
 
                             Rectangle {
                                 width: parent.width
-                                height: 136
-                                radius: 12
-                                color: "#050505"
+                                height: 146
+                                radius: 14
+                                color: cardColor
                                 border.color: borderColor
                                 border.width: 1
 
                                 TextArea {
                                     id: descriptionField
                                     anchors.fill: parent
-                                    anchors.margins: 12
+                                    anchors.margins: 14
                                     wrapMode: TextEdit.Wrap
                                     placeholderText: "Describe the assignment details"
                                     placeholderTextColor: "#6F6F6F"
@@ -442,34 +531,36 @@ Page {
 
                             Row {
                                 width: parent.width
-                                spacing: 18
+                                spacing: 16
 
                                 Column {
-                                    width: (parent.width - 18) / 2
+                                    width: (parent.width - 16) / 2
                                     spacing: 10
 
                                     Text {
                                         text: "Due Date"
                                         color: "#D4D4D4"
-                                        font.pixelSize: 16
+                                        font.pixelSize: 15
                                         font.bold: true
                                     }
 
                                     Rectangle {
                                         width: parent.width
-                                        height: 54
-                                        radius: 12
-                                        color: "#050505"
+                                        height: 56
+                                        radius: 14
+                                        color: cardColor
                                         border.color: borderColor
                                         border.width: 1
 
                                         TextField {
                                             id: dueDateField
                                             anchors.fill: parent
-                                            anchors.margins: 12
+                                            anchors.leftMargin: 14
+                                            anchors.rightMargin: 14
                                             placeholderText: "yyyy-mm-dd"
                                             color: textPrimary
                                             placeholderTextColor: "#6F6F6F"
+                                            verticalAlignment: Text.AlignVCenter
                                             background: Item {}
 
                                             onTextChanged: createAssignment.dueDate = text
@@ -478,33 +569,33 @@ Page {
                                 }
 
                                 Column {
-                                    width: (parent.width - 18) / 2
+                                    width: (parent.width - 16) / 2
                                     spacing: 10
 
                                     Text {
                                         text: "Priority"
                                         color: "#D4D4D4"
-                                        font.pixelSize: 16
+                                        font.pixelSize: 15
                                         font.bold: true
                                     }
 
                                     ComboBox {
                                         id: priorityCombo
                                         width: parent.width
-                                        height: 54
+                                        height: 56
                                         model: ["Low", "Medium", "High"]
                                         currentIndex: 0
 
                                         background: Rectangle {
-                                            radius: 12
-                                            color: "#050505"
+                                            radius: 14
+                                            color: cardColor
                                             border.color: borderColor
                                             border.width: 1
                                         }
 
                                         contentItem: Text {
                                             leftPadding: 14
-                                            rightPadding: 30
+                                            rightPadding: 34
                                             verticalAlignment: Text.AlignVCenter
                                             text: priorityCombo.displayText
                                             color: textPrimary
@@ -519,26 +610,26 @@ Page {
                             Text {
                                 text: "Status"
                                 color: "#D4D4D4"
-                                font.pixelSize: 16
+                                font.pixelSize: 15
                                 font.bold: true
                             }
 
                             ComboBox {
                                 id: statusCombo
                                 width: parent.width
-                                height: 54
+                                height: 56
                                 model: ["Pending", "In Progress", "Completed"]
 
                                 background: Rectangle {
-                                    radius: 12
-                                    color: "#050505"
+                                    radius: 14
+                                    color: cardColor
                                     border.color: borderColor
                                     border.width: 1
                                 }
 
                                 contentItem: Text {
                                     leftPadding: 14
-                                    rightPadding: 30
+                                    rightPadding: 34
                                     verticalAlignment: Text.AlignVCenter
                                     text: statusCombo.displayText
                                     color: textPrimary
@@ -553,14 +644,14 @@ Page {
                             Rectangle {
                                 width: parent.width
                                 height: 58
-                                radius: 12
+                                radius: 16
                                 color: green
 
                                 Text {
                                     anchors.centerIn: parent
-                                    text: mainView.editingAssignmentId >= 0 ? "Save changes" : "  Add Assignment"
+                                    text: mainView.editingAssignmentId >= 0 ? "Save changes" : "Add Assignment"
                                     color: "#07240F"
-                                    font.pixelSize: 20
+                                    font.pixelSize: 19
                                     font.bold: true
                                 }
 
@@ -570,7 +661,7 @@ Page {
                                     onClicked: {
                                         if (mainView.editingAssignmentId >= 0) {
                                             assignmentController.updateAssignment(mainView.editingAssignmentId,
-                                                                                  createAssignment)
+                                                createAssignment)
                                         } else {
                                             assignmentController.createAssignment(createAssignment)
                                         }
@@ -601,52 +692,189 @@ Page {
                         Row {
                             width: parent.width
 
-                            Text {
-                                text: "Your Assignments"
-                                color: textPrimary
-                                font.pixelSize: 22
-                                font.bold: true
-                                anchors.verticalCenter: parent.verticalCenter
+                            Column {
+                                spacing: 4
+
+                                Text {
+                                    text: "Your Assignments"
+                                    color: textPrimary
+                                    font.pixelSize: 24
+                                    font.bold: true
+                                }
+
+                                Text {
+                                    text: "Browse, filter, and manage your current workload"
+                                    color: textSecondary
+                                    font.pixelSize: 13
+                                }
+                            }
+                        }
+
+                        Row {
+                            width: parent.width
+                            spacing: 10
+
+                            Rectangle {
+                                width: (parent.width - parent.spacing * 3) / 4
+                                height: 76
+                                radius: 16
+                                color: panelColor
+                                border.color: borderColor
+                                border.width: 1
+
+                                Column {
+                                    anchors.centerIn: parent
+                                    spacing: 4
+
+                                    Text {
+                                        text: "Total"
+                                        color: "#A3A3A3"
+                                        font.pixelSize: 12
+                                        font.bold: true
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                    }
+
+                                    Text {
+                                        text: assignmentController.assignmentModel.totalCount
+                                        color: textPrimary
+                                        font.pixelSize: 24
+                                        font.bold: true
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                    }
+                                }
                             }
 
-                            Item { width: 1; height: 1 }
+                            Rectangle {
+                                width: (parent.width - parent.spacing * 3) / 4
+                                height: 76
+                                radius: 16
+                                color: panelColor
+                                border.color: borderColor
+                                border.width: 1
+
+                                Column {
+                                    anchors.centerIn: parent
+                                    spacing: 4
+
+                                    Text {
+                                        text: "Pending"
+                                        color: "#F59E0B"
+                                        font.pixelSize: 12
+                                        font.bold: true
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                    }
+
+                                    Text {
+                                        text: assignmentController.assignmentModel.pendingCount
+                                        color: textPrimary
+                                        font.pixelSize: 24
+                                        font.bold: true
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                width: (parent.width - parent.spacing * 3) / 4
+                                height: 76
+                                radius: 16
+                                color: panelColor
+                                border.color: borderColor
+                                border.width: 1
+
+                                Column {
+                                    anchors.centerIn: parent
+                                    spacing: 4
+
+                                    Text {
+                                        text: "In Progress"
+                                        color: "#60A5FA"
+                                        font.pixelSize: 12
+                                        font.bold: true
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                    }
+
+                                    Text {
+                                        text: assignmentController.assignmentModel.inProgressCount
+                                        color: textPrimary
+                                        font.pixelSize: 24
+                                        font.bold: true
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                    }
+                                }
+                            }
+
+                            Rectangle {
+                                width: (parent.width - parent.spacing * 3) / 4
+                                height: 76
+                                radius: 16
+                                color: panelColor
+                                border.color: borderColor
+                                border.width: 1
+
+                                Column {
+                                    anchors.centerIn: parent
+                                    spacing: 4
+
+                                    Text {
+                                        text: "Completed"
+                                        color: "#22C55E"
+                                        font.pixelSize: 12
+                                        font.bold: true
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                    }
+
+                                    Text {
+                                        text: assignmentController.assignmentModel.completedCount
+                                        color: textPrimary
+                                        font.pixelSize: 24
+                                        font.bold: true
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                    }
+                                }
+                            }
                         }
 
                         Rectangle {
                             width: parent.width
-                            height: 64
-                            radius: 14
+                            height: 70
+                            radius: 18
                             color: panelColor
                             border.color: borderColor
                             border.width: 1
 
                             Row {
-                                anchors.right: parent.right
-                                anchors.rightMargin: 14
+                                anchors.fill: parent
+                                anchors.leftMargin: 18
+                                anchors.rightMargin: 18
                                 anchors.verticalCenter: parent.verticalCenter
-                                spacing: 12
+                                spacing: 10
 
                                 Repeater {
-                                    model: ["All", "Pending", "In Progress", "Completed"]
+                                    model: ["All", "Pending", "In Progress", "Done"]
 
                                     delegate: Rectangle {
-                                        width: modelData === "In Progress" ? 126 : 92
+                                        width: filterPillLabel.implicitWidth + 34
                                         height: 42
                                         radius: 12
-                                        color: index === 0 ? "#343434" : "transparent"
-                                        border.color: index === 0 ? "#494949" : "transparent"
+                                        readonly property bool selected: assignmentController.assignmentFilter.statusFilter === index
+                                        color: selected ? "#343434" : "transparent"
+                                        border.color: selected ? "#4C4C4C" : "#262626"
                                         border.width: 1
 
                                         Text {
+                                            id: filterPillLabel
                                             anchors.centerIn: parent
                                             text: modelData
-                                            color: index === 0 ? textPrimary : "#B5B5B5"
-                                            font.pixelSize: 16
+                                            color: selected ? textPrimary : "#B5B5B5"
+                                            font.pixelSize: 15
+                                            font.bold: selected
                                         }
 
                                         MouseArea {
                                             anchors.fill: parent
                                             cursorShape: Qt.PointingHandCursor
+                                            onClicked: assignmentController.assignmentFilter.statusFilter = index
                                         }
                                     }
                                 }
@@ -655,8 +883,8 @@ Page {
 
                         Rectangle {
                             width: parent.width
-                            height: 58
-                            radius: 14
+                            height: 60
+                            radius: 16
                             color: panelColor
                             border.color: borderColor
                             border.width: 1
@@ -670,28 +898,30 @@ Page {
                                 Text {
                                     text: "⌕"
                                     color: "#A3A3A3"
-                                    font.pixelSize: 24
+                                    font.pixelSize: 22
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
 
                                 TextField {
+                                    id: assignmentSearchField
                                     width: parent.width - 40
                                     anchors.verticalCenter: parent.verticalCenter
                                     placeholderText: "Search assignments..."
                                     placeholderTextColor: "#6F6F6F"
                                     color: textPrimary
                                     background: Item {}
+                                    onTextChanged: assignmentController.assignmentFilter.searchText = text
                                 }
                             }
                         }
 
                         Repeater {
-                            model: assignmentController.assignmentModel
+                            model: assignmentController.assignmentFilter
 
                             delegate: Rectangle {
                                 width: parent.width
-                                height: 210
-                                radius: 20
+                                implicitHeight: cardColumn.implicitHeight + 40
+                                radius: 22
                                 color: cardColor
                                 border.color: borderColor
                                 border.width: 1
@@ -720,11 +950,13 @@ Page {
                                         : green
 
                                 Column {
+                                    id: cardColumn
                                     anchors.fill: parent
                                     anchors.margins: 22
-                                    spacing: 18
+                                    spacing: 16
 
                                     Row {
+                                        width: parent.width
                                         spacing: 14
 
                                         Rectangle {
@@ -738,21 +970,23 @@ Page {
                                         Text {
                                             text: title
                                             color: textPrimary
-                                            font.pixelSize: 18
+                                            font.pixelSize: 19
                                             font.bold: true
+                                            anchors.verticalCenter: parent.verticalCenter
                                         }
 
                                         Rectangle {
                                             height: 30
-                                            radius: 8
+                                            radius: 9
                                             color: subjectBg
                                             width: subjectLabel.implicitWidth + 24
+                                            anchors.verticalCenter: parent.verticalCenter
 
                                             Text {
                                                 anchors.centerIn: parent
                                                 text: subject
                                                 color: subjectText
-                                                font.pixelSize: 14
+                                                font.pixelSize: 13
                                                 font.bold: true
                                             }
 
@@ -765,15 +999,16 @@ Page {
 
                                         Rectangle {
                                             height: 30
-                                            radius: 8
+                                            radius: 9
                                             color: statusBg
                                             width: statusLabel.implicitWidth + 24
+                                            anchors.verticalCenter: parent.verticalCenter
 
                                             Text {
                                                 anchors.centerIn: parent
                                                 text: status
                                                 color: statusText
-                                                font.pixelSize: 14
+                                                font.pixelSize: 13
                                                 font.bold: true
                                             }
 
@@ -786,29 +1021,51 @@ Page {
                                     }
 
                                     Text {
-                                        width: parent.width - 40
+                                        width: parent.width
                                         text: description
                                         color: "#B9B9B9"
                                         wrapMode: Text.WordWrap
                                         font.pixelSize: 15
+                                        lineHeight: 1.2
                                     }
 
                                     RowLayout {
                                         width: parent.width
-                                        spacing: 22
+                                        spacing: 18
 
-                                        Text {
-                                            text: "◷ " + dueDate
-                                            color: "#8D8D8D"
-                                            font.pixelSize: 15
-                                            Layout.alignment: Qt.AlignVCenter
+                                        Rectangle {
+                                            radius: 10
+                                            color: "#141414"
+                                            border.color: borderColor
+                                            border.width: 1
+                                            implicitWidth: dueDateText.implicitWidth + 24
+                                            implicitHeight: 34
+
+                                            Text {
+                                                id: dueDateText
+                                                anchors.centerIn: parent
+                                                text: "◷ " + dueDate
+                                                color: "#8D8D8D"
+                                                font.pixelSize: 14
+                                            }
                                         }
 
-                                        Text {
-                                            text: "+ " + priority
-                                            color: priorityColor
-                                            font.pixelSize: 15
-                                            Layout.alignment: Qt.AlignVCenter
+                                        Rectangle {
+                                            radius: 10
+                                            color: "#141414"
+                                            border.color: borderColor
+                                            border.width: 1
+                                            implicitWidth: priorityText.implicitWidth + 24
+                                            implicitHeight: 34
+
+                                            Text {
+                                                id: priorityText
+                                                anchors.centerIn: parent
+                                                text: "+ " + priority
+                                                color: priorityColor
+                                                font.pixelSize: 14
+                                                font.bold: true
+                                            }
                                         }
 
                                         Item { Layout.fillWidth: true }
@@ -819,10 +1076,10 @@ Page {
 
                                             Rectangle {
                                                 Layout.alignment: Qt.AlignVCenter
-                                                height: 36
-                                                width: helpReqBtnLabel.width + 28
-                                                radius: 10
-                                                color: "#2A2A2A"
+                                                height: 38
+                                                width: helpReqBtnLabel.width + 30
+                                                radius: 11
+                                                color: "#202020"
                                                 border.color: borderColor
                                                 border.width: 1
 
@@ -844,10 +1101,10 @@ Page {
 
                                             Rectangle {
                                                 Layout.alignment: Qt.AlignVCenter
-                                                height: 36
-                                                width: editBtnLabel.width + 28
-                                                radius: 10
-                                                color: "#2A2A2A"
+                                                height: 38
+                                                width: editBtnLabel.width + 30
+                                                radius: 11
+                                                color: "#202020"
                                                 border.color: borderColor
                                                 border.width: 1
 
@@ -872,201 +1129,220 @@ Page {
                             }
                         }
 
-                        Text {
+                        Rectangle {
                             width: parent.width
-                            text: "Help requests"
-                            color: textPrimary
-                            font.pixelSize: 22
-                            font.bold: true
-                            topPadding: 28
-                        }
-
-                        Row {
-                            width: parent.width
-                            spacing: 10
-                            topPadding: 8
-
-                            Repeater {
-                                model: ["Mine", "Other users"]
-
-                                delegate: Rectangle {
-                                    width: tabLabel.width + 32
-                                    height: 40
-                                    radius: 10
-                                    color: mainView.helpRequestsTab === index ? "#343434" : "transparent"
-                                    border.color: mainView.helpRequestsTab === index ? "#494949" : borderColor
-                                    border.width: 1
-
-                                    Text {
-                                        id: tabLabel
-                                        anchors.centerIn: parent
-                                        text: modelData
-                                        color: mainView.helpRequestsTab === index ? textPrimary : textSecondary
-                                        font.pixelSize: 15
-                                        font.bold: mainView.helpRequestsTab === index
-                                    }
-
-                                    MouseArea {
-                                        anchors.fill: parent
-                                        cursorShape: Qt.PointingHandCursor
-                                        onClicked: mainView.helpRequestsTab = index
-                                    }
-                                }
-                            }
-                        }
-
-                        StackLayout {
-                            width: parent.width
-                            currentIndex: mainView.helpRequestsTab
+                            radius: 24
+                            color: panelColor
+                            border.color: borderColor
+                            border.width: 1
 
                             Column {
-                                width: parent.width
-                                spacing: 12
-                                topPadding: 8
+                                width: parent.width - 40
+                                anchors.horizontalCenter: parent.horizontalCenter
+                                topPadding: 22
+                                bottomPadding: 22
+                                spacing: 16
 
-                                Text {
-                                    width: parent.width
-                                    visible: helpRequestController.helpRequestModel.entryCount() === 0
-                                    text: "You have not raised any help requests yet. Use “Request help” on an assignment card to ask for support."
-                                    color: textSecondary
-                                    font.pixelSize: 15
-                                    wrapMode: Text.WordWrap
+                                Column {
+                                    spacing: 4
+
+                                    Text {
+                                        text: "Help requests"
+                                        color: textPrimary
+                                        font.pixelSize: 24
+                                        font.bold: true
+                                    }
+
+                                    Text {
+                                        text: "View support questions you raised and requests from other users"
+                                        color: textSecondary
+                                        font.pixelSize: 13
+                                    }
                                 }
 
-                                Repeater {
-                                    model: helpRequestController.helpRequestModel
+                                Row {
+                                    width: parent.width
+                                    spacing: 10
 
-                                    delegate: Rectangle {
-                                        width: parent.width
-                                        implicitHeight: helpCardColumn.implicitHeight + 36
-                                        radius: 16
-                                        color: cardColor
-                                        border.color: borderColor
-                                        border.width: 1
+                                    Repeater {
+                                        model: ["Mine", "Other users"]
 
-                                        Column {
-                                            id: helpCardColumn
-                                            anchors.fill: parent
-                                            anchors.margins: 18
-                                            spacing: 10
-
-                                            RowLayout {
-                                                width: parent.width
-                                                spacing: 12
-
-                                                Text {
-                                                    text: "Raised"
-                                                    color: textSecondary
-                                                    font.pixelSize: 13
-                                                }
-
-                                                Text {
-                                                    text: createdAt
-                                                    color: textPrimary
-                                                    font.pixelSize: 14
-                                                    font.bold: true
-                                                }
-
-                                                Item { Layout.fillWidth: true }
-
-                                                Text {
-                                                    visible: assignmentId >= 0
-                                                    text: "Assignment #" + assignmentId
-                                                    color: "#93C5FD"
-                                                    font.pixelSize: 13
-                                                }
-                                            }
+                                        delegate: Rectangle {
+                                            width: tabLabel.width + 34
+                                            height: 42
+                                            radius: 12
+                                            color: mainView.helpRequestsTab === index ? "#343434" : "transparent"
+                                            border.color: mainView.helpRequestsTab === index ? "#4C4C4C" : borderColor
+                                            border.width: 1
 
                                             Text {
-                                                width: parent.width
-                                                text: message
-                                                color: "#B9B9B9"
-                                                wrapMode: Text.WordWrap
+                                                id: tabLabel
+                                                anchors.centerIn: parent
+                                                text: modelData
+                                                color: mainView.helpRequestsTab === index ? textPrimary : textSecondary
                                                 font.pixelSize: 15
+                                                font.bold: mainView.helpRequestsTab === index
                                             }
 
+                                            MouseArea {
+                                                anchors.fill: parent
+                                                cursorShape: Qt.PointingHandCursor
+                                                onClicked: mainView.helpRequestsTab = index
+                                            }
                                         }
                                     }
                                 }
-                            }
 
-                            Column {
-                                width: parent.width
-                                spacing: 12
-                                topPadding: 8
-
-                                Text {
+                                StackLayout {
                                     width: parent.width
-                                    visible: helpRequestController.othersHelpRequestModel.entryCount() === 0
-                                    text: "No help requests from other users yet."
-                                    color: textSecondary
-                                    font.pixelSize: 15
-                                    wrapMode: Text.WordWrap
-                                }
+                                    currentIndex: mainView.helpRequestsTab
 
-                                Repeater {
-                                    model: helpRequestController.othersHelpRequestModel
-
-                                    delegate: Rectangle {
+                                    Column {
                                         width: parent.width
-                                        implicitHeight: otherHelpCardColumn.implicitHeight + 36
-                                        radius: 16
-                                        color: cardColor
-                                        border.color: borderColor
-                                        border.width: 1
+                                        spacing: 12
 
-                                        Column {
-                                            id: otherHelpCardColumn
-                                            anchors.fill: parent
-                                            anchors.margins: 18
-                                            spacing: 10
+                                        Text {
+                                            width: parent.width
+                                            visible: helpRequestController.helpRequestModel.entryCount() === 0
+                                            text: "You have not raised any help requests yet. Use “Request help” on an assignment card to ask for support."
+                                            color: textSecondary
+                                            font.pixelSize: 15
+                                            wrapMode: Text.WordWrap
+                                        }
 
-                                            Text {
+                                        Repeater {
+                                            model: helpRequestController.helpRequestModel
+
+                                            delegate: Rectangle {
                                                 width: parent.width
-                                                text: raiserDisplayName && raiserDisplayName.length > 0
-                                                    ? ("From: " + raiserDisplayName)
-                                                    : ("User #" + userId)
-                                                color: textPrimary
-                                                font.pixelSize: 15
-                                                font.bold: true
-                                                wrapMode: Text.WordWrap
-                                            }
+                                                implicitHeight: helpCardColumn.implicitHeight + 36
+                                                radius: 18
+                                                color: cardColor
+                                                border.color: borderColor
+                                                border.width: 1
 
-                                            RowLayout {
+                                                Column {
+                                                    id: helpCardColumn
+                                                    anchors.fill: parent
+                                                    anchors.margins: 18
+                                                    spacing: 10
+
+                                                    RowLayout {
+                                                        width: parent.width
+                                                        spacing: 12
+
+                                                        Text {
+                                                            text: "Raised"
+                                                            color: textSecondary
+                                                            font.pixelSize: 13
+                                                        }
+
+                                                        Text {
+                                                            text: createdAt
+                                                            color: textPrimary
+                                                            font.pixelSize: 14
+                                                            font.bold: true
+                                                        }
+
+                                                        Item { Layout.fillWidth: true }
+
+                                                        Text {
+                                                            visible: assignmentId >= 0
+                                                            text: "Assignment #" + assignmentId
+                                                            color: "#93C5FD"
+                                                            font.pixelSize: 13
+                                                        }
+                                                    }
+
+                                                    Text {
+                                                        width: parent.width
+                                                        text: message
+                                                        color: "#B9B9B9"
+                                                        wrapMode: Text.WordWrap
+                                                        font.pixelSize: 15
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    Column {
+                                        width: parent.width
+                                        spacing: 12
+
+                                        Text {
+                                            width: parent.width
+                                            visible: helpRequestController.othersHelpRequestModel.entryCount() === 0
+                                            text: "No help requests from other users yet."
+                                            color: textSecondary
+                                            font.pixelSize: 15
+                                            wrapMode: Text.WordWrap
+                                        }
+
+                                        Repeater {
+                                            model: helpRequestController.othersHelpRequestModel
+
+                                            delegate: Rectangle {
                                                 width: parent.width
-                                                spacing: 12
+                                                implicitHeight: otherHelpCardColumn.implicitHeight + 36
+                                                radius: 18
+                                                color: cardColor
+                                                border.color: borderColor
+                                                border.width: 1
 
-                                                Text {
-                                                    text: "Raised"
-                                                    color: textSecondary
-                                                    font.pixelSize: 13
-                                                }
+                                                Column {
+                                                    id: otherHelpCardColumn
+                                                    anchors.fill: parent
+                                                    anchors.margins: 18
+                                                    spacing: 10
 
-                                                Text {
-                                                    text: createdAt
-                                                    color: textPrimary
-                                                    font.pixelSize: 14
-                                                    font.bold: true
-                                                }
+                                                    Text {
+                                                        width: parent.width
+                                                        text: raiserDisplayName && raiserDisplayName.length > 0
+                                                            ? ("From: " + raiserDisplayName)
+                                                            : ("User #" + userId)
+                                                        color: textPrimary
+                                                        font.pixelSize: 15
+                                                        font.bold: true
+                                                        wrapMode: Text.WordWrap
+                                                    }
 
-                                                Item { Layout.fillWidth: true }
+                                                    RowLayout {
+                                                        width: parent.width
+                                                        spacing: 12
 
-                                                Text {
-                                                    visible: assignmentId >= 0
-                                                    text: "Assignment #" + assignmentId
-                                                    color: "#93C5FD"
-                                                    font.pixelSize: 13
+                                                        Text {
+                                                            text: "Raised"
+                                                            color: textSecondary
+                                                            font.pixelSize: 13
+                                                        }
+
+                                                        Text {
+                                                            text: createdAt
+                                                            color: textPrimary
+                                                            font.pixelSize: 14
+                                                            font.bold: true
+                                                        }
+
+                                                        Item { Layout.fillWidth: true }
+
+                                                        Text {
+                                                            visible: assignmentId >= 0
+                                                            text: "Assignment #" + assignmentId
+                                                            color: "#93C5FD"
+                                                            font.pixelSize: 13
+                                                        }
+                                                    }
+
+                                                    Text {
+                                                        width: parent.width
+                                                        text: message
+                                                        color: "#B9B9B9"
+                                                        wrapMode: Text.WordWrap
+                                                        font.pixelSize: 15
+                                                    }
                                                 }
                                             }
-
-                                            Text {
-                                                width: parent.width
-                                                text: message
-                                                color: "#B9B9B9"
-                                                wrapMode: Text.WordWrap
-                                                font.pixelSize: 15
-                                            }
-
                                         }
                                     }
                                 }
@@ -1095,7 +1371,7 @@ Page {
 
         background: Rectangle {
             color: panelColor
-            radius: 16
+            radius: 20
             border.color: borderColor
             border.width: 1
         }
@@ -1106,9 +1382,17 @@ Page {
 
             Rectangle {
                 width: parent.width
-                height: 56
+                height: 64
                 color: "#0A0A0A"
-                radius: 16
+                radius: 20
+
+                Rectangle {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    height: 22
+                    color: "#0A0A0A"
+                }
 
                 Text {
                     anchors.left: parent.left
@@ -1124,14 +1408,22 @@ Page {
                     width: 40
                     height: 40
                     anchors.right: parent.right
-                    anchors.rightMargin: 10
+                    anchors.rightMargin: 12
                     anchors.verticalCenter: parent.verticalCenter
+
+                    Rectangle {
+                        anchors.fill: parent
+                        radius: 12
+                        color: "#1B1B1B"
+                        border.color: borderColor
+                        border.width: 1
+                    }
 
                     Text {
                         anchors.centerIn: parent
                         text: "✕"
                         color: textSecondary
-                        font.pixelSize: 18
+                        font.pixelSize: 16
                     }
 
                     MouseArea {
@@ -1145,7 +1437,7 @@ Page {
             Column {
                 width: parent.width - 40
                 anchors.horizontalCenter: parent.horizontalCenter
-                topPadding: 20
+                topPadding: 22
                 bottomPadding: 24
                 spacing: 14
 
@@ -1167,16 +1459,16 @@ Page {
 
                 Rectangle {
                     width: parent.width
-                    implicitHeight: Math.max(48, helpAssignSummary.implicitHeight + 24)
-                    radius: 12
-                    color: "#050505"
+                    implicitHeight: Math.max(52, helpAssignSummary.implicitHeight + 24)
+                    radius: 14
+                    color: cardColor
                     border.color: borderColor
                     border.width: 1
 
                     Text {
                         id: helpAssignSummary
                         anchors.fill: parent
-                        anchors.margins: 12
+                        anchors.margins: 14
                         wrapMode: Text.WordWrap
                         text: mainView.helpModalAssignmentTitle.length > 0
                             ? mainView.helpModalAssignmentTitle
@@ -1195,16 +1487,16 @@ Page {
 
                 Rectangle {
                     width: parent.width
-                    height: 140
-                    radius: 12
-                    color: "#050505"
+                    height: 146
+                    radius: 14
+                    color: cardColor
                     border.color: borderColor
                     border.width: 1
 
                     TextArea {
                         id: helpMessageField
                         anchors.fill: parent
-                        anchors.margins: 10
+                        anchors.margins: 12
                         wrapMode: TextEdit.Wrap
                         placeholderText: "Describe your question or issue…"
                         placeholderTextColor: "#6F6F6F"
@@ -1220,10 +1512,10 @@ Page {
                     Item { Layout.fillWidth: true }
 
                     Rectangle {
-                        width: 100
+                        width: 104
                         height: 44
-                        radius: 10
-                        color: "#2A2A2A"
+                        radius: 12
+                        color: "#242424"
                         border.color: borderColor
                         border.width: 1
 
@@ -1242,9 +1534,9 @@ Page {
                     }
 
                     Rectangle {
-                        width: 140
+                        width: 144
                         height: 44
-                        radius: 10
+                        radius: 12
                         color: greenDark
 
                         Text {

@@ -12,6 +12,7 @@
 #include "view/Controllers/headers/AssignmentViewController.hpp"
 #include "view/Controllers/headers/AuthViewController.h"
 #include "view/Controllers/headers/HelpRequestViewController.hpp"
+#include "view/Models/headers/AssignmentFilterProxyModel.hpp"
 #include "view/Models/headers/HelpRequestListModel.hpp"
 #include "view/Models/headers/UserViewModel.h"
 
@@ -47,6 +48,9 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<UserViewModel>("App", 1, 0, "UserViewModel");
     qmlRegisterType<AssignmentViewModel>("App", 1, 0, "AssignmentViewModel");
+    qmlRegisterUncreatableType<AssignmentFilterProxyModel>(
+        "App", 1, 0, "AssignmentFilterProxyModel",
+        QStringLiteral("AssignmentFilterProxyModel is exposed on assignmentController.assignmentFilter"));
 
     QObject::connect(
         &engine,

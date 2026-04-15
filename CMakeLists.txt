@@ -38,6 +38,8 @@ qt_add_executable(apptodo_app
     view/Models/headers/AssignmentViewModel.hpp
     view/Models/AssignmentListModel.cpp
     view/Models/headers/AssignmentListModel.hpp
+    view/Models/AssignmentFilterProxyModel.cpp
+    view/Models/headers/AssignmentFilterProxyModel.hpp
     view/Models/CourseViewModel.cpp
     view/Models/headers/CourseViewModel.hpp
     view/Models/CourseListModel.cpp

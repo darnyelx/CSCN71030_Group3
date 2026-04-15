@@ -2,6 +2,7 @@
 #define TODO_APP_ASSIGNMENTVIEWCONTROLLER_HPP
 
 #include "api/AssignmentController.hpp"
+#include "view/Models/headers/AssignmentFilterProxyModel.hpp"
 #include "view/Models/headers/AssignmentListModel.hpp"
 #include <QObject>
 #include <QString>
@@ -9,6 +10,7 @@
 class AssignmentViewController : public QObject {
 	Q_OBJECT
 	Q_PROPERTY(AssignmentListModel* assignmentModel READ getAssignmentModel CONSTANT)
+	Q_PROPERTY(AssignmentFilterProxyModel* assignmentFilter READ assignmentFilter CONSTANT)
 
 public:
 	explicit AssignmentViewController(AssignmentController &assignmentController,
@@ -20,6 +22,7 @@ public:
 	Q_INVOKABLE void getFilteredAssignmentsByCourse();
 
 	AssignmentListModel* getAssignmentModel() const;
+	AssignmentFilterProxyModel *assignmentFilter() const;
 
 signals:
 	void createAssignmentError(const QString &message);
@@ -31,6 +34,7 @@ signals:
 private:
 	AssignmentController &m_assignmentController;
 	AssignmentListModel *m_assignmentModel;
+	AssignmentFilterProxyModel *m_assignmentFilter = nullptr;
 };
 
 #endif // TODO_APP_ASSIGNMENTVIEWCONTROLLER_HPP

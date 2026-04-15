@@ -1,6 +1,8 @@
 #include "view/Models/headers/AssignmentListModel.hpp"
 #include "view/Models/headers/AssignmentViewModel.hpp"
 
+#include <QString>
+
 AssignmentListModel::AssignmentListModel(QObject *parent)
     : QAbstractListModel(parent)
 {
@@ -90,7 +92,9 @@ void AssignmentListModel::setAssignments(const std::vector<Assignment> &assignme
         m_assignments.append(assignmentViewModel);
     }
 
+    refreshCounts();
     endResetModel();
+    emit assignmentCountsChanged();
 }
 
 void AssignmentListModel::clear()
@@ -98,7 +102,9 @@ void AssignmentListModel::clear()
     beginResetModel();
     qDeleteAll(m_assignments);
     m_assignments.clear();
+    refreshCounts();
     endResetModel();
+    emit assignmentCountsChanged();
 }
 
 AssignmentViewModel* AssignmentListModel::get(int index) const
@@ -108,4 +114,28 @@ AssignmentViewModel* AssignmentListModel::get(int index) const
     }
 
     return m_assignments.at(index);
+}
+
+void AssignmentListModel::refreshCounts()
+{
+    m_totalCount = m_assignments.size();
+    m_pendingCount = 0;
+    m_inProgressCount = 0;
+    m_completedCount = 0;
+
+    for (AssignmentViewModel *assignment : m_assignments) {
+        if (!assignment) {
+            continue;
+        }
+        const QString status = assignment->status();
+        if (status == QStringLiteral("Pending")) {
+            ++m_pendingCount;
+        } else if (status == QStringLiteral("In Progress")) {
+            ++m_inProgressCount;
+        } else if (status == QStringLiteral("Completed")) {
+            ++m_completedCount;
+        } else {
+            ++m_pendingCount;
+        }
+    }
 }

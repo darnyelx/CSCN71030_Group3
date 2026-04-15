@@ -3,11 +3,22 @@
 
 AssignmentViewController::AssignmentViewController(AssignmentController &assignmentController,
                                                    AssignmentListModel *assignmentModel, QObject *parent)
-    : QObject(parent), m_assignmentController(assignmentController), m_assignmentModel(assignmentModel) {}
+    : QObject(parent)
+    , m_assignmentController(assignmentController)
+    , m_assignmentModel(assignmentModel)
+    , m_assignmentFilter(new AssignmentFilterProxyModel(this))
+{
+    m_assignmentFilter->setSourceAssignments(m_assignmentModel);
+}
 
 AssignmentListModel* AssignmentViewController::getAssignmentModel() const
 {
     return m_assignmentModel;
+}
+
+AssignmentFilterProxyModel *AssignmentViewController::assignmentFilter() const
+{
+    return m_assignmentFilter;
 }
 void AssignmentViewController::createAssignment(AssignmentViewModel *assignmentModel) {
     if (!assignmentModel) {
