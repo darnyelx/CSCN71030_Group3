@@ -1,0 +1,38 @@
+\doxysection{Course\+Model.\+hpp}
+\hypertarget{_course_model_8hpp_source}{}\label{_course_model_8hpp_source}\doxymbox{\hyperlink{_course_model_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_base_model_8hpp}{BaseModel.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_course_a6c94609e43d9c76c00e9efbb43b65915}{Course}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_base_model}{BaseModel}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \doxymbox{\hyperlink{class_course_a139941557a9a225fb31f3deca34508ab}{tableName}}\ =\ \textcolor{stringliteral}{"{}courses"{}};\ \ \ \ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00020\ \ \ \ \ std::string\ name;}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ description;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ user\_id;\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \doxymbox{\hyperlink{class_course_a6b959ccf15d9ceed9e9c14a701561982}{Course}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\&\ name,\ \textcolor{keyword}{const}\ std::string\&\ description);}
+\DoxyCodeLine{00033\ \ \ \ \ \doxymbox{\hyperlink{class_course_a6b959ccf15d9ceed9e9c14a701561982}{Course}}();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_course_a11942b77f78c9271143d4d2c12b71bf3}{getId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_course_ad040fc6414d44e69549746eef539f05f}{getUserId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_course_ab26b47d93027fcecffdf42b2ee526f87}{getName}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_course_a8c7e87f3ff557b37e47159a75a4015f5}{getDescription}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ \ \ \ \ \doxymbox{\hyperlink{class_course_a6c94609e43d9c76c00e9efbb43b65915}{Course}}\&\ \doxymbox{\hyperlink{class_course_aeb5885afa61d7d130f567fadbd49c3de}{setId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00045\ \ \ \ \ \doxymbox{\hyperlink{class_course_a6c94609e43d9c76c00e9efbb43b65915}{Course}}\&\ \doxymbox{\hyperlink{class_course_ac334dd99dd63c2cf6a3d38c4a5cba51e}{setName}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00047\ \ \ \ \ \doxymbox{\hyperlink{class_course_a6c94609e43d9c76c00e9efbb43b65915}{Course}}\&\ \doxymbox{\hyperlink{class_course_a61558af398eaf9f73800dca20bec91bc}{setDescription}}(\textcolor{keyword}{const}\ std::string\&\ description);}
+\DoxyCodeLine{00049\ \ \ \ \ \doxymbox{\hyperlink{class_course_a6c94609e43d9c76c00e9efbb43b65915}{Course}}\&\ \doxymbox{\hyperlink{class_course_a5cc3205a76bf37696f7fffe994e51f4a}{setUserId}}(\textcolor{keywordtype}{int}\ user\_id);}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_course_a0bd53ef6c7fb075bd1aa33f5e5178970}{save}}(\doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&db)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_course_a4964edea0912749f53eb1669be0cdb59}{load}}();}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_course_aa7d70cacc5aad41c6e882eea1a9a46e8}{remove}}(\doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&db)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00057\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_course_a5ea3109e7177d4e6c9495065176d90f2}{getTableName}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \};}
+
+\end{DoxyCode}

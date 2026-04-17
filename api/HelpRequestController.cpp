@@ -1,3 +1,8 @@
+/**
+ * @file HelpRequestController.cpp
+ * @brief Help request creation and listing with timestamp formatting where needed.
+ */
+
 #include "HelpRequestController.hpp"
 #include "IDatabase.hpp"
 

@@ -1,3 +1,8 @@
+/**
+ * @file HelpRequestListModel.cpp
+ * @brief List model roles and ownership of `HelpRequestViewModel` rows.
+ */
+
 #include "view/Models/headers/HelpRequestListModel.hpp"
 #include "view/Models/headers/HelpRequestViewModel.hpp"
 

@@ -1,3 +1,8 @@
+/**
+ * @file HelpRequestViewModel.cpp
+ * @brief Help request QML properties backed by `HelpRequestModel`.
+ */
+
 #include "view/Models/headers/HelpRequestViewModel.hpp"
 #include "api/HelpRequestModel.hpp"
 

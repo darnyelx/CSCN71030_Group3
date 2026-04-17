@@ -1,0 +1,43 @@
+\doxysection{Help\+Request\+Controller.\+hpp}
+\hypertarget{_help_request_controller_8hpp_source}{}\label{_help_request_controller_8hpp_source}\doxymbox{\hyperlink{_help_request_controller_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_help_request_model_8hpp}{HelpRequestModel.hpp}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_i_database}{IDatabase}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_help_request_result_payload}{HelpRequestResultPayload}}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_help_request_result_payload_a25cbcfbfcf03f74f8d990a9d1fed9e98}{success}};\ }
+\DoxyCodeLine{00020\ \ \ \ \ std::string\ \doxymbox{\hyperlink{struct_help_request_result_payload_ab14ef7135f2da3a8f1495e51f7c1f1b6}{errorMessage}};\ }
+\DoxyCodeLine{00021\ \ \ \ \ std::optional<HelpRequestModel>\ \doxymbox{\hyperlink{struct_help_request_result_payload_a391cf4a318a66be2c88ada129dc65b59}{helpRequest}};\ }
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_get_all_help_request_result_payload}{GetAllHelpRequestResultPayload}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_get_all_help_request_result_payload_af039b9c27a139726336ab798806d7afe}{success}};\ }
+\DoxyCodeLine{00029\ \ \ \ \ std::vector<HelpRequestModel>\ \doxymbox{\hyperlink{struct_get_all_help_request_result_payload_abcad79e6279eb0030b54fe5fb49765f3}{helpRequests}};\ }
+\DoxyCodeLine{00030\ \ \ \ \ std::string\ \doxymbox{\hyperlink{struct_get_all_help_request_result_payload_a041ebcc70e0f9cfc9698348259c9536e}{errorMessage}};\ }
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_help_request_controller_af988039a76ceabdd9add1c7588ff384f}{HelpRequestController}}\ \{}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_help_request_controller_af988039a76ceabdd9add1c7588ff384f}{HelpRequestController}}(\doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&database);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00052\ \ \ \ \ \doxymbox{\hyperlink{struct_help_request_result_payload}{HelpRequestResultPayload}}\ \doxymbox{\hyperlink{class_help_request_controller_a45c64337c9d8be8753e3ee63cbf2e49f}{createHelpRequest}}(\textcolor{keywordtype}{int}\ userId,\ \textcolor{keywordtype}{int}\ assignmentId,\ \textcolor{keyword}{const}\ std::string\ \&message);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00059\ \ \ \ \ \doxymbox{\hyperlink{struct_help_request_result_payload}{HelpRequestResultPayload}}\ \doxymbox{\hyperlink{class_help_request_controller_af49caf56dfb0fbfa2a4c22150c9c624b}{getHelpRequestById}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00066\ \ \ \ \ \doxymbox{\hyperlink{struct_get_all_help_request_result_payload}{GetAllHelpRequestResultPayload}}\ \doxymbox{\hyperlink{class_help_request_controller_a0852414e7afdbc8886fc4f3c5b2c7554}{getAllHelpRequests}}(\textcolor{keywordtype}{int}\ userId);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00073\ \ \ \ \ \doxymbox{\hyperlink{struct_get_all_help_request_result_payload}{GetAllHelpRequestResultPayload}}\ \doxymbox{\hyperlink{class_help_request_controller_a45e93565381b7352a94a4c445bd9c0cc}{getHelpRequestsFromOtherUsers}}(\textcolor{keywordtype}{int}\ userId);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00076\ \ \ \ \ \doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&db\_;}
+\DoxyCodeLine{00077\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,76 @@
+\doxysection{Config Class Reference}
+\hypertarget{class_config}{}\label{class_config}\index{Config@{Config}}
+
+
+In-\/memory key/\+value store populated by {\ttfamily \doxylink{class_config_ab9591f046fd7f8186e6b3822afb85529}{load()}} from a path next to the executable.  
+
+
+
+
+{\ttfamily \+\#include $<$Config.\+hpp$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \doxymbox{\hyperlink{class_config_ab9591f046fd7f8186e6b3822afb85529}{load}} (const std::\+string \&path)
+\begin{DoxyCompactList}\small\item\em Reads and parses a configuration file into the static map. \end{DoxyCompactList}\item 
+static std::\+string \doxymbox{\hyperlink{class_config_a1e790f5c6150e4c78b9e884653fd2e7c}{get}} (const std::\+string \&key, const std::\+string \&fallback="{}"{})
+\begin{DoxyCompactList}\small\item\em Returns a configuration value by key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+In-\/memory key/\+value store populated by {\ttfamily \doxylink{class_config_ab9591f046fd7f8186e6b3822afb85529}{load()}} from a path next to the executable. 
+
+Lines are parsed as {\ttfamily KEY=value}; blank lines and {\ttfamily \#} comments are skipped. Keys and values are trimmed of leading/\+trailing whitespace. 
+
+\label{doc-func-members}
+\Hypertarget{class_config_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_config_a1e790f5c6150e4c78b9e884653fd2e7c}\index{Config@{Config}!get@{get}}
+\index{get@{get}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{class_config_a1e790f5c6150e4c78b9e884653fd2e7c} 
+std::\+string Config::\+get (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{key}{, }\item[{const std::\+string \&}]{fallback}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns a configuration value by key. 
+
+Implementation of {\ttfamily \doxylink{class_config_a1e790f5c6150e4c78b9e884653fd2e7c}{Config::\+get}} (see header).
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & Setting name as written in the file (after trimming). \\
+\hline
+{\em fallback} & Returned when the key is missing or was never loaded. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Stored value or {\ttfamily fallback}. 
+\end{DoxyReturn}
+\Hypertarget{class_config_ab9591f046fd7f8186e6b3822afb85529}\index{Config@{Config}!load@{load}}
+\index{load@{load}!Config@{Config}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_config_ab9591f046fd7f8186e6b3822afb85529} 
+bool Config::\+load (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Reads and parses a configuration file into the static map. 
+
+Implementation of {\ttfamily \doxylink{class_config_ab9591f046fd7f8186e6b3822afb85529}{Config::\+load}} (see header).
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Filesystem path to a {\ttfamily .env}-\/style file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false if the file cannot be read; on failure previous entries may remain unchanged. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8hpp}{Config.\+hpp}}\item 
+\doxymbox{\hyperlink{_config_8cpp}{Config.\+cpp}}\end{DoxyCompactItemize}

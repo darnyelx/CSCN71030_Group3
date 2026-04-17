@@ -1,0 +1,402 @@
+\doxysection{IDatabase Class Reference}
+\hypertarget{class_i_database}{}\label{class_i_database}\index{IDatabase@{IDatabase}}
+
+
+Port for Postgre\+SQL-\/backed operations used by controllers and {\ttfamily \doxylink{class_base_model}{Base\+Model}} implementations.  
+
+
+
+
+{\ttfamily \+\#include $<$IDatabase.\+hpp$>$}
+
+Inheritance diagram for IDatabase:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_i_database}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \doxymbox{\hyperlink{class_i_database_a6535769342a3ea52b1f95f1cdfe2ff54}{\texorpdfstring{$\sim$}{\string~}\+IDatabase}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor allows polymorphic deletion through {\ttfamily IDatabase\texorpdfstring{$\ast$}{*}}. \end{DoxyCompactList}\item 
+virtual std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ \doxymbox{\hyperlink{class_i_database_a1781b42114aea9ed7acd6848f067c159}{get\+All\+Assignments}} (int user\+Id)=0
+\begin{DoxyCompactList}\small\item\em Loads every assignment row owned by the given user (typically filtered by {\ttfamily user\+\_\+id}). \end{DoxyCompactList}\item 
+virtual std::\+optional$<$ \doxymbox{\hyperlink{class_user_model}{User\+Model}} $>$ \doxymbox{\hyperlink{class_i_database_a15dc25740d940321181a10468f645b2e}{get\+User\+By\+ID}} (int id)=0
+\begin{DoxyCompactList}\small\item\em Looks up a user by primary key. \end{DoxyCompactList}\item 
+virtual std::\+optional$<$ \doxymbox{\hyperlink{class_user_model}{User\+Model}} $>$ \doxymbox{\hyperlink{class_i_database_abf704a207fdd9b2e361189b37f7fef02}{get\+User\+By\+Email}} (std::\+string \&email)=0
+\begin{DoxyCompactList}\small\item\em Looks up a user by email address (case rules depend on implementation). \end{DoxyCompactList}\item 
+virtual std::\+vector$<$ \doxymbox{\hyperlink{class_user_model}{User\+Model}} $>$ \doxymbox{\hyperlink{class_i_database_af2e67d2a4aae3731b850911e91194ae3}{get\+All\+Users}} ()=0
+\begin{DoxyCompactList}\small\item\em Returns all user rows (admin or diagnostic use; scope depends on deployment). \end{DoxyCompactList}\item 
+virtual bool \doxymbox{\hyperlink{class_i_database_a27e07395648063e2c8ffef2e5b668f72}{create\+User}} (\doxymbox{\hyperlink{class_user_model}{User\+Model}} \&user\+Model)=0
+\begin{DoxyCompactList}\small\item\em Inserts or upserts a user row according to implementation (registration path). \end{DoxyCompactList}\item 
+virtual bool \doxymbox{\hyperlink{class_i_database_a7760475f8381eb95fe97ae0ec33b8e18}{delete\+User}} (\doxymbox{\hyperlink{class_user_model}{User\+Model}} \&user\+Model)=0
+\begin{DoxyCompactList}\small\item\em Deletes the user row identified by {\ttfamily user\+Model} (typically by primary key). \end{DoxyCompactList}\item 
+virtual bool \doxymbox{\hyperlink{class_i_database_afdc5b9ec1ed1a038a380b676d2f5825f}{create\+Assignment}} (\doxymbox{\hyperlink{class_assignment}{Assignment}} \&assignment)=0
+\begin{DoxyCompactList}\small\item\em Persists a new or updated assignment (implementations often use upsert semantics). \end{DoxyCompactList}\item 
+virtual bool \doxymbox{\hyperlink{class_i_database_a6710c16f79d4eed4f79f78bae836bda1}{delete\+Assignment}} (\doxymbox{\hyperlink{class_assignment}{Assignment}} \&assignment)=0
+\begin{DoxyCompactList}\small\item\em Removes the assignment identified by {\ttfamily assignment} (usually by {\ttfamily id}). \end{DoxyCompactList}\item 
+virtual bool \doxymbox{\hyperlink{class_i_database_aaedc00f38b3b1f4b03b45ed210f84223}{create\+Help\+Request}} (\doxymbox{\hyperlink{class_help_request_model}{Help\+Request\+Model}} \&help\+Request)=0
+\begin{DoxyCompactList}\small\item\em Inserts a help request for an assignment from a given user. \end{DoxyCompactList}\item 
+virtual std::\+optional$<$ \doxymbox{\hyperlink{class_help_request_model}{Help\+Request\+Model}} $>$ \doxymbox{\hyperlink{class_i_database_a813ae2ac827648ba11b091948e8085c2}{get\+Help\+Request\+By\+Id}} (int id)=0
+\begin{DoxyCompactList}\small\item\em Fetches a single help request by primary key. \end{DoxyCompactList}\item 
+virtual std::\+vector$<$ \doxymbox{\hyperlink{class_help_request_model}{Help\+Request\+Model}} $>$ \doxymbox{\hyperlink{class_i_database_a9e61913b995910f934566dd053fd4bf7}{get\+All\+Help\+Requests}} (int user\+Id)=0
+\begin{DoxyCompactList}\small\item\em Lists help requests raised by the specified user. \end{DoxyCompactList}\item 
+virtual std::\+vector$<$ \doxymbox{\hyperlink{class_help_request_model}{Help\+Request\+Model}} $>$ \doxymbox{\hyperlink{class_i_database_a37c6619ede05f2b50963bfa18c59d1b3}{get\+Help\+Requests\+From\+Other\+Users}} (int user\+Id)=0
+\begin{DoxyCompactList}\small\item\em Lists help requests from every user except {\ttfamily user\+Id}, with display metadata where supported. \end{DoxyCompactList}\item 
+virtual std::\+optional$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ \doxymbox{\hyperlink{class_i_database_a7bf53c3026240f61073ca1b0466ae166}{get\+Assignment\+By\+ID}} (int id)=0
+\begin{DoxyCompactList}\small\item\em Loads one assignment by primary key (any user, subject to implementation rules). \end{DoxyCompactList}\item 
+virtual bool \doxymbox{\hyperlink{class_i_database_ae673d73603664454b1ab436376e3df81}{delete\+Help\+Request}} (\doxymbox{\hyperlink{class_help_request_model}{Help\+Request\+Model}} \&help\+Request)=0
+\begin{DoxyCompactList}\small\item\em Deletes a help request row. \end{DoxyCompactList}\item 
+virtual std::\+vector$<$ \doxymbox{\hyperlink{class_course}{Course}} $>$ \doxymbox{\hyperlink{class_i_database_a54b8f8e96ce46a2950b8aa9c39be5ed0}{get\+All\+Courses}} ()=0
+\begin{DoxyCompactList}\small\item\em Returns the course catalog visible to the application (often all courses). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Port for Postgre\+SQL-\/backed operations used by controllers and {\ttfamily \doxylink{class_base_model}{Base\+Model}} implementations. 
+
+Implementations (for example {\ttfamily \doxylink{class_d_b}{DB}}) execute SQL and map rows to the domain types declared in this interface. Controllers depend on this abstraction for testability. 
+
+\label{doc-constructors}
+\Hypertarget{class_i_database_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_i_database_a6535769342a3ea52b1f95f1cdfe2ff54}\index{IDatabase@{IDatabase}!````~IDatabase@{\texorpdfstring{$\sim$}{\string~}IDatabase}}
+\index{````~IDatabase@{\texorpdfstring{$\sim$}{\string~}IDatabase}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}IDatabase()}{\string~IDatabase()}}
+{\footnotesize\ttfamily \label{class_i_database_a6535769342a3ea52b1f95f1cdfe2ff54} 
+virtual IDatabase::\+\texorpdfstring{$\sim$}{\string~}\+IDatabase (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Virtual destructor allows polymorphic deletion through {\ttfamily IDatabase\texorpdfstring{$\ast$}{*}}. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_i_database_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_i_database_afdc5b9ec1ed1a038a380b676d2f5825f}\index{IDatabase@{IDatabase}!createAssignment@{createAssignment}}
+\index{createAssignment@{createAssignment}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{createAssignment()}{createAssignment()}}
+{\footnotesize\ttfamily \label{class_i_database_afdc5b9ec1ed1a038a380b676d2f5825f} 
+virtual bool IDatabase::\+create\+Assignment (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_assignment}{Assignment}} \&}]{assignment}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Persists a new or updated assignment (implementations often use upsert semantics). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em assignment} & Domain object with course, user, dates, status, etc. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the database accepted the write. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_a6ceebd1fbec05a21c568bf47022050ce}{DB}}.
+
+\Hypertarget{class_i_database_aaedc00f38b3b1f4b03b45ed210f84223}\index{IDatabase@{IDatabase}!createHelpRequest@{createHelpRequest}}
+\index{createHelpRequest@{createHelpRequest}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{createHelpRequest()}{createHelpRequest()}}
+{\footnotesize\ttfamily \label{class_i_database_aaedc00f38b3b1f4b03b45ed210f84223} 
+virtual bool IDatabase::\+create\+Help\+Request (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_help_request_model}{Help\+Request\+Model}} \&}]{help\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Inserts a help request for an assignment from a given user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em help\+Request} & Populated model; implementation may assign {\ttfamily id} and timestamps. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the insert succeeded. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_ad399feced3c5035daaf7030ebb48c260}{DB}}.
+
+\Hypertarget{class_i_database_a27e07395648063e2c8ffef2e5b668f72}\index{IDatabase@{IDatabase}!createUser@{createUser}}
+\index{createUser@{createUser}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{createUser()}{createUser()}}
+{\footnotesize\ttfamily \label{class_i_database_a27e07395648063e2c8ffef2e5b668f72} 
+virtual bool IDatabase::\+create\+User (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_user_model}{User\+Model}} \&}]{user\+Model}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Inserts or upserts a user row according to implementation (registration path). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Model} & User fields including hashed password where applicable; may receive generated {\ttfamily id}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if persistence succeeded, false on constraint or I/\+O failure. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_a4c699fa89ec600f652aaad40b211b640}{DB}}.
+
+\Hypertarget{class_i_database_a6710c16f79d4eed4f79f78bae836bda1}\index{IDatabase@{IDatabase}!deleteAssignment@{deleteAssignment}}
+\index{deleteAssignment@{deleteAssignment}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{deleteAssignment()}{deleteAssignment()}}
+{\footnotesize\ttfamily \label{class_i_database_a6710c16f79d4eed4f79f78bae836bda1} 
+virtual bool IDatabase::\+delete\+Assignment (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_assignment}{Assignment}} \&}]{assignment}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Removes the assignment identified by {\ttfamily assignment} (usually by {\ttfamily id}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em assignment} & Object carrying at least the primary key of the row to delete. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the delete succeeded. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_a109f5cf3fe6aabf76858f5d609e8a55d}{DB}}.
+
+\Hypertarget{class_i_database_ae673d73603664454b1ab436376e3df81}\index{IDatabase@{IDatabase}!deleteHelpRequest@{deleteHelpRequest}}
+\index{deleteHelpRequest@{deleteHelpRequest}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{deleteHelpRequest()}{deleteHelpRequest()}}
+{\footnotesize\ttfamily \label{class_i_database_ae673d73603664454b1ab436376e3df81} 
+virtual bool IDatabase::\+delete\+Help\+Request (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_help_request_model}{Help\+Request\+Model}} \&}]{help\+Request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Deletes a help request row. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em help\+Request} & Object identifying the row (typically by {\ttfamily id}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if deletion succeeded. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_a4112810ec3493bd2476fe7403f79cf2c}{DB}}.
+
+\Hypertarget{class_i_database_a7760475f8381eb95fe97ae0ec33b8e18}\index{IDatabase@{IDatabase}!deleteUser@{deleteUser}}
+\index{deleteUser@{deleteUser}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{deleteUser()}{deleteUser()}}
+{\footnotesize\ttfamily \label{class_i_database_a7760475f8381eb95fe97ae0ec33b8e18} 
+virtual bool IDatabase::\+delete\+User (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_user_model}{User\+Model}} \&}]{user\+Model}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Deletes the user row identified by {\ttfamily user\+Model} (typically by primary key). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Model} & User whose {\ttfamily id} (or unique key) selects the row to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a row was deleted or the operation completed successfully. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_a564e8dd8140e58bae70d2d09834022ec}{DB}}.
+
+\Hypertarget{class_i_database_a1781b42114aea9ed7acd6848f067c159}\index{IDatabase@{IDatabase}!getAllAssignments@{getAllAssignments}}
+\index{getAllAssignments@{getAllAssignments}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{getAllAssignments()}{getAllAssignments()}}
+{\footnotesize\ttfamily \label{class_i_database_a1781b42114aea9ed7acd6848f067c159} 
+virtual std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ IDatabase::\+get\+All\+Assignments (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Loads every assignment row owned by the given user (typically filtered by {\ttfamily user\+\_\+id}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Primary key of the user whose assignments are requested. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Collection of {\ttfamily \doxylink{class_assignment}{Assignment}} objects; may be empty if the user has none. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_aff78796dae6e60367fadc909fc862e25}{DB}}.
+
+\Hypertarget{class_i_database_a54b8f8e96ce46a2950b8aa9c39be5ed0}\index{IDatabase@{IDatabase}!getAllCourses@{getAllCourses}}
+\index{getAllCourses@{getAllCourses}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{getAllCourses()}{getAllCourses()}}
+{\footnotesize\ttfamily \label{class_i_database_a54b8f8e96ce46a2950b8aa9c39be5ed0} 
+virtual std::\+vector$<$ \doxymbox{\hyperlink{class_course}{Course}} $>$ IDatabase::\+get\+All\+Courses (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the course catalog visible to the application (often all courses). 
+
+\begin{DoxyReturn}{Returns}
+List of {\ttfamily \doxylink{class_course}{Course}} rows. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_a06fc0196cbaf81e72e98b4cd260ab0e3}{DB}}.
+
+\Hypertarget{class_i_database_a9e61913b995910f934566dd053fd4bf7}\index{IDatabase@{IDatabase}!getAllHelpRequests@{getAllHelpRequests}}
+\index{getAllHelpRequests@{getAllHelpRequests}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{getAllHelpRequests()}{getAllHelpRequests()}}
+{\footnotesize\ttfamily \label{class_i_database_a9e61913b995910f934566dd053fd4bf7} 
+virtual std::\+vector$<$ \doxymbox{\hyperlink{class_help_request_model}{Help\+Request\+Model}} $>$ IDatabase::\+get\+All\+Help\+Requests (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Lists help requests raised by the specified user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Raiser’s user id ({\ttfamily help\+\_\+requests.\+user\+\_\+id}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+All matching rows, possibly empty. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_a14383a4db0561719788c382b1cae05f3}{DB}}.
+
+\Hypertarget{class_i_database_af2e67d2a4aae3731b850911e91194ae3}\index{IDatabase@{IDatabase}!getAllUsers@{getAllUsers}}
+\index{getAllUsers@{getAllUsers}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{getAllUsers()}{getAllUsers()}}
+{\footnotesize\ttfamily \label{class_i_database_af2e67d2a4aae3731b850911e91194ae3} 
+virtual std::\+vector$<$ \doxymbox{\hyperlink{class_user_model}{User\+Model}} $>$ IDatabase::\+get\+All\+Users (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns all user rows (admin or diagnostic use; scope depends on deployment). 
+
+\begin{DoxyReturn}{Returns}
+Vector of every user the backing store exposes to this call. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_ace74b8817cde0de65e393f2a5619d6bb}{DB}}.
+
+\Hypertarget{class_i_database_a7bf53c3026240f61073ca1b0466ae166}\index{IDatabase@{IDatabase}!getAssignmentByID@{getAssignmentByID}}
+\index{getAssignmentByID@{getAssignmentByID}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{getAssignmentByID()}{getAssignmentByID()}}
+{\footnotesize\ttfamily \label{class_i_database_a7bf53c3026240f61073ca1b0466ae166} 
+virtual std::\+optional$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ IDatabase::\+get\+Assignment\+By\+ID (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Loads one assignment by primary key (any user, subject to implementation rules). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & {\ttfamily assignments.\+id}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{class_assignment}{Assignment} if found, otherwise {\ttfamily std::\+nullopt}. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_aa02dde3099c45bdb3404fbd148332cf7}{DB}}.
+
+\Hypertarget{class_i_database_a813ae2ac827648ba11b091948e8085c2}\index{IDatabase@{IDatabase}!getHelpRequestById@{getHelpRequestById}}
+\index{getHelpRequestById@{getHelpRequestById}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{getHelpRequestById()}{getHelpRequestById()}}
+{\footnotesize\ttfamily \label{class_i_database_a813ae2ac827648ba11b091948e8085c2} 
+virtual std::\+optional$<$ \doxymbox{\hyperlink{class_help_request_model}{Help\+Request\+Model}} $>$ IDatabase::\+get\+Help\+Request\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Fetches a single help request by primary key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & {\ttfamily help\+\_\+requests.\+id}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Model if found, otherwise {\ttfamily std::\+nullopt}. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_a66e6b900e2b9b3320aa908acf4c4fdac}{DB}}.
+
+\Hypertarget{class_i_database_a37c6619ede05f2b50963bfa18c59d1b3}\index{IDatabase@{IDatabase}!getHelpRequestsFromOtherUsers@{getHelpRequestsFromOtherUsers}}
+\index{getHelpRequestsFromOtherUsers@{getHelpRequestsFromOtherUsers}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{getHelpRequestsFromOtherUsers()}{getHelpRequestsFromOtherUsers()}}
+{\footnotesize\ttfamily \label{class_i_database_a37c6619ede05f2b50963bfa18c59d1b3} 
+virtual std::\+vector$<$ \doxymbox{\hyperlink{class_help_request_model}{Help\+Request\+Model}} $>$ IDatabase::\+get\+Help\+Requests\+From\+Other\+Users (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Lists help requests from every user except {\ttfamily user\+Id}, with display metadata where supported. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Current user; their own requests are excluded from the result. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Other users’ requests (implementation may attach {\ttfamily raiser\+\_\+display\+\_\+name}, etc.). 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_a4433bb7326ccc22c349d7b69ab5d8065}{DB}}.
+
+\Hypertarget{class_i_database_abf704a207fdd9b2e361189b37f7fef02}\index{IDatabase@{IDatabase}!getUserByEmail@{getUserByEmail}}
+\index{getUserByEmail@{getUserByEmail}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{getUserByEmail()}{getUserByEmail()}}
+{\footnotesize\ttfamily \label{class_i_database_abf704a207fdd9b2e361189b37f7fef02} 
+virtual std::\+optional$<$ \doxymbox{\hyperlink{class_user_model}{User\+Model}} $>$ IDatabase::\+get\+User\+By\+Email (\begin{DoxyParamCaption}\item[{std::\+string \&}]{email}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Looks up a user by email address (case rules depend on implementation). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & In/\+out email string; some implementations may normalize or ignore contents after lookup. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Populated {\ttfamily \doxylink{class_user_model}{User\+Model}} if a row matches, otherwise {\ttfamily std::\+nullopt}. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_a46f08e4b96ad5e6ab4cdc97b7ba37478}{DB}}.
+
+\Hypertarget{class_i_database_a15dc25740d940321181a10468f645b2e}\index{IDatabase@{IDatabase}!getUserByID@{getUserByID}}
+\index{getUserByID@{getUserByID}!IDatabase@{IDatabase}}
+\doxysubsubsection{\texorpdfstring{getUserByID()}{getUserByID()}}
+{\footnotesize\ttfamily \label{class_i_database_a15dc25740d940321181a10468f645b2e} 
+virtual std::\+optional$<$ \doxymbox{\hyperlink{class_user_model}{User\+Model}} $>$ IDatabase::\+get\+User\+By\+ID (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Looks up a user by primary key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & {\ttfamily users.\+id} value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Populated {\ttfamily \doxylink{class_user_model}{User\+Model}} if found, otherwise {\ttfamily std::\+nullopt}. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_d_b_a281b228363e8098d6979a415020e72c0}{DB}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_i_database_8hpp}{IDatabase.\+hpp}}\end{DoxyCompactItemize}

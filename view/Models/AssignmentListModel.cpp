@@ -1,3 +1,8 @@
+/**
+ * @file AssignmentListModel.cpp
+ * @brief Model indexes, roles, and status count maintenance for assignment rows.
+ */
+
 #include "view/Models/headers/AssignmentListModel.hpp"
 #include "view/Models/headers/AssignmentViewModel.hpp"
 

@@ -1,3 +1,8 @@
+/**
+ * @file AssignmentController.cpp
+ * @brief Implements assignment CRUD orchestration and payload error strings.
+ */
+
 #include "AssignmentController.hpp"
 #include "AssignmentModel.hpp"
 #include "IDatabase.hpp"

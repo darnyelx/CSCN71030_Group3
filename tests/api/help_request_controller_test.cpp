@@ -1,3 +1,8 @@
+/**
+ * @file help_request_controller_test.cpp
+ * @brief Tests for help-request create/list flows with `StubDatabase`.
+ */
+
 #include <gtest/gtest.h>
 
 #include "HelpRequestController.hpp"

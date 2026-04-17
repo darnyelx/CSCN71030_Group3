@@ -1,3 +1,8 @@
+/**
+ * @file auth_controller_test.cpp
+ * @brief Tests for `AuthController` against `StubDatabase`.
+ */
+
 #include <gtest/gtest.h>
 
 #include "AuthController.hpp"

@@ -1,0 +1,51 @@
+\doxysection{Get\+Courses\+Result Struct Reference}
+\hypertarget{struct_get_courses_result}{}\label{struct_get_courses_result}\index{GetCoursesResult@{GetCoursesResult}}
+
+
+Result of {\ttfamily get\+All\+Courses} with success flag and message for errors.  
+
+
+
+
+{\ttfamily \+\#include $<$Course\+Controller.\+hpp$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{struct_get_courses_result_aaaac99b8e91995085dec6baf9f4f034b}{success}}
+\item 
+std::\+string \doxymbox{\hyperlink{struct_get_courses_result_af8bc9cb5eb9ac092489edc74f4286f77}{message}}
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_course}{Course}} $>$ \doxymbox{\hyperlink{struct_get_courses_result_a3146013603437d7645946fc7382d3da9}{courses}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Result of {\ttfamily get\+All\+Courses} with success flag and message for errors. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_get_courses_result_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_get_courses_result_a3146013603437d7645946fc7382d3da9}\index{GetCoursesResult@{GetCoursesResult}!courses@{courses}}
+\index{courses@{courses}!GetCoursesResult@{GetCoursesResult}}
+\doxysubsubsection{\texorpdfstring{courses}{courses}}
+{\footnotesize\ttfamily \label{struct_get_courses_result_a3146013603437d7645946fc7382d3da9} 
+std::\+vector$<$\doxymbox{\hyperlink{class_course}{Course}}$>$ Get\+Courses\+Result::\+courses}
+
+Catalog rows on success; empty on failure. \Hypertarget{struct_get_courses_result_af8bc9cb5eb9ac092489edc74f4286f77}\index{GetCoursesResult@{GetCoursesResult}!message@{message}}
+\index{message@{message}!GetCoursesResult@{GetCoursesResult}}
+\doxysubsubsection{\texorpdfstring{message}{message}}
+{\footnotesize\ttfamily \label{struct_get_courses_result_af8bc9cb5eb9ac092489edc74f4286f77} 
+std::\+string Get\+Courses\+Result::\+message}
+
+Empty on success; otherwise exception {\ttfamily what()} or similar. \Hypertarget{struct_get_courses_result_aaaac99b8e91995085dec6baf9f4f034b}\index{GetCoursesResult@{GetCoursesResult}!success@{success}}
+\index{success@{success}!GetCoursesResult@{GetCoursesResult}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily \label{struct_get_courses_result_aaaac99b8e91995085dec6baf9f4f034b} 
+bool Get\+Courses\+Result::\+success}
+
+false when an exception was caught (e.\+g. \doxylink{class_d_b}{DB} unavailable). 
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_course_controller_8hpp}{Course\+Controller.\+hpp}}\end{DoxyCompactItemize}

@@ -1,6 +1,7 @@
-//
-// Created by Darnyelx on 2026-04-10.
-//
+/**
+ * @file CourseViewController.cpp
+ * @brief Fetches courses and writes them into `CourseListModel`.
+ */
 
 #include "view/Controllers/headers/CourseViewController.hpp"
 

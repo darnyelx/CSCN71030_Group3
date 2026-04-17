@@ -1,0 +1,24 @@
+\doxysection{Assignment\+Controller.\+hpp File Reference}
+\hypertarget{_assignment_controller_8hpp}{}\label{_assignment_controller_8hpp}\index{AssignmentController.hpp@{AssignmentController.hpp}}
+
+
+CRUD-\/style operations on assignments for the signed-\/in user scope.  
+
+
+{\ttfamily \+\#include "{}Assignment\+Model.\+hpp"{}}\newline
+{\ttfamily \+\#include $<$optional$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_assignment_result_payload}{Assignment\+Result\+Payload}}
+\begin{DoxyCompactList}\small\item\em Single-\/assignment operation result (create, read, update, delete). \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_get_all_assignment_result_payload}{Get\+All\+Assignment\+Result\+Payload}}
+\begin{DoxyCompactList}\small\item\em Result of listing all assignments for a user. \end{DoxyCompactList}\item 
+class \doxymbox{\hyperlink{class_assignment_controller}{Assignment\+Controller}}
+\begin{DoxyCompactList}\small\item\em Validates inputs and maps persistence errors to {\ttfamily \doxylink{struct_assignment_result_payload}{Assignment\+Result\+Payload}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+CRUD-\/style operations on assignments for the signed-\/in user scope. 
+

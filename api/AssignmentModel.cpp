@@ -1,3 +1,8 @@
+/**
+ * @file AssignmentModel.cpp
+ * @brief Assignment field accessors and database save/remove paths.
+ */
+
 #include "AssignmentModel.hpp"
 #include "IDatabase.hpp"
 

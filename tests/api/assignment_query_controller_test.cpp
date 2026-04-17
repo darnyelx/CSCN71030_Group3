@@ -1,3 +1,8 @@
+/**
+ * @file assignment_query_controller_test.cpp
+ * @brief Tests for search, filter, and ordering on assignment query helpers.
+ */
+
 #include <gtest/gtest.h>
 
 #include "AssignmentQueryController.hpp"

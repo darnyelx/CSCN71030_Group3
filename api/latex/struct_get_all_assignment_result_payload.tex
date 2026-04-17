@@ -1,0 +1,51 @@
+\doxysection{Get\+All\+Assignment\+Result\+Payload Struct Reference}
+\hypertarget{struct_get_all_assignment_result_payload}{}\label{struct_get_all_assignment_result_payload}\index{GetAllAssignmentResultPayload@{GetAllAssignmentResultPayload}}
+
+
+Result of listing all assignments for a user.  
+
+
+
+
+{\ttfamily \+\#include $<$Assignment\+Controller.\+hpp$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{struct_get_all_assignment_result_payload_ab175890a1363d6e8472210dfdf11c0b5}{success}}
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ \doxymbox{\hyperlink{struct_get_all_assignment_result_payload_a1d20a3dc974773ce6ea7349ac25432d1}{assignments}}
+\item 
+std::\+string \doxymbox{\hyperlink{struct_get_all_assignment_result_payload_a18134cd4497955622b77c50034991962}{error\+Message}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Result of listing all assignments for a user. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_get_all_assignment_result_payload_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_get_all_assignment_result_payload_a1d20a3dc974773ce6ea7349ac25432d1}\index{GetAllAssignmentResultPayload@{GetAllAssignmentResultPayload}!assignments@{assignments}}
+\index{assignments@{assignments}!GetAllAssignmentResultPayload@{GetAllAssignmentResultPayload}}
+\doxysubsubsection{\texorpdfstring{assignments}{assignments}}
+{\footnotesize\ttfamily \label{struct_get_all_assignment_result_payload_a1d20a3dc974773ce6ea7349ac25432d1} 
+std::\+vector$<$\doxymbox{\hyperlink{class_assignment}{Assignment}}$>$ Get\+All\+Assignment\+Result\+Payload::\+assignments}
+
+All assignments returned by {\ttfamily get\+All\+Assignments} for the user. \Hypertarget{struct_get_all_assignment_result_payload_a18134cd4497955622b77c50034991962}\index{GetAllAssignmentResultPayload@{GetAllAssignmentResultPayload}!errorMessage@{errorMessage}}
+\index{errorMessage@{errorMessage}!GetAllAssignmentResultPayload@{GetAllAssignmentResultPayload}}
+\doxysubsubsection{\texorpdfstring{errorMessage}{errorMessage}}
+{\footnotesize\ttfamily \label{struct_get_all_assignment_result_payload_a18134cd4497955622b77c50034991962} 
+std::\+string Get\+All\+Assignment\+Result\+Payload::\+error\+Message}
+
+Reserved for future error propagation; often empty. \Hypertarget{struct_get_all_assignment_result_payload_ab175890a1363d6e8472210dfdf11c0b5}\index{GetAllAssignmentResultPayload@{GetAllAssignmentResultPayload}!success@{success}}
+\index{success@{success}!GetAllAssignmentResultPayload@{GetAllAssignmentResultPayload}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily \label{struct_get_all_assignment_result_payload_ab175890a1363d6e8472210dfdf11c0b5} 
+bool Get\+All\+Assignment\+Result\+Payload::\+success}
+
+Currently always true when the call returns (list may be empty). 
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_assignment_controller_8hpp}{Assignment\+Controller.\+hpp}}\end{DoxyCompactItemize}

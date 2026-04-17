@@ -1,6 +1,7 @@
-//
-// Created by Darnyelx on 2026-04-10.
-//
+/**
+ * @file CourseViewModel.cpp
+ * @brief Course id/name properties and `fromModel` for QML.
+ */
 
 #include "view/Models/headers/CourseViewModel.hpp"
 

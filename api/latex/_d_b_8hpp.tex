@@ -1,0 +1,25 @@
+\doxysection{DB.\+hpp File Reference}
+\hypertarget{_d_b_8hpp}{}\label{_d_b_8hpp}\index{DB.hpp@{DB.hpp}}
+
+
+Singleton {\ttfamily \doxylink{class_i_database}{IDatabase}} implementation using libpqxx.  
+
+
+{\ttfamily \+\#include $<$pqxx/\+pqxx$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+{\ttfamily \+\#include "{}Assignment\+Model.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}Course\+Model.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}Help\+Request\+Model.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}IDatabase.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}User\+Model.\+hpp"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{class_d_b}{DB}}
+\begin{DoxyCompactList}\small\item\em Process-\/wide database access:\+ one {\ttfamily pqxx::\+connection}, implements all {\ttfamily \doxylink{class_i_database}{IDatabase}} queries. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Singleton {\ttfamily \doxylink{class_i_database}{IDatabase}} implementation using libpqxx. 
+

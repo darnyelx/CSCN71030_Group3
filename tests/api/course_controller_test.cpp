@@ -1,3 +1,8 @@
+/**
+ * @file course_controller_test.cpp
+ * @brief Tests for `CourseController::getAllCourses` with `StubDatabase`.
+ */
+
 #include <gtest/gtest.h>
 
 #include "CourseController.hpp"

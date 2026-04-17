@@ -1,3 +1,8 @@
+/**
+ * @file UserViewModel.cpp
+ * @brief Property storage and `UserModel` conversion for QML.
+ */
+
 #include "headers/UserViewModel.h"
 
 UserViewModel::UserViewModel(QObject *parent)

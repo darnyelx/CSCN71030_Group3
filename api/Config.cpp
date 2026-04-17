@@ -1,3 +1,8 @@
+/**
+ * @file Config.cpp
+ * @brief Parses `KEY=value` lines from config files into static `Config::values_`.
+ */
+
 #include "Config.hpp"
 
 #include <algorithm>
@@ -7,6 +12,7 @@
 
 std::unordered_map<std::string, std::string> Config::values_;
 
+/** @brief Implementation of `Config::load` (see header). */
 bool Config::load(const std::string& path) {
     std::ifstream file(path);
     if (!file.is_open()) {
@@ -44,11 +50,13 @@ bool Config::load(const std::string& path) {
     return true;
 }
 
+/** @brief Implementation of `Config::get` (see header). */
 std::string Config::get(const std::string& key, const std::string& fallback) {
     const auto it = values_.find(key);
     return it != values_.end() ? it->second : fallback;
 }
 
+/** @brief Implementation of `Config::trim` (see header). */
 void Config::trim(std::string& s) {
     auto notSpace = [](unsigned char ch) {
         return !std::isspace(ch);

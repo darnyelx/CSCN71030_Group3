@@ -1,3 +1,8 @@
+/**
+ * @file AuthViewController.cpp
+ * @brief Maps `AuthController` results into `loginSucceeded` / `loginFailed` for QML.
+ */
+
 #include "headers/AuthViewController.h"
 
 #include <iostream>

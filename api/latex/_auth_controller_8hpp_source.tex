@@ -1,0 +1,32 @@
+\doxysection{Auth\+Controller.\+hpp}
+\hypertarget{_auth_controller_8hpp_source}{}\label{_auth_controller_8hpp_source}\doxymbox{\hyperlink{_auth_controller_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_user_model_8hpp}{UserModel.hpp}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_i_database}{IDatabase}};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_login_result}{LoginResult}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_login_result_afdd744f93ad42ea9fdd35c2e4142ec27}{success}};\ }
+\DoxyCodeLine{00018\ \ \ \ \ std::string\ \doxymbox{\hyperlink{struct_login_result_acf4d9db5a65d4c73a7503ee94ae0d638}{message}};\ }
+\DoxyCodeLine{00019\ \ \ \ \ std::optional<UserModel>\ \doxymbox{\hyperlink{struct_login_result_a6522469fe521b92122afe1390cac5a05}{userModel}};\ }
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_auth_controller_acf6d21cc26a02a47865b9c4e99aa3ed1}{AuthController}}\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_auth_controller_acf6d21cc26a02a47865b9c4e99aa3ed1}{AuthController}}(\doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&database);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00041\ \ \ \ \ \doxymbox{\hyperlink{struct_login_result}{LoginResult}}\ \doxymbox{\hyperlink{class_auth_controller_ab1f3c7d1dfd27a162615826b2038c08a}{login}}(std::string\ \&email,\ \textcolor{keyword}{const}\ std::string\ \&password);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00051\ \ \ \ \ \doxymbox{\hyperlink{struct_login_result}{LoginResult}}\ \doxymbox{\hyperlink{class_auth_controller_ab34c0408e1d4252be178dfc4e254f706}{registerUser}}(\textcolor{keyword}{const}\ std::string\ \&firstName,\ \textcolor{keyword}{const}\ std::string\ \&lastName,\ \textcolor{keyword}{const}\ std::string\ \&email,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&password);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ \doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&db\_;}
+\DoxyCodeLine{00056\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,47 @@
+\doxysection{Assignment\+Controller.\+hpp}
+\hypertarget{_assignment_controller_8hpp_source}{}\label{_assignment_controller_8hpp_source}\doxymbox{\hyperlink{_assignment_controller_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_assignment_model_8hpp}{AssignmentModel.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_i_database}{IDatabase}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_assignment_result_payload}{AssignmentResultPayload}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_assignment_result_payload_a06b4b5cb977c392e4284b3f7f3d99b13}{success}};\ }
+\DoxyCodeLine{00019\ \ \ \ \ std::string\ \doxymbox{\hyperlink{struct_assignment_result_payload_ab853c2cfe47a51fecfb65f06675d1049}{errorMessage}};\ }
+\DoxyCodeLine{00020\ \ \ \ \ std::optional<Assignment>\ \doxymbox{\hyperlink{struct_assignment_result_payload_a714758d893337ae317e1dc8f09788e29}{assignment}};\ }
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_get_all_assignment_result_payload}{GetAllAssignmentResultPayload}}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_get_all_assignment_result_payload_ab175890a1363d6e8472210dfdf11c0b5}{success}};\ }
+\DoxyCodeLine{00028\ \ \ \ \ std::vector<Assignment>\ \doxymbox{\hyperlink{struct_get_all_assignment_result_payload_a1d20a3dc974773ce6ea7349ac25432d1}{assignments}};\ }
+\DoxyCodeLine{00029\ \ \ \ \ std::string\ \doxymbox{\hyperlink{struct_get_all_assignment_result_payload_a18134cd4497955622b77c50034991962}{errorMessage}};\ }
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_assignment_controller_a7f45c7ad49d648d7f0e16fae5a60f224}{AssignmentController}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_assignment_controller_a7f45c7ad49d648d7f0e16fae5a60f224}{AssignmentController}}(\doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&database);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00054\ \ \ \ \ \doxymbox{\hyperlink{struct_assignment_result_payload}{AssignmentResultPayload}}\ \doxymbox{\hyperlink{class_assignment_controller_afdaa66eae94e4ab7d7070fd624a9d0d9}{createAssignment}}(\textcolor{keyword}{const}\ std::string\ title,\ \textcolor{keyword}{const}\ std::string\ description,\ \textcolor{keywordtype}{int}\ courseId,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ userId,\ std::string\ dueDate,\ \textcolor{keyword}{const}\ std::string\ \&status);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \ \ \doxymbox{\hyperlink{struct_assignment_result_payload}{AssignmentResultPayload}}\ \doxymbox{\hyperlink{class_assignment_controller_a89b8534e88780fcb0e4cd5fcee55ccac}{getAssignment}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \ \ \doxymbox{\hyperlink{struct_get_all_assignment_result_payload}{GetAllAssignmentResultPayload}}\ \doxymbox{\hyperlink{class_assignment_controller_abd34d6cb3bd5928c799f93e451f37e33}{getAllAssignments}}(\textcolor{keywordtype}{int}\ userId);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00082\ \ \ \ \ \doxymbox{\hyperlink{struct_assignment_result_payload}{AssignmentResultPayload}}\ \doxymbox{\hyperlink{class_assignment_controller_a9560baf790a4ecb025f2271a2f863055}{updateAssignment}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ std::string\ \&title,\ \textcolor{keyword}{const}\ std::string\ \&description,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ courseId,\ \textcolor{keyword}{const}\ std::string\ \&dueDate,\ \textcolor{keywordtype}{int}\ priority,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&status);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \ \ \ \ \doxymbox{\hyperlink{struct_assignment_result_payload}{AssignmentResultPayload}}\ \doxymbox{\hyperlink{class_assignment_controller_a935e7e9b521e4fd073a9489404479869}{deleteAssignment}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00094\ \ \ \ \ \doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&db\_;}
+\DoxyCodeLine{00095\ \};}
+
+\end{DoxyCode}

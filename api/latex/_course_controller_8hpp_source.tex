@@ -1,0 +1,30 @@
+\doxysection{Course\+Controller.\+hpp}
+\hypertarget{_course_controller_8hpp_source}{}\label{_course_controller_8hpp_source}\doxymbox{\hyperlink{_course_controller_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_course_model_8hpp}{CourseModel.hpp}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_i_database}{IDatabase}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_get_courses_result}{GetCoursesResult}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{struct_get_courses_result_aaaac99b8e91995085dec6baf9f4f034b}{success}};\ }
+\DoxyCodeLine{00019\ \ \ \ \ std::string\ \doxymbox{\hyperlink{struct_get_courses_result_af8bc9cb5eb9ac092489edc74f4286f77}{message}};\ }
+\DoxyCodeLine{00020\ \ \ \ \ std::vector<Course>\ \doxymbox{\hyperlink{struct_get_courses_result_a3146013603437d7645946fc7382d3da9}{courses}};\ }
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_course_controller_ad702a8e02ed7b55e9ab67bd488adf065}{CourseController}}\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_course_controller_ad702a8e02ed7b55e9ab67bd488adf065}{CourseController}}(\doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&database);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \ \ \ \ \doxymbox{\hyperlink{struct_get_courses_result}{GetCoursesResult}}\ \doxymbox{\hyperlink{class_course_controller_afd1f0c732e170de9efe344d81f656550}{getAllCourses}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ \doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&db\_;}
+\DoxyCodeLine{00042\ \};}
+
+\end{DoxyCode}

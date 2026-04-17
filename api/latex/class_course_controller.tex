@@ -1,0 +1,65 @@
+\doxysection{Course\+Controller Class Reference}
+\hypertarget{class_course_controller}{}\label{class_course_controller}\index{CourseController@{CourseController}}
+
+
+Thin wrapper over {\ttfamily \doxylink{class_i_database_a54b8f8e96ce46a2950b8aa9c39be5ed0}{IDatabase::\+get\+All\+Courses}} with exception-\/to-\/message mapping.  
+
+
+
+
+{\ttfamily \+\#include $<$Course\+Controller.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_course_controller_ad702a8e02ed7b55e9ab67bd488adf065}{Course\+Controller}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&database)
+\begin{DoxyCompactList}\small\item\em Constructs controller with database dependency. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_get_courses_result}{Get\+Courses\+Result}} \doxymbox{\hyperlink{class_course_controller_afd1f0c732e170de9efe344d81f656550}{get\+All\+Courses}} ()
+\begin{DoxyCompactList}\small\item\em Loads the full course list exposed by the database layer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Thin wrapper over {\ttfamily \doxylink{class_i_database_a54b8f8e96ce46a2950b8aa9c39be5ed0}{IDatabase::\+get\+All\+Courses}} with exception-\/to-\/message mapping. 
+
+\label{doc-constructors}
+\Hypertarget{class_course_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_course_controller_ad702a8e02ed7b55e9ab67bd488adf065}\index{CourseController@{CourseController}!CourseController@{CourseController}}
+\index{CourseController@{CourseController}!CourseController@{CourseController}}
+\doxysubsubsection{\texorpdfstring{CourseController()}{CourseController()}}
+{\footnotesize\ttfamily \label{class_course_controller_ad702a8e02ed7b55e9ab67bd488adf065} 
+Course\+Controller::\+\+Course\+Controller (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{database}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs controller with database dependency. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em database} & Must outlive this controller. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_course_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_course_controller_afd1f0c732e170de9efe344d81f656550}\index{CourseController@{CourseController}!getAllCourses@{getAllCourses}}
+\index{getAllCourses@{getAllCourses}!CourseController@{CourseController}}
+\doxysubsubsection{\texorpdfstring{getAllCourses()}{getAllCourses()}}
+{\footnotesize\ttfamily \label{class_course_controller_afd1f0c732e170de9efe344d81f656550} 
+\doxymbox{\hyperlink{struct_get_courses_result}{Get\+Courses\+Result}} Course\+Controller::\+get\+All\+Courses (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads the full course list exposed by the database layer. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \doxylink{struct_get_courses_result}{Get\+Courses\+Result}} with courses on success; on exception, {\ttfamily success} false and {\ttfamily message} set. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_course_controller_8hpp}{Course\+Controller.\+hpp}}\item 
+\doxymbox{\hyperlink{_course_controller_8cpp}{Course\+Controller.\+cpp}}\end{DoxyCompactItemize}

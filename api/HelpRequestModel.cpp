@@ -1,3 +1,8 @@
+/**
+ * @file HelpRequestModel.cpp
+ * @brief Help request field accessors and `save`/`remove` against `IDatabase`.
+ */
+
 #include "HelpRequestModel.hpp"
 #include "IDatabase.hpp"
 

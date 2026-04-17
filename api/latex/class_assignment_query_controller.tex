@@ -1,0 +1,188 @@
+\doxysection{Assignment\+Query\+Controller Class Reference}
+\hypertarget{class_assignment_query_controller}{}\label{class_assignment_query_controller}\index{AssignmentQueryController@{AssignmentQueryController}}
+
+
+Query surface used by tests and future UI features (keyword search, filters, sort).  
+
+
+
+
+{\ttfamily \+\#include $<$Assignment\+Query\+Controller.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_assignment_query_controller_ab0fcb5d51c73f54ec045c7217b2f2778}{Assignment\+Query\+Controller}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&database)
+\begin{DoxyCompactList}\small\item\em Constructs controller with database dependency. \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ \doxymbox{\hyperlink{class_assignment_query_controller_a9101686fb9ca9afca1cec76064667f5e}{search\+Assignments\+By\+Keyword}} (int user\+Id, const std::\+string \&keyword)
+\begin{DoxyCompactList}\small\item\em Returns assignments whose title or description contains {\ttfamily keyword} (substring match). \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ \doxymbox{\hyperlink{class_assignment_query_controller_a2a6308f810e4f7f12f2b88ab849e7226}{get\+Filtered\+Assignments\+By\+Course}} (int user\+Id, int course\+Id)
+\begin{DoxyCompactList}\small\item\em Filters assignments to a single course. \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ \doxymbox{\hyperlink{class_assignment_query_controller_a41d7b5475587687e64989d06331e3e89}{get\+Filtered\+Assignments\+By\+Priority}} (int user\+Id, int priority)
+\begin{DoxyCompactList}\small\item\em Filters assignments to a single priority value. \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ \doxymbox{\hyperlink{class_assignment_query_controller_a7ed705cd5daf31e199779cb2f97d8d79}{get\+Filtered\+Assignments\+By\+Status}} (int user\+Id, const std::\+string \&status)
+\begin{DoxyCompactList}\small\item\em Intended to filter by status string;. \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ \doxymbox{\hyperlink{class_assignment_query_controller_a8ff86a336dca5017cfb8d83f9e286c17}{get\+Filtered\+Assignments\+By\+Due\+Date\+Range}} (int user\+Id, const std::\+string \&start\+Date, const std::\+string \&end\+Date)
+\begin{DoxyCompactList}\small\item\em Intended to filter by due-\/date range;. \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ \doxymbox{\hyperlink{class_assignment_query_controller_a5ed0f34ddc472ac4f8d5153f955ffc33}{get\+Ordered\+Assignments\+By\+Due\+Date}} (int user\+Id)
+\begin{DoxyCompactList}\small\item\em Returns the user’s assignments sorted ascending by {\ttfamily due\+Date} string (lexicographic). \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ \doxymbox{\hyperlink{class_assignment_query_controller_afb60f524dd873af808d5aeca2298fa98}{get\+Ordered\+Assignments\+By\+Priority}} (int user\+Id)
+\begin{DoxyCompactList}\small\item\em Returns the user’s assignments sorted descending by priority (higher priority first). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Query surface used by tests and future UI features (keyword search, filters, sort). 
+
+Operates on data from {\ttfamily get\+All\+Assignments} then filters/\+sorts in memory. Some filter APIs are stubs and return an empty vector until implemented. 
+
+\label{doc-constructors}
+\Hypertarget{class_assignment_query_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_assignment_query_controller_ab0fcb5d51c73f54ec045c7217b2f2778}\index{AssignmentQueryController@{AssignmentQueryController}!AssignmentQueryController@{AssignmentQueryController}}
+\index{AssignmentQueryController@{AssignmentQueryController}!AssignmentQueryController@{AssignmentQueryController}}
+\doxysubsubsection{\texorpdfstring{AssignmentQueryController()}{AssignmentQueryController()}}
+{\footnotesize\ttfamily \label{class_assignment_query_controller_ab0fcb5d51c73f54ec045c7217b2f2778} 
+Assignment\+Query\+Controller::\+\+Assignment\+Query\+Controller (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{database}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs controller with database dependency. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em database} & Must outlive this controller. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_assignment_query_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_assignment_query_controller_a2a6308f810e4f7f12f2b88ab849e7226}\index{AssignmentQueryController@{AssignmentQueryController}!getFilteredAssignmentsByCourse@{getFilteredAssignmentsByCourse}}
+\index{getFilteredAssignmentsByCourse@{getFilteredAssignmentsByCourse}!AssignmentQueryController@{AssignmentQueryController}}
+\doxysubsubsection{\texorpdfstring{getFilteredAssignmentsByCourse()}{getFilteredAssignmentsByCourse()}}
+{\footnotesize\ttfamily \label{class_assignment_query_controller_a2a6308f810e4f7f12f2b88ab849e7226} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ Assignment\+Query\+Controller::\+get\+Filtered\+Assignments\+By\+Course (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{, }\item[{int}]{course\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Filters assignments to a single course. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Owner user id. \\
+\hline
+{\em course\+Id} & \doxylink{class_course}{Course} foreign key to match. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Assignments with matching {\ttfamily course\+\_\+id}. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_query_controller_a8ff86a336dca5017cfb8d83f9e286c17}\index{AssignmentQueryController@{AssignmentQueryController}!getFilteredAssignmentsByDueDateRange@{getFilteredAssignmentsByDueDateRange}}
+\index{getFilteredAssignmentsByDueDateRange@{getFilteredAssignmentsByDueDateRange}!AssignmentQueryController@{AssignmentQueryController}}
+\doxysubsubsection{\texorpdfstring{getFilteredAssignmentsByDueDateRange()}{getFilteredAssignmentsByDueDateRange()}}
+{\footnotesize\ttfamily \label{class_assignment_query_controller_a8ff86a336dca5017cfb8d83f9e286c17} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ Assignment\+Query\+Controller::\+get\+Filtered\+Assignments\+By\+Due\+Date\+Range (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{, }\item[{const std::\+string \&}]{start\+Date}{, }\item[{const std::\+string \&}]{end\+Date}{}\end{DoxyParamCaption})}
+
+
+
+Intended to filter by due-\/date range;. 
+
+\begin{DoxyReturn}{Returns}
+Currently always an empty vector (not implemented). 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_query_controller_a41d7b5475587687e64989d06331e3e89}\index{AssignmentQueryController@{AssignmentQueryController}!getFilteredAssignmentsByPriority@{getFilteredAssignmentsByPriority}}
+\index{getFilteredAssignmentsByPriority@{getFilteredAssignmentsByPriority}!AssignmentQueryController@{AssignmentQueryController}}
+\doxysubsubsection{\texorpdfstring{getFilteredAssignmentsByPriority()}{getFilteredAssignmentsByPriority()}}
+{\footnotesize\ttfamily \label{class_assignment_query_controller_a41d7b5475587687e64989d06331e3e89} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ Assignment\+Query\+Controller::\+get\+Filtered\+Assignments\+By\+Priority (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{, }\item[{int}]{priority}{}\end{DoxyParamCaption})}
+
+
+
+Filters assignments to a single priority value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Owner user id. \\
+\hline
+{\em priority} & Exact priority to match. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Matching assignments. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_query_controller_a7ed705cd5daf31e199779cb2f97d8d79}\index{AssignmentQueryController@{AssignmentQueryController}!getFilteredAssignmentsByStatus@{getFilteredAssignmentsByStatus}}
+\index{getFilteredAssignmentsByStatus@{getFilteredAssignmentsByStatus}!AssignmentQueryController@{AssignmentQueryController}}
+\doxysubsubsection{\texorpdfstring{getFilteredAssignmentsByStatus()}{getFilteredAssignmentsByStatus()}}
+{\footnotesize\ttfamily \label{class_assignment_query_controller_a7ed705cd5daf31e199779cb2f97d8d79} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ Assignment\+Query\+Controller::\+get\+Filtered\+Assignments\+By\+Status (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{, }\item[{const std::\+string \&}]{status}{}\end{DoxyParamCaption})}
+
+
+
+Intended to filter by status string;. 
+
+\begin{DoxyReturn}{Returns}
+Currently always an empty vector (not implemented). 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_query_controller_a5ed0f34ddc472ac4f8d5153f955ffc33}\index{AssignmentQueryController@{AssignmentQueryController}!getOrderedAssignmentsByDueDate@{getOrderedAssignmentsByDueDate}}
+\index{getOrderedAssignmentsByDueDate@{getOrderedAssignmentsByDueDate}!AssignmentQueryController@{AssignmentQueryController}}
+\doxysubsubsection{\texorpdfstring{getOrderedAssignmentsByDueDate()}{getOrderedAssignmentsByDueDate()}}
+{\footnotesize\ttfamily \label{class_assignment_query_controller_a5ed0f34ddc472ac4f8d5153f955ffc33} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ Assignment\+Query\+Controller::\+get\+Ordered\+Assignments\+By\+Due\+Date (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Returns the user’s assignments sorted ascending by {\ttfamily due\+Date} string (lexicographic). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Owner user id. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sorted copy of the assignment list. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_query_controller_afb60f524dd873af808d5aeca2298fa98}\index{AssignmentQueryController@{AssignmentQueryController}!getOrderedAssignmentsByPriority@{getOrderedAssignmentsByPriority}}
+\index{getOrderedAssignmentsByPriority@{getOrderedAssignmentsByPriority}!AssignmentQueryController@{AssignmentQueryController}}
+\doxysubsubsection{\texorpdfstring{getOrderedAssignmentsByPriority()}{getOrderedAssignmentsByPriority()}}
+{\footnotesize\ttfamily \label{class_assignment_query_controller_afb60f524dd873af808d5aeca2298fa98} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ Assignment\+Query\+Controller::\+get\+Ordered\+Assignments\+By\+Priority (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Returns the user’s assignments sorted descending by priority (higher priority first). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Owner user id. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sorted copy of the assignment list. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_query_controller_a9101686fb9ca9afca1cec76064667f5e}\index{AssignmentQueryController@{AssignmentQueryController}!searchAssignmentsByKeyword@{searchAssignmentsByKeyword}}
+\index{searchAssignmentsByKeyword@{searchAssignmentsByKeyword}!AssignmentQueryController@{AssignmentQueryController}}
+\doxysubsubsection{\texorpdfstring{searchAssignmentsByKeyword()}{searchAssignmentsByKeyword()}}
+{\footnotesize\ttfamily \label{class_assignment_query_controller_a9101686fb9ca9afca1cec76064667f5e} 
+std::\+vector$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ Assignment\+Query\+Controller::\+search\+Assignments\+By\+Keyword (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{, }\item[{const std::\+string \&}]{keyword}{}\end{DoxyParamCaption})}
+
+
+
+Returns assignments whose title or description contains {\ttfamily keyword} (substring match). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Owner whose assignments are searched. \\
+\hline
+{\em keyword} & Needle matched against title and description. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filtered subset; empty if none match. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_assignment_query_controller_8hpp}{Assignment\+Query\+Controller.\+hpp}}\item 
+\doxymbox{\hyperlink{_assignment_query_controller_8cpp}{Assignment\+Query\+Controller.\+cpp}}\end{DoxyCompactItemize}

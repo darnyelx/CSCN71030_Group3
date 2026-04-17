@@ -1,0 +1,52 @@
+\doxysection{IDatabase.\+hpp}
+\hypertarget{_i_database_8hpp_source}{}\label{_i_database_8hpp_source}\doxymbox{\hyperlink{_i_database_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <optional>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_assignment}{Assignment}};}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_user_model}{UserModel}};}
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_help_request_model}{HelpRequestModel}};}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_course}{Course}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{class_i_database_a6535769342a3ea52b1f95f1cdfe2ff54}{\string~IDatabase}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<Assignment>\ \doxymbox{\hyperlink{class_i_database_a1781b42114aea9ed7acd6848f067c159}{getAllAssignments}}(\textcolor{keywordtype}{int}\ userId)\ =\ 0;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ std::optional<UserModel>\ \doxymbox{\hyperlink{class_i_database_a15dc25740d940321181a10468f645b2e}{getUserByID}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ =\ 0;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ std::optional<UserModel>\ \doxymbox{\hyperlink{class_i_database_abf704a207fdd9b2e361189b37f7fef02}{getUserByEmail}}(std::string\ \&email)\ =\ 0;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<UserModel>\ \doxymbox{\hyperlink{class_i_database_af2e67d2a4aae3731b850911e91194ae3}{getAllUsers}}()\ =\ 0;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_i_database_a27e07395648063e2c8ffef2e5b668f72}{createUser}}(\doxymbox{\hyperlink{class_user_model}{UserModel}}\ \&userModel)\ =\ 0;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_i_database_a7760475f8381eb95fe97ae0ec33b8e18}{deleteUser}}(\doxymbox{\hyperlink{class_user_model}{UserModel}}\ \&userModel)\ =\ 0;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_i_database_afdc5b9ec1ed1a038a380b676d2f5825f}{createAssignment}}(\doxymbox{\hyperlink{class_assignment}{Assignment}}\ \&assignment)\ =\ 0;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_i_database_a6710c16f79d4eed4f79f78bae836bda1}{deleteAssignment}}(\doxymbox{\hyperlink{class_assignment}{Assignment}}\ \&assignment)\ =\ 0;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_i_database_aaedc00f38b3b1f4b03b45ed210f84223}{createHelpRequest}}(\doxymbox{\hyperlink{class_help_request_model}{HelpRequestModel}}\ \&helpRequest)\ =\ 0;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{virtual}\ std::optional<HelpRequestModel>\ \doxymbox{\hyperlink{class_i_database_a813ae2ac827648ba11b091948e8085c2}{getHelpRequestById}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ =\ 0;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<HelpRequestModel>\ \doxymbox{\hyperlink{class_i_database_a9e61913b995910f934566dd053fd4bf7}{getAllHelpRequests}}(\textcolor{keywordtype}{int}\ userId)\ =\ 0;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<HelpRequestModel>\ \doxymbox{\hyperlink{class_i_database_a37c6619ede05f2b50963bfa18c59d1b3}{getHelpRequestsFromOtherUsers}}(\textcolor{keywordtype}{int}\ userId)\ =\ 0;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{virtual}\ std::optional<Assignment>\ \doxymbox{\hyperlink{class_i_database_a7bf53c3026240f61073ca1b0466ae166}{getAssignmentByID}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ =\ 0;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_i_database_ae673d73603664454b1ab436376e3df81}{deleteHelpRequest}}(\doxymbox{\hyperlink{class_help_request_model}{HelpRequestModel}}\ \&helpRequest)\ =\ 0;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<Course>\ \doxymbox{\hyperlink{class_i_database_a54b8f8e96ce46a2950b8aa9c39be5ed0}{getAllCourses}}()\ =\ 0;}
+\DoxyCodeLine{00129\ \};}
+
+\end{DoxyCode}

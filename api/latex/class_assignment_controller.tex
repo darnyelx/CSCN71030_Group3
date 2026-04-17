@@ -1,0 +1,174 @@
+\doxysection{Assignment\+Controller Class Reference}
+\hypertarget{class_assignment_controller}{}\label{class_assignment_controller}\index{AssignmentController@{AssignmentController}}
+
+
+Validates inputs and maps persistence errors to {\ttfamily \doxylink{struct_assignment_result_payload}{Assignment\+Result\+Payload}}.  
+
+
+
+
+{\ttfamily \+\#include $<$Assignment\+Controller.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_assignment_controller_a7f45c7ad49d648d7f0e16fae5a60f224}{Assignment\+Controller}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&database)
+\begin{DoxyCompactList}\small\item\em Constructs controller with database dependency. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_assignment_result_payload}{Assignment\+Result\+Payload}} \doxymbox{\hyperlink{class_assignment_controller_afdaa66eae94e4ab7d7070fd624a9d0d9}{create\+Assignment}} (const std::\+string title, const std::\+string description, int course\+Id, int user\+Id, std::\+string due\+Date, const std::\+string \&status)
+\begin{DoxyCompactList}\small\item\em Builds a new {\ttfamily \doxylink{class_assignment}{Assignment}}, defaulting empty status to {\ttfamily "{}Pending"{}}, priority to 1, and inserts. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_assignment_result_payload}{Assignment\+Result\+Payload}} \doxymbox{\hyperlink{class_assignment_controller_a89b8534e88780fcb0e4cd5fcee55ccac}{get\+Assignment}} (int id)
+\begin{DoxyCompactList}\small\item\em Loads one assignment by id. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_get_all_assignment_result_payload}{Get\+All\+Assignment\+Result\+Payload}} \doxymbox{\hyperlink{class_assignment_controller_abd34d6cb3bd5928c799f93e451f37e33}{get\+All\+Assignments}} (int user\+Id)
+\begin{DoxyCompactList}\small\item\em Lists every assignment for the given user id. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_assignment_result_payload}{Assignment\+Result\+Payload}} \doxymbox{\hyperlink{class_assignment_controller_a9560baf790a4ecb025f2271a2f863055}{update\+Assignment}} (int id, const std::\+string \&title, const std::\+string \&description, int course\+Id, const std::\+string \&due\+Date, int priority, const std::\+string \&status)
+\begin{DoxyCompactList}\small\item\em Updates fields on an existing assignment then persists via upsert path. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_assignment_result_payload}{Assignment\+Result\+Payload}} \doxymbox{\hyperlink{class_assignment_controller_a935e7e9b521e4fd073a9489404479869}{delete\+Assignment}} (int id)
+\begin{DoxyCompactList}\small\item\em Deletes an assignment by primary key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Validates inputs and maps persistence errors to {\ttfamily \doxylink{struct_assignment_result_payload}{Assignment\+Result\+Payload}}. 
+
+{\ttfamily \doxylink{class_assignment_controller_a9560baf790a4ecb025f2271a2f863055}{update\+Assignment}} reuses {\ttfamily \doxylink{class_assignment_controller_afdaa66eae94e4ab7d7070fd624a9d0d9}{create\+Assignment}} on the database layer (upsert semantics in {\ttfamily \doxylink{class_d_b}{DB}}). 
+
+\label{doc-constructors}
+\Hypertarget{class_assignment_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_assignment_controller_a7f45c7ad49d648d7f0e16fae5a60f224}\index{AssignmentController@{AssignmentController}!AssignmentController@{AssignmentController}}
+\index{AssignmentController@{AssignmentController}!AssignmentController@{AssignmentController}}
+\doxysubsubsection{\texorpdfstring{AssignmentController()}{AssignmentController()}}
+{\footnotesize\ttfamily \label{class_assignment_controller_a7f45c7ad49d648d7f0e16fae5a60f224} 
+Assignment\+Controller::\+\+Assignment\+Controller (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{database}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs controller with database dependency. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em database} & Must outlive this controller. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_assignment_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_assignment_controller_afdaa66eae94e4ab7d7070fd624a9d0d9}\index{AssignmentController@{AssignmentController}!createAssignment@{createAssignment}}
+\index{createAssignment@{createAssignment}!AssignmentController@{AssignmentController}}
+\doxysubsubsection{\texorpdfstring{createAssignment()}{createAssignment()}}
+{\footnotesize\ttfamily \label{class_assignment_controller_afdaa66eae94e4ab7d7070fd624a9d0d9} 
+\doxymbox{\hyperlink{struct_assignment_result_payload}{Assignment\+Result\+Payload}} Assignment\+Controller::\+create\+Assignment (\begin{DoxyParamCaption}\item[{const std::\+string}]{title}{, }\item[{const std::\+string}]{description}{, }\item[{int}]{course\+Id}{, }\item[{int}]{user\+Id}{, }\item[{std::\+string}]{due\+Date}{, }\item[{const std::\+string \&}]{status}{}\end{DoxyParamCaption})}
+
+
+
+Builds a new {\ttfamily \doxylink{class_assignment}{Assignment}}, defaulting empty status to {\ttfamily "{}Pending"{}}, priority to 1, and inserts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & \doxylink{class_assignment}{Assignment} title. \\
+\hline
+{\em description} & Body text. \\
+\hline
+{\em course\+Id} & Foreign key to course. \\
+\hline
+{\em user\+Id} & Owning user id. \\
+\hline
+{\em due\+Date} & Due date string passed to persistence. \\
+\hline
+{\em status} & Workflow status; empty becomes {\ttfamily "{}Pending"{}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Payload with {\ttfamily success} reflecting insert result; {\ttfamily assignment} holds the in-\/memory row attempted. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_controller_a935e7e9b521e4fd073a9489404479869}\index{AssignmentController@{AssignmentController}!deleteAssignment@{deleteAssignment}}
+\index{deleteAssignment@{deleteAssignment}!AssignmentController@{AssignmentController}}
+\doxysubsubsection{\texorpdfstring{deleteAssignment()}{deleteAssignment()}}
+{\footnotesize\ttfamily \label{class_assignment_controller_a935e7e9b521e4fd073a9489404479869} 
+\doxymbox{\hyperlink{struct_assignment_result_payload}{Assignment\+Result\+Payload}} Assignment\+Controller::\+delete\+Assignment (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Deletes an assignment by primary key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Row to delete. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Success/\+failure with appropriate {\ttfamily error\+Message}. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_controller_abd34d6cb3bd5928c799f93e451f37e33}\index{AssignmentController@{AssignmentController}!getAllAssignments@{getAllAssignments}}
+\index{getAllAssignments@{getAllAssignments}!AssignmentController@{AssignmentController}}
+\doxysubsubsection{\texorpdfstring{getAllAssignments()}{getAllAssignments()}}
+{\footnotesize\ttfamily \label{class_assignment_controller_abd34d6cb3bd5928c799f93e451f37e33} 
+\doxymbox{\hyperlink{struct_get_all_assignment_result_payload}{Get\+All\+Assignment\+Result\+Payload}} Assignment\+Controller::\+get\+All\+Assignments (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Lists every assignment for the given user id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Owner user primary key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of assignments (may be empty). 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_controller_a89b8534e88780fcb0e4cd5fcee55ccac}\index{AssignmentController@{AssignmentController}!getAssignment@{getAssignment}}
+\index{getAssignment@{getAssignment}!AssignmentController@{AssignmentController}}
+\doxysubsubsection{\texorpdfstring{getAssignment()}{getAssignment()}}
+{\footnotesize\ttfamily \label{class_assignment_controller_a89b8534e88780fcb0e4cd5fcee55ccac} 
+\doxymbox{\hyperlink{struct_assignment_result_payload}{Assignment\+Result\+Payload}} Assignment\+Controller::\+get\+Assignment (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Loads one assignment by id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Primary key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Success with {\ttfamily assignment} set, or failure with {\ttfamily "{}\doxylink{class_assignment}{Assignment} not found"{}}. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_controller_a9560baf790a4ecb025f2271a2f863055}\index{AssignmentController@{AssignmentController}!updateAssignment@{updateAssignment}}
+\index{updateAssignment@{updateAssignment}!AssignmentController@{AssignmentController}}
+\doxysubsubsection{\texorpdfstring{updateAssignment()}{updateAssignment()}}
+{\footnotesize\ttfamily \label{class_assignment_controller_a9560baf790a4ecb025f2271a2f863055} 
+\doxymbox{\hyperlink{struct_assignment_result_payload}{Assignment\+Result\+Payload}} Assignment\+Controller::\+update\+Assignment (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const std::\+string \&}]{title}{, }\item[{const std::\+string \&}]{description}{, }\item[{int}]{course\+Id}{, }\item[{const std::\+string \&}]{due\+Date}{, }\item[{int}]{priority}{, }\item[{const std::\+string \&}]{status}{}\end{DoxyParamCaption})}
+
+
+
+Updates fields on an existing assignment then persists via upsert path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \doxylink{class_assignment}{Assignment} primary key. \\
+\hline
+{\em title} & New title. \\
+\hline
+{\em description} & New description. \\
+\hline
+{\em course\+Id} & New course id. \\
+\hline
+{\em due\+Date} & New due date string. \\
+\hline
+{\em priority} & New priority value. \\
+\hline
+{\em status} & New status; empty preserves existing or defaults to Pending when missing. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Failure if row not found or persist fails; success includes updated snapshot when ok. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_assignment_controller_8hpp}{Assignment\+Controller.\+hpp}}\item 
+\doxymbox{\hyperlink{_assignment_controller_8cpp}{Assignment\+Controller.\+cpp}}\end{DoxyCompactItemize}

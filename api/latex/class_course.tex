@@ -1,0 +1,264 @@
+\doxysection{Course Class Reference}
+\hypertarget{class_course}{}\label{class_course}\index{Course@{Course}}
+
+
+\doxylink{class_course}{Course} record associated with a user ({\ttfamily user\+\_\+id} foreign key).  
+
+
+
+
+{\ttfamily \+\#include $<$Course\+Model.\+hpp$>$}
+
+Inheritance diagram for Course:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_course}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_course_a6c94609e43d9c76c00e9efbb43b65915}{Course}} (int id, const std::\+string \&name, const std::\+string \&description)
+\begin{DoxyCompactList}\small\item\em Constructs a course with id, display name, and description text. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_course_a6b959ccf15d9ceed9e9c14a701561982}{Course}} ()
+\begin{DoxyCompactList}\small\item\em Default construct; leaves fields in a defined but empty/\+default numeric state. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_course_a11942b77f78c9271143d4d2c12b71bf3}{get\+Id}} () const
+\item 
+int \doxymbox{\hyperlink{class_course_ad040fc6414d44e69549746eef539f05f}{get\+User\+Id}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_course_ab26b47d93027fcecffdf42b2ee526f87}{get\+Name}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_course_a8c7e87f3ff557b37e47159a75a4015f5}{get\+Description}} () const
+\item 
+\doxymbox{\hyperlink{class_course}{Course}} \& \doxymbox{\hyperlink{class_course_aeb5885afa61d7d130f567fadbd49c3de}{set\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Sets id;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_course}{Course}} \& \doxymbox{\hyperlink{class_course_ac334dd99dd63c2cf6a3d38c4a5cba51e}{set\+Name}} (const std::\+string \&name)
+\begin{DoxyCompactList}\small\item\em Sets name;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_course}{Course}} \& \doxymbox{\hyperlink{class_course_a61558af398eaf9f73800dca20bec91bc}{set\+Description}} (const std::\+string \&description)
+\begin{DoxyCompactList}\small\item\em Sets description;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_course}{Course}} \& \doxymbox{\hyperlink{class_course_a5cc3205a76bf37696f7fffe994e51f4a}{set\+User\+Id}} (int user\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Sets owner user id;. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_course_a0bd53ef6c7fb075bd1aa33f5e5178970}{save}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&db) override
+\begin{DoxyCompactList}\small\item\em No-\/op write in current build. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_course_a4964edea0912749f53eb1669be0cdb59}{load}} ()
+\begin{DoxyCompactList}\small\item\em Reserved hook; current implementation is a no-\/op. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_course_aa7d70cacc5aad41c6e882eea1a9a46e8}{remove}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&db) override
+\begin{DoxyCompactList}\small\item\em No-\/op delete in current build. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{class_course_a5ea3109e7177d4e6c9495065176d90f2}{get\+Table\+Name}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_base_model}{Base\+Model}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \doxymbox{\hyperlink{class_base_model_aeec6feadc4ebee6ea92d3c379092e0b6}{\texorpdfstring{$\sim$}{\string~}\+Base\+Model}} ()=default
+\begin{DoxyCompactList}\small\item\em Ensures derived destructors run when deleting through {\ttfamily Base\+Model\texorpdfstring{$\ast$}{*}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const std::\+string \doxymbox{\hyperlink{class_course_a139941557a9a225fb31f3deca34508ab}{table\+Name}} = "{}courses"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_course}{Course} record associated with a user ({\ttfamily user\+\_\+id} foreign key). 
+
+In this application {\ttfamily \doxylink{class_course_a0bd53ef6c7fb075bd1aa33f5e5178970}{save}}/\+{\ttfamily \doxylink{class_course_aa7d70cacc5aad41c6e882eea1a9a46e8}{remove}} return false from {\ttfamily \doxylink{class_course}{Course}} (catalog is maintained elsewhere); the type is mainly used for read results from {\ttfamily get\+All\+Courses}. 
+
+\label{doc-constructors}
+\Hypertarget{class_course_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_course_a6c94609e43d9c76c00e9efbb43b65915}\index{Course@{Course}!Course@{Course}}
+\index{Course@{Course}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{Course()}{Course()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_course_a6c94609e43d9c76c00e9efbb43b65915} 
+Course::\+\+Course (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const std::\+string \&}]{name}{, }\item[{const std::\+string \&}]{description}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a course with id, display name, and description text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Primary key or sentinel. \\
+\hline
+{\em name} & Short course title. \\
+\hline
+{\em description} & Longer catalog description. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_course_a6b959ccf15d9ceed9e9c14a701561982}\index{Course@{Course}!Course@{Course}}
+\index{Course@{Course}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{Course()}{Course()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_course_a6b959ccf15d9ceed9e9c14a701561982} 
+Course::\+\+Course (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Default construct; leaves fields in a defined but empty/\+default numeric state. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_course_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_course_a8c7e87f3ff557b37e47159a75a4015f5}\index{Course@{Course}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily \label{class_course_a8c7e87f3ff557b37e47159a75a4015f5} 
+std::\+string Course::\+get\+Description (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_course}{Course} description body. 
+\end{DoxyReturn}
+\Hypertarget{class_course_a11942b77f78c9271143d4d2c12b71bf3}\index{Course@{Course}!getId@{getId}}
+\index{getId@{getId}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily \label{class_course_a11942b77f78c9271143d4d2c12b71bf3} 
+int Course::\+get\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_course}{Course} primary key. 
+\end{DoxyReturn}
+\Hypertarget{class_course_ab26b47d93027fcecffdf42b2ee526f87}\index{Course@{Course}!getName@{getName}}
+\index{getName@{getName}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily \label{class_course_ab26b47d93027fcecffdf42b2ee526f87} 
+std::\+string Course::\+get\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_course}{Course} name. 
+\end{DoxyReturn}
+\Hypertarget{class_course_a5ea3109e7177d4e6c9495065176d90f2}\index{Course@{Course}!getTableName@{getTableName}}
+\index{getTableName@{getTableName}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{getTableName()}{getTableName()}}
+{\footnotesize\ttfamily \label{class_course_a5ea3109e7177d4e6c9495065176d90f2} 
+std::\+string Course::\+get\+Table\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+Logical table name {\ttfamily "{}courses"{}}. 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_base_model_abdc6d5be8ae06dedf6d08fefe1efe2f8}{Base\+Model}}.
+
+\Hypertarget{class_course_ad040fc6414d44e69549746eef539f05f}\index{Course@{Course}!getUserId@{getUserId}}
+\index{getUserId@{getUserId}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{getUserId()}{getUserId()}}
+{\footnotesize\ttfamily \label{class_course_ad040fc6414d44e69549746eef539f05f} 
+int Course::\+get\+User\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Owning user id. 
+\end{DoxyReturn}
+\Hypertarget{class_course_a4964edea0912749f53eb1669be0cdb59}\index{Course@{Course}!load@{load}}
+\index{load@{load}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_course_a4964edea0912749f53eb1669be0cdb59} 
+void Course::\+load (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reserved hook; current implementation is a no-\/op. 
+
+\Hypertarget{class_course_aa7d70cacc5aad41c6e882eea1a9a46e8}\index{Course@{Course}!remove@{remove}}
+\index{remove@{remove}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{class_course_aa7d70cacc5aad41c6e882eea1a9a46e8} 
+bool Course::\+remove (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{db}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+No-\/op delete in current build. 
+
+\begin{DoxyReturn}{Returns}
+always false. 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_base_model_a63f923033f87f2b11f97bff190fdd685}{Base\+Model}}.
+
+\Hypertarget{class_course_a0bd53ef6c7fb075bd1aa33f5e5178970}\index{Course@{Course}!save@{save}}
+\index{save@{save}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily \label{class_course_a0bd53ef6c7fb075bd1aa33f5e5178970} 
+bool Course::\+save (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{db}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+No-\/op write in current build. 
+
+\begin{DoxyReturn}{Returns}
+always false. 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_base_model_ad64fcc8fdbd3663f8267f12d009683a2}{Base\+Model}}.
+
+\Hypertarget{class_course_a61558af398eaf9f73800dca20bec91bc}\index{Course@{Course}!setDescription@{setDescription}}
+\index{setDescription@{setDescription}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{setDescription()}{setDescription()}}
+{\footnotesize\ttfamily \label{class_course_a61558af398eaf9f73800dca20bec91bc} 
+\doxymbox{\hyperlink{class_course}{Course}} \& Course::\+set\+Description (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{description}{}\end{DoxyParamCaption})}
+
+
+
+Sets description;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_course_aeb5885afa61d7d130f567fadbd49c3de}\index{Course@{Course}!setId@{setId}}
+\index{setId@{setId}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{setId()}{setId()}}
+{\footnotesize\ttfamily \label{class_course_aeb5885afa61d7d130f567fadbd49c3de} 
+\doxymbox{\hyperlink{class_course}{Course}} \& Course::\+set\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Sets id;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_course_ac334dd99dd63c2cf6a3d38c4a5cba51e}\index{Course@{Course}!setName@{setName}}
+\index{setName@{setName}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}}
+{\footnotesize\ttfamily \label{class_course_ac334dd99dd63c2cf6a3d38c4a5cba51e} 
+\doxymbox{\hyperlink{class_course}{Course}} \& Course::\+set\+Name (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Sets name;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_course_a5cc3205a76bf37696f7fffe994e51f4a}\index{Course@{Course}!setUserId@{setUserId}}
+\index{setUserId@{setUserId}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{setUserId()}{setUserId()}}
+{\footnotesize\ttfamily \label{class_course_a5cc3205a76bf37696f7fffe994e51f4a} 
+\doxymbox{\hyperlink{class_course}{Course}} \& Course::\+set\+User\+Id (\begin{DoxyParamCaption}\item[{int}]{user\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Sets owner user id;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_course_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_course_a139941557a9a225fb31f3deca34508ab}\index{Course@{Course}!tableName@{tableName}}
+\index{tableName@{tableName}!Course@{Course}}
+\doxysubsubsection{\texorpdfstring{tableName}{tableName}}
+{\footnotesize\ttfamily \label{class_course_a139941557a9a225fb31f3deca34508ab} 
+const std::\+string Course::\+table\+Name = "{}courses"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_course_model_8hpp}{Course\+Model.\+hpp}}\item 
+\doxymbox{\hyperlink{_course_model_8cpp}{Course\+Model.\+cpp}}\end{DoxyCompactItemize}

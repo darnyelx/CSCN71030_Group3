@@ -1,0 +1,51 @@
+\doxysection{Login\+Result Struct Reference}
+\hypertarget{struct_login_result}{}\label{struct_login_result}\index{LoginResult@{LoginResult}}
+
+
+Outcome of {\ttfamily login} or {\ttfamily register\+User} for the UI or tests to interpret.  
+
+
+
+
+{\ttfamily \+\#include $<$Auth\+Controller.\+hpp$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{struct_login_result_afdd744f93ad42ea9fdd35c2e4142ec27}{success}}
+\item 
+std::\+string \doxymbox{\hyperlink{struct_login_result_acf4d9db5a65d4c73a7503ee94ae0d638}{message}}
+\item 
+std::\+optional$<$ \doxymbox{\hyperlink{class_user_model}{User\+Model}} $>$ \doxymbox{\hyperlink{struct_login_result_a6522469fe521b92122afe1390cac5a05}{user\+Model}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Outcome of {\ttfamily login} or {\ttfamily register\+User} for the UI or tests to interpret. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_login_result_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_login_result_acf4d9db5a65d4c73a7503ee94ae0d638}\index{LoginResult@{LoginResult}!message@{message}}
+\index{message@{message}!LoginResult@{LoginResult}}
+\doxysubsubsection{\texorpdfstring{message}{message}}
+{\footnotesize\ttfamily \label{struct_login_result_acf4d9db5a65d4c73a7503ee94ae0d638} 
+std::\+string Login\+Result::\+message}
+
+Human-\/readable status (error text or success notice). \Hypertarget{struct_login_result_afdd744f93ad42ea9fdd35c2e4142ec27}\index{LoginResult@{LoginResult}!success@{success}}
+\index{success@{success}!LoginResult@{LoginResult}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily \label{struct_login_result_afdd744f93ad42ea9fdd35c2e4142ec27} 
+bool Login\+Result::\+success}
+
+true when credentials validated or registration completed. \Hypertarget{struct_login_result_a6522469fe521b92122afe1390cac5a05}\index{LoginResult@{LoginResult}!userModel@{userModel}}
+\index{userModel@{userModel}!LoginResult@{LoginResult}}
+\doxysubsubsection{\texorpdfstring{userModel}{userModel}}
+{\footnotesize\ttfamily \label{struct_login_result_a6522469fe521b92122afe1390cac5a05} 
+std::\+optional$<$\doxymbox{\hyperlink{class_user_model}{User\+Model}}$>$ Login\+Result::\+user\+Model}
+
+Populated user row on success when available. 
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_auth_controller_8hpp}{Auth\+Controller.\+hpp}}\end{DoxyCompactItemize}

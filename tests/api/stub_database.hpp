@@ -1,3 +1,8 @@
+/**
+ * @file stub_database.hpp
+ * @brief In-memory `IDatabase` for unit tests; toggles success paths and stores fixture rows.
+ */
+
 #pragma once
 
 #include <stdexcept>
@@ -10,26 +15,32 @@
 #include "IDatabase.hpp"
 #include "UserModel.hpp"
 
+/**
+ * @brief Configurable fake database: no PostgreSQL required.
+ * @details Public fields let tests arrange data and flip success flags before invoking controllers.
+ *          Override methods implement simplified semantics matching production expectations for tests.
+ */
 class StubDatabase : public IDatabase {
 public:
-	std::vector<Assignment> assignments;
-	std::unordered_map<int, Assignment> assignmentById;
-	bool createAssignmentSucceeds = false;
-	bool deleteAssignmentSucceeds = false;
-	int nextAssignmentId = 1;
+	std::vector<Assignment> assignments; /**< Linear store of assignment rows used by list APIs. */
+	std::unordered_map<int, Assignment> assignmentById; /**< Fast lookup by assignment id. */
+	bool createAssignmentSucceeds = false; /**< When false, `createAssignment` returns false without mutation. */
+	bool deleteAssignmentSucceeds = false; /**< When false, `deleteAssignment` returns false without mutation. */
+	int nextAssignmentId = 1; /**< Monotonic id assigned to new assignments when create succeeds. */
 
-	std::vector<Course> courses;
-	bool throwOnGetAllCourses = false;
+	std::vector<Course> courses; /**< Catalog returned by `getAllCourses`. */
+	bool throwOnGetAllCourses = false; /**< When true, `getAllCourses` throws `std::runtime_error`. */
 
-	std::vector<HelpRequestModel> helpRequests;
-	std::unordered_map<int, HelpRequestModel> helpRequestByIdMap;
-	bool createHelpRequestSucceeds = false;
-	int nextHelpRequestId = 1;
+	std::vector<HelpRequestModel> helpRequests; /**< All help-request rows in insertion order. */
+	std::unordered_map<int, HelpRequestModel> helpRequestByIdMap; /**< Lookup by help-request id. */
+	bool createHelpRequestSucceeds = false; /**< When false, `createHelpRequest` returns false. */
+	int nextHelpRequestId = 1; /**< Monotonic id for successful help-request inserts. */
 
-	std::vector<UserModel> users;
-	std::optional<UserModel> userByEmailResult;
-	bool createUserSucceeds = true;
+	std::vector<UserModel> users; /**< User rows for `getUserByID` / `getAllUsers`. */
+	std::optional<UserModel> userByEmailResult; /**< Fixed return for `getUserByEmail` (email param ignored). */
+	bool createUserSucceeds = true; /**< When false, `createUser` returns false. */
 
+	/** @copydoc IDatabase::getAllAssignments */
 	std::vector<Assignment> getAllAssignments(int userId) override {
 		std::vector<Assignment> out;
 		for (const auto &a : assignments) {
@@ -40,6 +51,7 @@ public:
 		return out;
 	}
 
+	/** @copydoc IDatabase::getUserByID */
 	std::optional<UserModel> getUserByID(int id) override {
 		for (const auto &u : users) {
 			if (u.getId() == id) {
@@ -49,17 +61,22 @@ public:
 		return std::nullopt;
 	}
 
+	/** @copydoc IDatabase::getUserByEmail */
 	std::optional<UserModel> getUserByEmail(std::string &email) override {
 		(void)email;
 		return userByEmailResult;
 	}
 
+	/** @copydoc IDatabase::getAllUsers */
 	std::vector<UserModel> getAllUsers() override { return users; }
 
-	bool createUser(UserModel &) override { return createUserSucceeds; }
+	/** @copydoc IDatabase::createUser */
+	bool createUser(UserModel &userModel) override { (void)userModel; return createUserSucceeds; }
 
-	bool deleteUser(UserModel &) override { return false; }
+	/** @copydoc IDatabase::deleteUser */
+	bool deleteUser(UserModel &userModel) override { (void)userModel; return false; }
 
+	/** @copydoc IDatabase::createAssignment */
 	bool createAssignment(Assignment &assignment) override {
 		if (!createAssignmentSucceeds) {
 			return false;
@@ -85,6 +102,7 @@ public:
 		return true;
 	}
 
+	/** @copydoc IDatabase::deleteAssignment */
 	bool deleteAssignment(Assignment &assignment) override {
 		if (!deleteAssignmentSucceeds) {
 			return false;
@@ -101,18 +119,20 @@ public:
 		return true;
 	}
 
-	bool createHelpRequest(HelpRequestModel &hr) override {
+	/** @copydoc IDatabase::createHelpRequest */
+	bool createHelpRequest(HelpRequestModel &helpRequest) override {
 		if (!createHelpRequestSucceeds) {
 			return false;
 		}
 		const int hid = nextHelpRequestId++;
-		hr.setId(hid);
-		helpRequests.push_back(hr);
+		helpRequest.setId(hid);
+		helpRequests.push_back(helpRequest);
 		helpRequestByIdMap.erase(hid);
-		helpRequestByIdMap.emplace(hid, hr);
+		helpRequestByIdMap.emplace(hid, helpRequest);
 		return true;
 	}
 
+	/** @copydoc IDatabase::getHelpRequestById */
 	std::optional<HelpRequestModel> getHelpRequestById(int id) override {
 		auto it = helpRequestByIdMap.find(id);
 		if (it == helpRequestByIdMap.end()) {
@@ -121,6 +141,7 @@ public:
 		return it->second;
 	}
 
+	/** @copydoc IDatabase::getAllHelpRequests */
 	std::vector<HelpRequestModel> getAllHelpRequests(int userId) override {
 		std::vector<HelpRequestModel> out;
 		for (const auto &h : helpRequests) {
@@ -131,6 +152,7 @@ public:
 		return out;
 	}
 
+	/** @copydoc IDatabase::getHelpRequestsFromOtherUsers */
 	std::vector<HelpRequestModel> getHelpRequestsFromOtherUsers(int userId) override {
 		std::vector<HelpRequestModel> out;
 		for (auto h : helpRequests) {
@@ -155,6 +177,7 @@ public:
 		return out;
 	}
 
+	/** @copydoc IDatabase::getAssignmentByID */
 	std::optional<Assignment> getAssignmentByID(int id) override {
 		auto it = assignmentById.find(id);
 		if (it == assignmentById.end()) {
@@ -163,8 +186,10 @@ public:
 		return it->second;
 	}
 
-	bool deleteHelpRequest(HelpRequestModel &) override { return false; }
+	/** @copydoc IDatabase::deleteHelpRequest */
+	bool deleteHelpRequest(HelpRequestModel &helpRequest) override { (void)helpRequest; return false; }
 
+	/** @copydoc IDatabase::getAllCourses */
 	std::vector<Course> getAllCourses() override {
 		if (throwOnGetAllCourses) {
 			throw std::runtime_error("database unavailable");

@@ -1,0 +1,51 @@
+\doxysection{Assignment\+Result\+Payload Struct Reference}
+\hypertarget{struct_assignment_result_payload}{}\label{struct_assignment_result_payload}\index{AssignmentResultPayload@{AssignmentResultPayload}}
+
+
+Single-\/assignment operation result (create, read, update, delete).  
+
+
+
+
+{\ttfamily \+\#include $<$Assignment\+Controller.\+hpp$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{struct_assignment_result_payload_a06b4b5cb977c392e4284b3f7f3d99b13}{success}}
+\item 
+std::\+string \doxymbox{\hyperlink{struct_assignment_result_payload_ab853c2cfe47a51fecfb65f06675d1049}{error\+Message}}
+\item 
+std::\+optional$<$ \doxymbox{\hyperlink{class_assignment}{Assignment}} $>$ \doxymbox{\hyperlink{struct_assignment_result_payload_a714758d893337ae317e1dc8f09788e29}{assignment}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Single-\/assignment operation result (create, read, update, delete). 
+
+\label{doc-variable-members}
+\Hypertarget{struct_assignment_result_payload_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_assignment_result_payload_a714758d893337ae317e1dc8f09788e29}\index{AssignmentResultPayload@{AssignmentResultPayload}!assignment@{assignment}}
+\index{assignment@{assignment}!AssignmentResultPayload@{AssignmentResultPayload}}
+\doxysubsubsection{\texorpdfstring{assignment}{assignment}}
+{\footnotesize\ttfamily \label{struct_assignment_result_payload_a714758d893337ae317e1dc8f09788e29} 
+std::\+optional$<$\doxymbox{\hyperlink{class_assignment}{Assignment}}$>$ Assignment\+Result\+Payload::\+assignment}
+
+Populated row on read/\+create/\+update success where applicable. \Hypertarget{struct_assignment_result_payload_ab853c2cfe47a51fecfb65f06675d1049}\index{AssignmentResultPayload@{AssignmentResultPayload}!errorMessage@{errorMessage}}
+\index{errorMessage@{errorMessage}!AssignmentResultPayload@{AssignmentResultPayload}}
+\doxysubsubsection{\texorpdfstring{errorMessage}{errorMessage}}
+{\footnotesize\ttfamily \label{struct_assignment_result_payload_ab853c2cfe47a51fecfb65f06675d1049} 
+std::\+string Assignment\+Result\+Payload::\+error\+Message}
+
+Empty on success; otherwise user-\/facing failure reason. \Hypertarget{struct_assignment_result_payload_a06b4b5cb977c392e4284b3f7f3d99b13}\index{AssignmentResultPayload@{AssignmentResultPayload}!success@{success}}
+\index{success@{success}!AssignmentResultPayload@{AssignmentResultPayload}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily \label{struct_assignment_result_payload_a06b4b5cb977c392e4284b3f7f3d99b13} 
+bool Assignment\+Result\+Payload::\+success}
+
+true when the requested operation completed without error. 
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_assignment_controller_8hpp}{Assignment\+Controller.\+hpp}}\end{DoxyCompactItemize}

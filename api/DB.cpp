@@ -1,6 +1,7 @@
-//
-// Created by Darnyelx on 2026-03-26.
-//
+/**
+ * @file DB.cpp
+ * @brief `DB` singleton: connection string from env/config, SQL for `IDatabase` operations.
+ */
 
 #include "DB.hpp"
 #include <cctype>
@@ -81,28 +82,24 @@ std::string fromDbAssignmentStatus(const std::string &db) {
 }
 } // namespace
 
-std::string DB::connectionString = envConnectionString();
+std::string DB::connectionString(envConnectionString());
 
-DB::DB():connection( DB::connectionString ) {
-  if (connection.is_open()) {
-      std::cout << "DB connection is opened" << std::endl;
-  }
+DB::DB() : connection(DB::connectionString) {
+    if (connection.is_open()) {
+        std::cout << "DB connection is opened" << std::endl;
+    }
 }
 
 DB &DB::getInstance() {
-    try {
-        static DB instance;
-        return instance;
-    } catch (std::exception const &e) {
-        std::cout << e.what() << std::endl;
-    }
+    static DB instance;
+    return instance;
 }
 
 pqxx::connection &DB::getConnection() {
     if (connection.is_open()) {
 
-    }else {
-       DB::connection = pqxx::connection(connectionString);
+    } else {
+        DB::connection = pqxx::connection(connectionString);
     }
     return connection;
 }
@@ -253,7 +250,7 @@ std::vector<UserModel> DB::getAllUsers() {
     return users;
 }
 
-std::vector<Assignment> DB::getAllAssignments(int id) {
+std::vector<Assignment> DB::getAllAssignments(int userId) {
     std::vector<Assignment> assignments;
 
     try {
@@ -269,7 +266,7 @@ std::vector<Assignment> DB::getAllAssignments(int id) {
                 "FROM assignments a "
                 "LEFT JOIN courses c ON c.id = a.course_id "
                 "WHERE a.user_id = $1";
-            pqxx::result result = transaction.exec_params(query, id);
+            pqxx::result result = transaction.exec_params(query, userId);
 
             for (auto const &row: result) {
                 Assignment assignmentRow;
@@ -443,7 +440,7 @@ std::optional<Assignment> DB::getAssignmentByID(int id) {
     }
 }
 
-std::vector<HelpRequestModel> DB::getAllHelpRequests(int id) {
+std::vector<HelpRequestModel> DB::getAllHelpRequests(int userId) {
     std::vector<HelpRequestModel> helpRequests;
 
     try {
@@ -453,7 +450,7 @@ std::vector<HelpRequestModel> DB::getAllHelpRequests(int id) {
             pqxx::work transaction(connection);
 
             std::string query = "SELECT * FROM help_requests WHERE user_id = $1";
-            pqxx::result result = transaction.exec_params(query, id);
+            pqxx::result result = transaction.exec_params(query, userId);
 
             for (auto const &row: result) {
                 HelpRequestModel helpRequestRow;

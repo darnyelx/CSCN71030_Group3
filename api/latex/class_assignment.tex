@@ -1,0 +1,428 @@
+\doxysection{Assignment Class Reference}
+\hypertarget{class_assignment}{}\label{class_assignment}\index{Assignment@{Assignment}}
+
+
+\doxylink{class_assignment}{Assignment} owned by a user, linked to a course, with scheduling and workflow status.  
+
+
+
+
+{\ttfamily \+\#include $<$Assignment\+Model.\+hpp$>$}
+
+Inheritance diagram for Assignment:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_assignment}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}} (int id=-\/1, const std::\+string \&title="{}"{}, const std::\+string \&description="{}"{})
+\begin{DoxyCompactList}\small\item\em Constructs an assignment with optional id/\+title/\+description; other fields default. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_assignment_ae89b7e6cea45ce3a370b8645171e3bc5}{get\+Id}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_assignment_ad53932d9f1fc6caa517181c188a5b5d5}{get\+Title}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_assignment_aa6f5ec52a7ef4e90046c120ec7978a5c}{get\+Description}} () const
+\item 
+int \doxymbox{\hyperlink{class_assignment_a59eea26327551fed4e6ff77173550ba9}{get\+Course\+Id}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_assignment_a0adcced466b4c6ce67dac00627b6fafd}{get\+Course\+Name}} () const
+\item 
+int \doxymbox{\hyperlink{class_assignment_a13f581809228e1920de13984f7501d6a}{get\+User\+Id}} () const
+\item 
+int \doxymbox{\hyperlink{class_assignment_a00886a481ca2d23b00cabea1531c4e2f}{get\+Priority}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_assignment_ad3a71209dcfa00fbfde78c720dec867b}{get\+Status}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_assignment_a0957f7188df3762766951dba77b6780f}{get\+Due\+Date}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_assignment_ab0554706f0dd55ed80d3b46f8767bfe0}{get\+Created\+At}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_assignment_ab075fcb3c6bc231d4e7892552ff41874}{get\+Updated\+At}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_assignment_ad121dd9b8466c164b591737a7f83e7c0}{get\+Table\+Name}} () override
+\item 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& \doxymbox{\hyperlink{class_assignment_a0e186b6544da8a58f34cecd65525feec}{set\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Sets primary key;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& \doxymbox{\hyperlink{class_assignment_ac3926d3fad060fa3ed5022fc9137e072}{set\+Title}} (const std::\+string \&title)
+\begin{DoxyCompactList}\small\item\em Sets title;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& \doxymbox{\hyperlink{class_assignment_a4122f213e654ca6e940df652b32a18bc}{set\+Description}} (const std::\+string \&description)
+\begin{DoxyCompactList}\small\item\em Sets description;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& \doxymbox{\hyperlink{class_assignment_aa0c491d2e360a10918d1110640849543}{set\+Created\+At}} (const std::\+string \&created\+\_\+at)
+\begin{DoxyCompactList}\small\item\em Sets created-\/at string;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& \doxymbox{\hyperlink{class_assignment_aff9c8b72dded3ce2998893934aebbd3f}{set\+Updated\+At}} (const std::\+string \&updated\+\_\+at)
+\begin{DoxyCompactList}\small\item\em Sets updated-\/at string;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& \doxymbox{\hyperlink{class_assignment_a30d6e1d969c9451c56803ef582b57e0a}{set\+Due\+Date}} (const std::\+string \&due\+\_\+date)
+\begin{DoxyCompactList}\small\item\em Sets due date string;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& \doxymbox{\hyperlink{class_assignment_a737c452c98076a745218c0c2a133c479}{set\+Course\+Id}} (int course\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Sets course foreign key;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& \doxymbox{\hyperlink{class_assignment_aba820868e0041c846549acee390be526}{set\+Course\+Name}} (const std::\+string \&name)
+\begin{DoxyCompactList}\small\item\em Sets denormalized course display name (UI);. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& \doxymbox{\hyperlink{class_assignment_a48b60834ebff9e2a39cb2e128b7da3c7}{set\+Priority}} (int priority)
+\begin{DoxyCompactList}\small\item\em Sets priority;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& \doxymbox{\hyperlink{class_assignment_a8f61cd8bcda5ab02a51c9c24ead961c2}{set\+Status}} (const std::\+string \&status)
+\begin{DoxyCompactList}\small\item\em Sets status string;. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& \doxymbox{\hyperlink{class_assignment_ae86244f207110dc158e5b1269da7399f}{set\+User\+Id}} (int user\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Sets owning user id;. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_assignment_ad257ca8b777ddec191fd69a3e23adb2f}{save}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&db) override
+\begin{DoxyCompactList}\small\item\em Persists via {\ttfamily \doxylink{class_i_database_afdc5b9ec1ed1a038a380b676d2f5825f}{IDatabase::\+create\+Assignment}}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_assignment_a98fff912dc8455ff15ccc59ffa088558}{load}} ()
+\begin{DoxyCompactList}\small\item\em Reserved hook; current implementation is a no-\/op. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_assignment_ad0e116c816191d777f96c89cf30529a2}{remove}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&db) override
+\begin{DoxyCompactList}\small\item\em Deletes via {\ttfamily \doxylink{class_i_database_a6710c16f79d4eed4f79f78bae836bda1}{IDatabase::\+delete\+Assignment}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_base_model}{Base\+Model}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \doxymbox{\hyperlink{class_base_model_aeec6feadc4ebee6ea92d3c379092e0b6}{\texorpdfstring{$\sim$}{\string~}\+Base\+Model}} ()=default
+\begin{DoxyCompactList}\small\item\em Ensures derived destructors run when deleting through {\ttfamily Base\+Model\texorpdfstring{$\ast$}{*}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const std::\+string \doxymbox{\hyperlink{class_assignment_a360970ab5bf7888e119e4ed10d30ad83}{table\+Name}} = "{}assignments"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_assignment}{Assignment} owned by a user, linked to a course, with scheduling and workflow status. 
+
+{\ttfamily \doxylink{class_assignment_ad257ca8b777ddec191fd69a3e23adb2f}{save}} maps to {\ttfamily create\+Assignment} on the database (upsert/\+update path in {\ttfamily \doxylink{class_d_b}{DB}}). {\ttfamily course\+\_\+name} is optional UI data from joins, not stored on the assignment row itself. 
+
+\label{doc-constructors}
+\Hypertarget{class_assignment_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}\index{Assignment@{Assignment}!Assignment@{Assignment}}
+\index{Assignment@{Assignment}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{Assignment()}{Assignment()}}
+{\footnotesize\ttfamily \label{class_assignment_aba61348e8e38c60afa1a946d5e4242c5} 
+Assignment::\+\+Assignment (\begin{DoxyParamCaption}\item[{int}]{id}{ = {\ttfamily -\/1}, }\item[{const std::\+string \&}]{title}{ = {\ttfamily "{}"{}}, }\item[{const std::\+string \&}]{description}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Constructs an assignment with optional id/\+title/\+description; other fields default. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Row id or negative sentinel for “not yet persisted”. \\
+\hline
+{\em title} & Short title shown in lists. \\
+\hline
+{\em description} & Longer body text. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_assignment_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_assignment_a59eea26327551fed4e6ff77173550ba9}\index{Assignment@{Assignment}!getCourseId@{getCourseId}}
+\index{getCourseId@{getCourseId}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getCourseId()}{getCourseId()}}
+{\footnotesize\ttfamily \label{class_assignment_a59eea26327551fed4e6ff77173550ba9} 
+int Assignment::\+get\+Course\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Foreign key {\ttfamily course\+\_\+id}. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_a0adcced466b4c6ce67dac00627b6fafd}\index{Assignment@{Assignment}!getCourseName@{getCourseName}}
+\index{getCourseName@{getCourseName}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getCourseName()}{getCourseName()}}
+{\footnotesize\ttfamily \label{class_assignment_a0adcced466b4c6ce67dac00627b6fafd} 
+std::\+string Assignment::\+get\+Course\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Display name from join when populated. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_ab0554706f0dd55ed80d3b46f8767bfe0}\index{Assignment@{Assignment}!getCreatedAt@{getCreatedAt}}
+\index{getCreatedAt@{getCreatedAt}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getCreatedAt()}{getCreatedAt()}}
+{\footnotesize\ttfamily \label{class_assignment_ab0554706f0dd55ed80d3b46f8767bfe0} 
+std::\+string Assignment::\+get\+Created\+At (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Creation timestamp string from the database. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_aa6f5ec52a7ef4e90046c120ec7978a5c}\index{Assignment@{Assignment}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily \label{class_assignment_aa6f5ec52a7ef4e90046c120ec7978a5c} 
+std::\+string Assignment::\+get\+Description (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_assignment}{Assignment} description body. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_a0957f7188df3762766951dba77b6780f}\index{Assignment@{Assignment}!getDueDate@{getDueDate}}
+\index{getDueDate@{getDueDate}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getDueDate()}{getDueDate()}}
+{\footnotesize\ttfamily \label{class_assignment_a0957f7188df3762766951dba77b6780f} 
+std::\+string Assignment::\+get\+Due\+Date (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Due date/\+time string as stored or formatted for display. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_ae89b7e6cea45ce3a370b8645171e3bc5}\index{Assignment@{Assignment}!getId@{getId}}
+\index{getId@{getId}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily \label{class_assignment_ae89b7e6cea45ce3a370b8645171e3bc5} 
+int Assignment::\+get\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Primary key or sentinel id. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_a00886a481ca2d23b00cabea1531c4e2f}\index{Assignment@{Assignment}!getPriority@{getPriority}}
+\index{getPriority@{getPriority}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getPriority()}{getPriority()}}
+{\footnotesize\ttfamily \label{class_assignment_a00886a481ca2d23b00cabea1531c4e2f} 
+int Assignment::\+get\+Priority (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Numeric priority (higher may mean more urgent depending on UI). 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_ad3a71209dcfa00fbfde78c720dec867b}\index{Assignment@{Assignment}!getStatus@{getStatus}}
+\index{getStatus@{getStatus}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getStatus()}{getStatus()}}
+{\footnotesize\ttfamily \label{class_assignment_ad3a71209dcfa00fbfde78c720dec867b} 
+std::\+string Assignment::\+get\+Status (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Workflow status string (Pending /\+ In Progress /\+ Completed). 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_ad121dd9b8466c164b591737a7f83e7c0}\index{Assignment@{Assignment}!getTableName@{getTableName}}
+\index{getTableName@{getTableName}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getTableName()}{getTableName()}}
+{\footnotesize\ttfamily \label{class_assignment_ad121dd9b8466c164b591737a7f83e7c0} 
+std::\+string Assignment::\+get\+Table\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+Logical table name {\ttfamily "{}assignments"{}}. 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_base_model_abdc6d5be8ae06dedf6d08fefe1efe2f8}{Base\+Model}}.
+
+\Hypertarget{class_assignment_ad53932d9f1fc6caa517181c188a5b5d5}\index{Assignment@{Assignment}!getTitle@{getTitle}}
+\index{getTitle@{getTitle}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getTitle()}{getTitle()}}
+{\footnotesize\ttfamily \label{class_assignment_ad53932d9f1fc6caa517181c188a5b5d5} 
+std::\+string Assignment::\+get\+Title (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_assignment}{Assignment} title. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_ab075fcb3c6bc231d4e7892552ff41874}\index{Assignment@{Assignment}!getUpdatedAt@{getUpdatedAt}}
+\index{getUpdatedAt@{getUpdatedAt}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getUpdatedAt()}{getUpdatedAt()}}
+{\footnotesize\ttfamily \label{class_assignment_ab075fcb3c6bc231d4e7892552ff41874} 
+std::\+string Assignment::\+get\+Updated\+At (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Last update timestamp string from the database. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_a13f581809228e1920de13984f7501d6a}\index{Assignment@{Assignment}!getUserId@{getUserId}}
+\index{getUserId@{getUserId}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{getUserId()}{getUserId()}}
+{\footnotesize\ttfamily \label{class_assignment_a13f581809228e1920de13984f7501d6a} 
+int Assignment::\+get\+User\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Owning user id. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_a98fff912dc8455ff15ccc59ffa088558}\index{Assignment@{Assignment}!load@{load}}
+\index{load@{load}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_assignment_a98fff912dc8455ff15ccc59ffa088558} 
+void Assignment::\+load (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reserved hook; current implementation is a no-\/op. 
+
+\Hypertarget{class_assignment_ad0e116c816191d777f96c89cf30529a2}\index{Assignment@{Assignment}!remove@{remove}}
+\index{remove@{remove}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{class_assignment_ad0e116c816191d777f96c89cf30529a2} 
+bool Assignment::\+remove (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{db}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deletes via {\ttfamily \doxylink{class_i_database_a6710c16f79d4eed4f79f78bae836bda1}{IDatabase::\+delete\+Assignment}}. 
+
+
+
+Implements \doxymbox{\hyperlink{class_base_model_a63f923033f87f2b11f97bff190fdd685}{Base\+Model}}.
+
+\Hypertarget{class_assignment_ad257ca8b777ddec191fd69a3e23adb2f}\index{Assignment@{Assignment}!save@{save}}
+\index{save@{save}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily \label{class_assignment_ad257ca8b777ddec191fd69a3e23adb2f} 
+bool Assignment::\+save (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{db}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Persists via {\ttfamily \doxylink{class_i_database_afdc5b9ec1ed1a038a380b676d2f5825f}{IDatabase::\+create\+Assignment}}. 
+
+
+
+Implements \doxymbox{\hyperlink{class_base_model_ad64fcc8fdbd3663f8267f12d009683a2}{Base\+Model}}.
+
+\Hypertarget{class_assignment_a737c452c98076a745218c0c2a133c479}\index{Assignment@{Assignment}!setCourseId@{setCourseId}}
+\index{setCourseId@{setCourseId}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{setCourseId()}{setCourseId()}}
+{\footnotesize\ttfamily \label{class_assignment_a737c452c98076a745218c0c2a133c479} 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& Assignment::\+set\+Course\+Id (\begin{DoxyParamCaption}\item[{int}]{course\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Sets course foreign key;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_aba820868e0041c846549acee390be526}\index{Assignment@{Assignment}!setCourseName@{setCourseName}}
+\index{setCourseName@{setCourseName}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{setCourseName()}{setCourseName()}}
+{\footnotesize\ttfamily \label{class_assignment_aba820868e0041c846549acee390be526} 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& Assignment::\+set\+Course\+Name (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Sets denormalized course display name (UI);. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_aa0c491d2e360a10918d1110640849543}\index{Assignment@{Assignment}!setCreatedAt@{setCreatedAt}}
+\index{setCreatedAt@{setCreatedAt}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{setCreatedAt()}{setCreatedAt()}}
+{\footnotesize\ttfamily \label{class_assignment_aa0c491d2e360a10918d1110640849543} 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& Assignment::\+set\+Created\+At (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{created\+\_\+at}{}\end{DoxyParamCaption})}
+
+
+
+Sets created-\/at string;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_a4122f213e654ca6e940df652b32a18bc}\index{Assignment@{Assignment}!setDescription@{setDescription}}
+\index{setDescription@{setDescription}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{setDescription()}{setDescription()}}
+{\footnotesize\ttfamily \label{class_assignment_a4122f213e654ca6e940df652b32a18bc} 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& Assignment::\+set\+Description (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{description}{}\end{DoxyParamCaption})}
+
+
+
+Sets description;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_a30d6e1d969c9451c56803ef582b57e0a}\index{Assignment@{Assignment}!setDueDate@{setDueDate}}
+\index{setDueDate@{setDueDate}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{setDueDate()}{setDueDate()}}
+{\footnotesize\ttfamily \label{class_assignment_a30d6e1d969c9451c56803ef582b57e0a} 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& Assignment::\+set\+Due\+Date (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{due\+\_\+date}{}\end{DoxyParamCaption})}
+
+
+
+Sets due date string;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_a0e186b6544da8a58f34cecd65525feec}\index{Assignment@{Assignment}!setId@{setId}}
+\index{setId@{setId}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{setId()}{setId()}}
+{\footnotesize\ttfamily \label{class_assignment_a0e186b6544da8a58f34cecd65525feec} 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& Assignment::\+set\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Sets primary key;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_a48b60834ebff9e2a39cb2e128b7da3c7}\index{Assignment@{Assignment}!setPriority@{setPriority}}
+\index{setPriority@{setPriority}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{setPriority()}{setPriority()}}
+{\footnotesize\ttfamily \label{class_assignment_a48b60834ebff9e2a39cb2e128b7da3c7} 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& Assignment::\+set\+Priority (\begin{DoxyParamCaption}\item[{int}]{priority}{}\end{DoxyParamCaption})}
+
+
+
+Sets priority;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_a8f61cd8bcda5ab02a51c9c24ead961c2}\index{Assignment@{Assignment}!setStatus@{setStatus}}
+\index{setStatus@{setStatus}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{setStatus()}{setStatus()}}
+{\footnotesize\ttfamily \label{class_assignment_a8f61cd8bcda5ab02a51c9c24ead961c2} 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& Assignment::\+set\+Status (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{status}{}\end{DoxyParamCaption})}
+
+
+
+Sets status string;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_ac3926d3fad060fa3ed5022fc9137e072}\index{Assignment@{Assignment}!setTitle@{setTitle}}
+\index{setTitle@{setTitle}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{setTitle()}{setTitle()}}
+{\footnotesize\ttfamily \label{class_assignment_ac3926d3fad060fa3ed5022fc9137e072} 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& Assignment::\+set\+Title (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{title}{}\end{DoxyParamCaption})}
+
+
+
+Sets title;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_aff9c8b72dded3ce2998893934aebbd3f}\index{Assignment@{Assignment}!setUpdatedAt@{setUpdatedAt}}
+\index{setUpdatedAt@{setUpdatedAt}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{setUpdatedAt()}{setUpdatedAt()}}
+{\footnotesize\ttfamily \label{class_assignment_aff9c8b72dded3ce2998893934aebbd3f} 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& Assignment::\+set\+Updated\+At (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{updated\+\_\+at}{}\end{DoxyParamCaption})}
+
+
+
+Sets updated-\/at string;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_assignment_ae86244f207110dc158e5b1269da7399f}\index{Assignment@{Assignment}!setUserId@{setUserId}}
+\index{setUserId@{setUserId}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{setUserId()}{setUserId()}}
+{\footnotesize\ttfamily \label{class_assignment_ae86244f207110dc158e5b1269da7399f} 
+\doxymbox{\hyperlink{class_assignment}{Assignment}} \& Assignment::\+set\+User\+Id (\begin{DoxyParamCaption}\item[{int}]{user\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Sets owning user id;. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_assignment_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_assignment_a360970ab5bf7888e119e4ed10d30ad83}\index{Assignment@{Assignment}!tableName@{tableName}}
+\index{tableName@{tableName}!Assignment@{Assignment}}
+\doxysubsubsection{\texorpdfstring{tableName}{tableName}}
+{\footnotesize\ttfamily \label{class_assignment_a360970ab5bf7888e119e4ed10d30ad83} 
+const std::\+string Assignment::\+table\+Name = "{}assignments"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_assignment_model_8hpp}{Assignment\+Model.\+hpp}}\item 
+\doxymbox{\hyperlink{_assignment_model_8cpp}{Assignment\+Model.\+cpp}}\end{DoxyCompactItemize}

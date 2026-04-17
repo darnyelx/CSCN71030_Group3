@@ -1,3 +1,8 @@
+/**
+ * @file UserModel.cpp
+ * @brief Getters/setters and `IDatabase` persistence for `UserModel`.
+ */
+
 #include "UserModel.hpp"
 #include "IDatabase.hpp"
 

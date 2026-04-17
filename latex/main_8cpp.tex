@@ -1,0 +1,47 @@
+\doxysection{main.\+cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{main.cpp@{main.cpp}}
+
+
+Application entry:\+ loads {\ttfamily config.\+env}, opens the database singleton, wires API controllers to QML context.  
+
+
+{\ttfamily \+\#include $<$QGui\+Application$>$}\newline
+{\ttfamily \+\#include $<$QQml\+Application\+Engine$>$}\newline
+{\ttfamily \+\#include $<$Qt\+Quick\+Controls2/\+\+QQuick\+Style$>$}\newline
+{\ttfamily \+\#include $<$qqmlcontext.\+h$>$}\newline
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+{\ttfamily \+\#include $<$view/\+\+Controllers/\+headers/\+\+Course\+View\+Controller.\+hpp$>$}\newline
+{\ttfamily \+\#include "{}api/\+\+Config.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}api/\+\+Assignment\+Controller.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}api/\+\+Auth\+Controller.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}api/\+\+Course\+Controller.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}api/\+\+DB.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}api/\+\+Help\+Request\+Controller.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}view/\+\+Controllers/\+headers/\+\+Assignment\+View\+Controller.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}view/\+\+Controllers/\+headers/\+\+Auth\+View\+Controller.\+h"{}}\newline
+{\ttfamily \+\#include "{}view/\+\+Controllers/\+headers/\+\+Help\+Request\+View\+Controller.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}view/\+\+Models/\+headers/\+\+Assignment\+Filter\+Proxy\+Model.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}view/\+\+Models/\+headers/\+\+Help\+Request\+List\+Model.\+hpp"{}}\newline
+{\ttfamily \+\#include "{}view/\+\+Models/\+headers/\+\+User\+View\+Model.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\+[$\,$]\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Application entry:\+ loads {\ttfamily config.\+env}, opens the database singleton, wires API controllers to QML context. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\+[$\,$]\+}\end{DoxyParamCaption})}
+

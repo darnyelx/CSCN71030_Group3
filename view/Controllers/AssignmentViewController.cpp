@@ -1,3 +1,8 @@
+/**
+ * @file AssignmentViewController.cpp
+ * @brief QML slots calling `AssignmentController` and updating list/filter models.
+ */
+
 #include "view/Controllers/headers/AssignmentViewController.hpp"
 #include <iostream>
 

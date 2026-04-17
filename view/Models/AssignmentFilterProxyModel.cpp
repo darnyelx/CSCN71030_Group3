@@ -1,3 +1,8 @@
+/**
+ * @file AssignmentFilterProxyModel.cpp
+ * @brief `filterAcceptsRow` implementation for text and status filters.
+ */
+
 #include "view/Models/headers/AssignmentFilterProxyModel.hpp"
 #include "view/Models/headers/AssignmentListModel.hpp"
 #include "view/Models/headers/AssignmentViewModel.hpp"

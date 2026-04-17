@@ -1,7 +1,7 @@
-//
-// Created by Darnyelx on 2026-04-10.
-//
-
+/**
+ * @file CourseController.cpp
+ * @brief Loads all courses via `IDatabase::getAllCourses` into `GetCoursesResult`.
+ */
 
 #include "CourseController.hpp"
 #include "CourseModel.hpp"

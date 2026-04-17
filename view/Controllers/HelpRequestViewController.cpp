@@ -1,3 +1,8 @@
+/**
+ * @file HelpRequestViewController.cpp
+ * @brief Loads help-request vectors into the two list models and handles create.
+ */
+
 #include "view/Controllers/headers/HelpRequestViewController.hpp"
 
 #include <string>

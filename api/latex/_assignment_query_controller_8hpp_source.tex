@@ -1,0 +1,37 @@
+\doxysection{Assignment\+Query\+Controller.\+hpp}
+\hypertarget{_assignment_query_controller_8hpp_source}{}\label{_assignment_query_controller_8hpp_source}\doxymbox{\hyperlink{_assignment_query_controller_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_assignment_model_8hpp}{AssignmentModel.hpp}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_i_database}{IDatabase}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_assignment_query_controller_ab0fcb5d51c73f54ec045c7217b2f2778}{AssignmentQueryController}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{explicit}\ \doxymbox{\hyperlink{class_assignment_query_controller_ab0fcb5d51c73f54ec045c7217b2f2778}{AssignmentQueryController}}(\doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&database);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00033\ \ \ \ \ std::vector<Assignment>\ \doxymbox{\hyperlink{class_assignment_query_controller_a9101686fb9ca9afca1cec76064667f5e}{searchAssignmentsByKeyword}}(\textcolor{keywordtype}{int}\ userId,\ \textcolor{keyword}{const}\ std::string\ \&keyword);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00041\ \ \ \ \ std::vector<Assignment>\ \doxymbox{\hyperlink{class_assignment_query_controller_a2a6308f810e4f7f12f2b88ab849e7226}{getFilteredAssignmentsByCourse}}(\textcolor{keywordtype}{int}\ userId,\ \textcolor{keywordtype}{int}\ courseId);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00049\ \ \ \ \ std::vector<Assignment>\ \doxymbox{\hyperlink{class_assignment_query_controller_a41d7b5475587687e64989d06331e3e89}{getFilteredAssignmentsByPriority}}(\textcolor{keywordtype}{int}\ userId,\ \textcolor{keywordtype}{int}\ priority);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ std::vector<Assignment>\ \doxymbox{\hyperlink{class_assignment_query_controller_a7ed705cd5daf31e199779cb2f97d8d79}{getFilteredAssignmentsByStatus}}(\textcolor{keywordtype}{int}\ userId,\ \textcolor{keyword}{const}\ std::string\ \&status);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ std::vector<Assignment>\ \doxymbox{\hyperlink{class_assignment_query_controller_a8ff86a336dca5017cfb8d83f9e286c17}{getFilteredAssignmentsByDueDateRange}}(\textcolor{keywordtype}{int}\ userId,\ \textcolor{keyword}{const}\ std::string\ \&startDate,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&endDate);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ \ \ std::vector<Assignment>\ \doxymbox{\hyperlink{class_assignment_query_controller_a5ed0f34ddc472ac4f8d5153f955ffc33}{getOrderedAssignmentsByDueDate}}(\textcolor{keywordtype}{int}\ userId);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \ \ std::vector<Assignment>\ \doxymbox{\hyperlink{class_assignment_query_controller_afb60f524dd873af808d5aeca2298fa98}{getOrderedAssignmentsByPriority}}(\textcolor{keywordtype}{int}\ userId);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00077\ \ \ \ \ \doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&db\_;}
+\DoxyCodeLine{00078\ \};}
+
+\end{DoxyCode}

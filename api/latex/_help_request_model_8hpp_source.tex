@@ -1,0 +1,46 @@
+\doxysection{Help\+Request\+Model.\+hpp}
+\hypertarget{_help_request_model_8hpp_source}{}\label{_help_request_model_8hpp_source}\doxymbox{\hyperlink{_help_request_model_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_base_model_8hpp}{BaseModel.hpp}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_help_request_model_a78e1a449060c2200d9bef945a82bb22b}{HelpRequestModel}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_base_model}{BaseModel}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \doxymbox{\hyperlink{class_help_request_model_ae5e04d256f81a65559cb360026822d8f}{tableName}}\ =\ \textcolor{stringliteral}{"{}help\_requests"{}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ userId;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ assignment\_id;}
+\DoxyCodeLine{00024\ \ \ \ \ std::string\ message;}
+\DoxyCodeLine{00025\ \ \ \ \ std::string\ request\_status;}
+\DoxyCodeLine{00026\ \ \ \ \ std::string\ createdAt;}
+\DoxyCodeLine{00028\ \ \ \ \ std::string\ raiser\_display\_name;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \doxymbox{\hyperlink{class_help_request_model_a78e1a449060c2200d9bef945a82bb22b}{HelpRequestModel}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ -\/1,\ \textcolor{keywordtype}{int}\ userId\ =\ -\/1,\ \textcolor{keyword}{const}\ std::string\ \&message\ =\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{const}\ std::string\ \&createdAt\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_help_request_model_a8548c97baf087ef8c61cf4d7a2917ac7}{getId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_help_request_model_a0b6c77bc473512fb25971030b7a924c5}{getUserId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_help_request_model_a89b4ec6fe4f6ebaebb17968b622d596c}{getAssignmentId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\doxymbox{\hyperlink{class_help_request_model_a97b68f708bd9cf8470fdad6cab759f59}{getMessage}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\doxymbox{\hyperlink{class_help_request_model_a7db3e12ed646cf624450be7ed45cd066}{getRequestStatus}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\doxymbox{\hyperlink{class_help_request_model_a5d26236b9d30c26a93658939dce409df}{getCreatedAt}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_help_request_model_af41e32dc4f45fb154ba58f833ca6bcd2}{setId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_help_request_model_a4c8825e55858fd2fa6e91a85e05ccbd6}{setUserId}}(\textcolor{keywordtype}{int}\ userId);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_help_request_model_a64a1f7ab9baf923f1f9841ba395c69a7}{setCreatedAt}}(\textcolor{keyword}{const}\ std::string\ \&createdAt);}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_help_request_model_a4bd926c12eaa6c91bf79db6be348da6a}{setAssignmentId}}(\textcolor{keywordtype}{int}\ assignment\_id);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_help_request_model_a15b2126a2256560fe3c03ed6b291e3fc}{setMessage}}(\textcolor{keyword}{const}\ std::string\ \&message);}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_help_request_model_a6eaa09566a13e20f7358cbdc2103c67f}{setRequestStatus}}(\textcolor{keyword}{const}\ std::string\ \&request\_status);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&\doxymbox{\hyperlink{class_help_request_model_a73b0b99ca096f6da6e8399d4a6ac02a8}{getRaiserDisplayName}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_help_request_model_a72bdc4c283e350163e81372282291ffe}{setRaiserDisplayName}}(\textcolor{keyword}{const}\ std::string\ \&name);}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_help_request_model_ae0fa8cc106c37a3de11115d9d72e323e}{save}}(\doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&db)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_help_request_model_ad1b4a686b54c210cc23ba853f0e9ccd7}{remove}}(\doxymbox{\hyperlink{class_i_database}{IDatabase}}\ \&db)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_help_request_model_a25aaeda75ab71d6709c5dd7acb180711}{getTableName}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00074\ \};}
+
+\end{DoxyCode}

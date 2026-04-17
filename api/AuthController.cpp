@@ -1,3 +1,8 @@
+/**
+ * @file AuthController.cpp
+ * @brief Libsodium password hashing and `LoginResult` mapping for login/register.
+ */
+
 #include "AuthController.hpp"
 #include <sodium.h>
 #include "IDatabase.hpp"

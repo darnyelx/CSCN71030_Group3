@@ -1,0 +1,27 @@
+var files_dup =
+[
+    [ "AssignmentController.cpp", "_assignment_controller_8cpp.html", null ],
+    [ "AssignmentController.hpp", "_assignment_controller_8hpp.html", "_assignment_controller_8hpp" ],
+    [ "AssignmentModel.cpp", "_assignment_model_8cpp.html", null ],
+    [ "AssignmentModel.hpp", "_assignment_model_8hpp.html", "_assignment_model_8hpp" ],
+    [ "AssignmentQueryController.cpp", "_assignment_query_controller_8cpp.html", null ],
+    [ "AssignmentQueryController.hpp", "_assignment_query_controller_8hpp.html", "_assignment_query_controller_8hpp" ],
+    [ "AuthController.cpp", "_auth_controller_8cpp.html", null ],
+    [ "AuthController.hpp", "_auth_controller_8hpp.html", "_auth_controller_8hpp" ],
+    [ "BaseModel.hpp", "_base_model_8hpp.html", "_base_model_8hpp" ],
+    [ "Config.cpp", "_config_8cpp.html", null ],
+    [ "Config.hpp", "_config_8hpp.html", "_config_8hpp" ],
+    [ "CourseController.cpp", "_course_controller_8cpp.html", null ],
+    [ "CourseController.hpp", "_course_controller_8hpp.html", "_course_controller_8hpp" ],
+    [ "CourseModel.cpp", "_course_model_8cpp.html", null ],
+    [ "CourseModel.hpp", "_course_model_8hpp.html", "_course_model_8hpp" ],
+    [ "DB.cpp", "_d_b_8cpp.html", null ],
+    [ "DB.hpp", "_d_b_8hpp.html", "_d_b_8hpp" ],
+    [ "HelpRequestController.cpp", "_help_request_controller_8cpp.html", null ],
+    [ "HelpRequestController.hpp", "_help_request_controller_8hpp.html", "_help_request_controller_8hpp" ],
+    [ "HelpRequestModel.cpp", "_help_request_model_8cpp.html", null ],
+    [ "HelpRequestModel.hpp", "_help_request_model_8hpp.html", "_help_request_model_8hpp" ],
+    [ "IDatabase.hpp", "_i_database_8hpp.html", "_i_database_8hpp" ],
+    [ "UserModel.cpp", "_user_model_8cpp.html", null ],
+    [ "UserModel.hpp", "_user_model_8hpp.html", "_user_model_8hpp" ]
+];

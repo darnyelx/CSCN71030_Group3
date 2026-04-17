@@ -1,3 +1,8 @@
+/**
+ * @file AssignmentQueryController.cpp
+ * @brief In-memory filtering/sorting helpers over vectors from `IDatabase` (tests and future UI).
+ */
+
 #include "AssignmentQueryController.hpp"
 #include "IDatabase.hpp"
 #include <algorithm>

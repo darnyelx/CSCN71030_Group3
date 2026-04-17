@@ -1,0 +1,100 @@
+\doxysection{Auth\+Controller Class Reference}
+\hypertarget{class_auth_controller}{}\label{class_auth_controller}\index{AuthController@{AuthController}}
+
+
+Stateless controller wrapping auth-\/related database operations.  
+
+
+
+
+{\ttfamily \+\#include $<$Auth\+Controller.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_auth_controller_acf6d21cc26a02a47865b9c4e99aa3ed1}{Auth\+Controller}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&database)
+\begin{DoxyCompactList}\small\item\em Constructs a controller bound to a database implementation. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_login_result}{Login\+Result}} \doxymbox{\hyperlink{class_auth_controller_ab1f3c7d1dfd27a162615826b2038c08a}{login}} (std::\+string \&email, const std::\+string \&password)
+\begin{DoxyCompactList}\small\item\em Validates email/\+password against stored hash. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_login_result}{Login\+Result}} \doxymbox{\hyperlink{class_auth_controller_ab34c0408e1d4252be178dfc4e254f706}{register\+User}} (const std::\+string \&first\+Name, const std::\+string \&last\+Name, const std::\+string \&email, const std::\+string \&password)
+\begin{DoxyCompactList}\small\item\em Registers a new user:\+ validates non-\/empty fields, hashes password, calls {\ttfamily create\+User}, then reloads by email. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Stateless controller wrapping auth-\/related database operations. 
+
+Uses libsodium {\ttfamily crypto\+\_\+pwhash\+\_\+str} /\+ {\ttfamily crypto\+\_\+pwhash\+\_\+str\+\_\+verify} for password handling. 
+
+\label{doc-constructors}
+\Hypertarget{class_auth_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_auth_controller_acf6d21cc26a02a47865b9c4e99aa3ed1}\index{AuthController@{AuthController}!AuthController@{AuthController}}
+\index{AuthController@{AuthController}!AuthController@{AuthController}}
+\doxysubsubsection{\texorpdfstring{AuthController()}{AuthController()}}
+{\footnotesize\ttfamily \label{class_auth_controller_acf6d21cc26a02a47865b9c4e99aa3ed1} 
+Auth\+Controller::\+\+Auth\+Controller (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{database}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a controller bound to a database implementation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em database} & Reference retained for the lifetime of this controller (must outlive it). \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_auth_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_auth_controller_ab1f3c7d1dfd27a162615826b2038c08a}\index{AuthController@{AuthController}!login@{login}}
+\index{login@{login}!AuthController@{AuthController}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily \label{class_auth_controller_ab1f3c7d1dfd27a162615826b2038c08a} 
+\doxymbox{\hyperlink{struct_login_result}{Login\+Result}} Auth\+Controller::\+login (\begin{DoxyParamCaption}\item[{std::\+string \&}]{email}{, }\item[{const std::\+string \&}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Validates email/\+password against stored hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & Account email (mutable for legacy {\ttfamily get\+User\+By\+Email} signature). \\
+\hline
+{\em password} & Plain text password from the client. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily \doxylink{struct_login_result}{Login\+Result}} with {\ttfamily success} false and generic message if user missing or hash mismatch; on success includes loaded {\ttfamily \doxylink{class_user_model}{User\+Model}}. 
+\end{DoxyReturn}
+\Hypertarget{class_auth_controller_ab34c0408e1d4252be178dfc4e254f706}\index{AuthController@{AuthController}!registerUser@{registerUser}}
+\index{registerUser@{registerUser}!AuthController@{AuthController}}
+\doxysubsubsection{\texorpdfstring{registerUser()}{registerUser()}}
+{\footnotesize\ttfamily \label{class_auth_controller_ab34c0408e1d4252be178dfc4e254f706} 
+\doxymbox{\hyperlink{struct_login_result}{Login\+Result}} Auth\+Controller::\+register\+User (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{first\+Name}{, }\item[{const std::\+string \&}]{last\+Name}{, }\item[{const std::\+string \&}]{email}{, }\item[{const std::\+string \&}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Registers a new user:\+ validates non-\/empty fields, hashes password, calls {\ttfamily create\+User}, then reloads by email. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+Name} & Given name. \\
+\hline
+{\em last\+Name} & Family name. \\
+\hline
+{\em email} & Unique email for login. \\
+\hline
+{\em password} & Plain text; stored only as hash. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Success with loaded user on insert + fetch; failure with reason if validation, hashing, or insert fails. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_auth_controller_8hpp}{Auth\+Controller.\+hpp}}\item 
+\doxymbox{\hyperlink{_auth_controller_8cpp}{Auth\+Controller.\+cpp}}\end{DoxyCompactItemize}

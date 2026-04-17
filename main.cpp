@@ -1,3 +1,8 @@
+/**
+ * @file main.cpp
+ * @brief Application entry: loads `config.env`, opens the database singleton, wires API controllers to QML context.
+ */
+
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtQuickControls2/QQuickStyle>
@@ -19,6 +24,12 @@
 #include "view/Models/headers/HelpRequestListModel.hpp"
 #include "view/Models/headers/UserViewModel.h"
 
+/**
+ * @brief Starts Qt Quick, loads configuration and PostgreSQL settings, registers QML types, and runs the event loop.
+ * @param argc Standard argument count.
+ * @param argv Standard argument vector.
+ * @return Process exit code from `QCoreApplication::exec()`.
+ */
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);

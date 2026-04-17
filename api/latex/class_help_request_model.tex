@@ -1,0 +1,293 @@
+\doxysection{Help\+Request\+Model Class Reference}
+\hypertarget{class_help_request_model}{}\label{class_help_request_model}\index{HelpRequestModel@{HelpRequestModel}}
+
+
+Row in {\ttfamily help\+\_\+requests} plus optional UI-\/only raiser display name.  
+
+
+
+
+{\ttfamily \+\#include $<$Help\+Request\+Model.\+hpp$>$}
+
+Inheritance diagram for Help\+Request\+Model:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_help_request_model}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_help_request_model_a78e1a449060c2200d9bef945a82bb22b}{Help\+Request\+Model}} (int id=-\/1, int user\+Id=-\/1, const std::\+string \&message="{}"{}, const std::\+string \&created\+At="{}"{})
+\begin{DoxyCompactList}\small\item\em Constructs a help request with optional id, raiser, message, and timestamp strings. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_help_request_model_a8548c97baf087ef8c61cf4d7a2917ac7}{get\+Id}} () const
+\item 
+int \doxymbox{\hyperlink{class_help_request_model_a0b6c77bc473512fb25971030b7a924c5}{get\+User\+Id}} () const
+\item 
+int \doxymbox{\hyperlink{class_help_request_model_a89b4ec6fe4f6ebaebb17968b622d596c}{get\+Assignment\+Id}} () const
+\item 
+const std::\+string \& \doxymbox{\hyperlink{class_help_request_model_a97b68f708bd9cf8470fdad6cab759f59}{get\+Message}} () const
+\item 
+const std::\+string \& \doxymbox{\hyperlink{class_help_request_model_a7db3e12ed646cf624450be7ed45cd066}{get\+Request\+Status}} () const
+\item 
+const std::\+string \& \doxymbox{\hyperlink{class_help_request_model_a5d26236b9d30c26a93658939dce409df}{get\+Created\+At}} () const
+\item 
+void \doxymbox{\hyperlink{class_help_request_model_af41e32dc4f45fb154ba58f833ca6bcd2}{set\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Sets primary key. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_help_request_model_a4c8825e55858fd2fa6e91a85e05ccbd6}{set\+User\+Id}} (int user\+Id)
+\begin{DoxyCompactList}\small\item\em Sets raiser user id. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_help_request_model_a64a1f7ab9baf923f1f9841ba395c69a7}{set\+Created\+At}} (const std::\+string \&created\+At)
+\begin{DoxyCompactList}\small\item\em Sets creation timestamp string. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_help_request_model_a4bd926c12eaa6c91bf79db6be348da6a}{set\+Assignment\+Id}} (int assignment\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Sets related assignment id. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_help_request_model_a15b2126a2256560fe3c03ed6b291e3fc}{set\+Message}} (const std::\+string \&message)
+\begin{DoxyCompactList}\small\item\em Sets message body. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_help_request_model_a6eaa09566a13e20f7358cbdc2103c67f}{set\+Request\+Status}} (const std::\+string \&request\+\_\+status)
+\begin{DoxyCompactList}\small\item\em Sets request status string. \end{DoxyCompactList}\item 
+const std::\+string \& \doxymbox{\hyperlink{class_help_request_model_a73b0b99ca096f6da6e8399d4a6ac02a8}{get\+Raiser\+Display\+Name}} () const
+\item 
+void \doxymbox{\hyperlink{class_help_request_model_a72bdc4c283e350163e81372282291ffe}{set\+Raiser\+Display\+Name}} (const std::\+string \&name)
+\begin{DoxyCompactList}\small\item\em Sets denormalized display name for UI lists. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_help_request_model_ae0fa8cc106c37a3de11115d9d72e323e}{save}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&db) override
+\begin{DoxyCompactList}\small\item\em Inserts via {\ttfamily \doxylink{class_i_database_aaedc00f38b3b1f4b03b45ed210f84223}{IDatabase::\+create\+Help\+Request}}. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_help_request_model_ad1b4a686b54c210cc23ba853f0e9ccd7}{remove}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&db) override
+\begin{DoxyCompactList}\small\item\em Deletes via {\ttfamily \doxylink{class_i_database_ae673d73603664454b1ab436376e3df81}{IDatabase::\+delete\+Help\+Request}}. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{class_help_request_model_a25aaeda75ab71d6709c5dd7acb180711}{get\+Table\+Name}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_base_model}{Base\+Model}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \doxymbox{\hyperlink{class_base_model_aeec6feadc4ebee6ea92d3c379092e0b6}{\texorpdfstring{$\sim$}{\string~}\+Base\+Model}} ()=default
+\begin{DoxyCompactList}\small\item\em Ensures derived destructors run when deleting through {\ttfamily Base\+Model\texorpdfstring{$\ast$}{*}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const std::\+string \doxymbox{\hyperlink{class_help_request_model_ae5e04d256f81a65559cb360026822d8f}{table\+Name}} = "{}help\+\_\+requests"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Row in {\ttfamily help\+\_\+requests} plus optional UI-\/only raiser display name. 
+
+{\ttfamily \doxylink{class_help_request_model_ae0fa8cc106c37a3de11115d9d72e323e}{save}} inserts via {\ttfamily \doxylink{class_i_database_aaedc00f38b3b1f4b03b45ed210f84223}{IDatabase::\+create\+Help\+Request}}. {\ttfamily \doxylink{class_help_request_model_ad1b4a686b54c210cc23ba853f0e9ccd7}{remove}} calls {\ttfamily delete\+Help\+Request}. {\ttfamily raiser\+\_\+display\+\_\+name} is filled when listing other users’ requests, not written to the \doxylink{class_d_b}{DB}. 
+
+\label{doc-constructors}
+\Hypertarget{class_help_request_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_help_request_model_a78e1a449060c2200d9bef945a82bb22b}\index{HelpRequestModel@{HelpRequestModel}!HelpRequestModel@{HelpRequestModel}}
+\index{HelpRequestModel@{HelpRequestModel}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{HelpRequestModel()}{HelpRequestModel()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a78e1a449060c2200d9bef945a82bb22b} 
+Help\+Request\+Model::\+\+Help\+Request\+Model (\begin{DoxyParamCaption}\item[{int}]{id}{ = {\ttfamily -\/1}, }\item[{int}]{user\+Id}{ = {\ttfamily -\/1}, }\item[{const std::\+string \&}]{message}{ = {\ttfamily "{}"{}}, }\item[{const std::\+string \&}]{created\+At}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+
+
+Constructs a help request with optional id, raiser, message, and timestamp strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Row id or negative before insert. \\
+\hline
+{\em user\+Id} & User who raised the request. \\
+\hline
+{\em message} & Body text shown to coordinators. \\
+\hline
+{\em created\+At} & Timestamp string; may be overwritten by controllers on create. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_help_request_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_help_request_model_a89b4ec6fe4f6ebaebb17968b622d596c}\index{HelpRequestModel@{HelpRequestModel}!getAssignmentId@{getAssignmentId}}
+\index{getAssignmentId@{getAssignmentId}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{getAssignmentId()}{getAssignmentId()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a89b4ec6fe4f6ebaebb17968b622d596c} 
+int Help\+Request\+Model::\+get\+Assignment\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Target assignment id. 
+\end{DoxyReturn}
+\Hypertarget{class_help_request_model_a5d26236b9d30c26a93658939dce409df}\index{HelpRequestModel@{HelpRequestModel}!getCreatedAt@{getCreatedAt}}
+\index{getCreatedAt@{getCreatedAt}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{getCreatedAt()}{getCreatedAt()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a5d26236b9d30c26a93658939dce409df} 
+const std::\+string \& Help\+Request\+Model::\+get\+Created\+At (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Creation timestamp string. 
+\end{DoxyReturn}
+\Hypertarget{class_help_request_model_a8548c97baf087ef8c61cf4d7a2917ac7}\index{HelpRequestModel@{HelpRequestModel}!getId@{getId}}
+\index{getId@{getId}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a8548c97baf087ef8c61cf4d7a2917ac7} 
+int Help\+Request\+Model::\+get\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Primary key. 
+\end{DoxyReturn}
+\Hypertarget{class_help_request_model_a97b68f708bd9cf8470fdad6cab759f59}\index{HelpRequestModel@{HelpRequestModel}!getMessage@{getMessage}}
+\index{getMessage@{getMessage}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{getMessage()}{getMessage()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a97b68f708bd9cf8470fdad6cab759f59} 
+const std::\+string \& Help\+Request\+Model::\+get\+Message (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Request message body. 
+\end{DoxyReturn}
+\Hypertarget{class_help_request_model_a73b0b99ca096f6da6e8399d4a6ac02a8}\index{HelpRequestModel@{HelpRequestModel}!getRaiserDisplayName@{getRaiserDisplayName}}
+\index{getRaiserDisplayName@{getRaiserDisplayName}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{getRaiserDisplayName()}{getRaiserDisplayName()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a73b0b99ca096f6da6e8399d4a6ac02a8} 
+const std::\+string \& Help\+Request\+Model::\+get\+Raiser\+Display\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Display label for the raiser (list “others” view). 
+\end{DoxyReturn}
+\Hypertarget{class_help_request_model_a7db3e12ed646cf624450be7ed45cd066}\index{HelpRequestModel@{HelpRequestModel}!getRequestStatus@{getRequestStatus}}
+\index{getRequestStatus@{getRequestStatus}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{getRequestStatus()}{getRequestStatus()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a7db3e12ed646cf624450be7ed45cd066} 
+const std::\+string \& Help\+Request\+Model::\+get\+Request\+Status (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Workflow/\+status string for the request. 
+\end{DoxyReturn}
+\Hypertarget{class_help_request_model_a25aaeda75ab71d6709c5dd7acb180711}\index{HelpRequestModel@{HelpRequestModel}!getTableName@{getTableName}}
+\index{getTableName@{getTableName}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{getTableName()}{getTableName()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a25aaeda75ab71d6709c5dd7acb180711} 
+std::\+string Help\+Request\+Model::\+get\+Table\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+Logical table name {\ttfamily "{}help\+\_\+requests"{}}. 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_base_model_abdc6d5be8ae06dedf6d08fefe1efe2f8}{Base\+Model}}.
+
+\Hypertarget{class_help_request_model_a0b6c77bc473512fb25971030b7a924c5}\index{HelpRequestModel@{HelpRequestModel}!getUserId@{getUserId}}
+\index{getUserId@{getUserId}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{getUserId()}{getUserId()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a0b6c77bc473512fb25971030b7a924c5} 
+int Help\+Request\+Model::\+get\+User\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Raiser’s user id. 
+\end{DoxyReturn}
+\Hypertarget{class_help_request_model_ad1b4a686b54c210cc23ba853f0e9ccd7}\index{HelpRequestModel@{HelpRequestModel}!remove@{remove}}
+\index{remove@{remove}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{class_help_request_model_ad1b4a686b54c210cc23ba853f0e9ccd7} 
+bool Help\+Request\+Model::\+remove (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{db}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Deletes via {\ttfamily \doxylink{class_i_database_ae673d73603664454b1ab436376e3df81}{IDatabase::\+delete\+Help\+Request}}. 
+
+
+
+Implements \doxymbox{\hyperlink{class_base_model_a63f923033f87f2b11f97bff190fdd685}{Base\+Model}}.
+
+\Hypertarget{class_help_request_model_ae0fa8cc106c37a3de11115d9d72e323e}\index{HelpRequestModel@{HelpRequestModel}!save@{save}}
+\index{save@{save}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily \label{class_help_request_model_ae0fa8cc106c37a3de11115d9d72e323e} 
+bool Help\+Request\+Model::\+save (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{db}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Inserts via {\ttfamily \doxylink{class_i_database_aaedc00f38b3b1f4b03b45ed210f84223}{IDatabase::\+create\+Help\+Request}}. 
+
+
+
+Implements \doxymbox{\hyperlink{class_base_model_ad64fcc8fdbd3663f8267f12d009683a2}{Base\+Model}}.
+
+\Hypertarget{class_help_request_model_a4bd926c12eaa6c91bf79db6be348da6a}\index{HelpRequestModel@{HelpRequestModel}!setAssignmentId@{setAssignmentId}}
+\index{setAssignmentId@{setAssignmentId}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{setAssignmentId()}{setAssignmentId()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a4bd926c12eaa6c91bf79db6be348da6a} 
+void Help\+Request\+Model::\+set\+Assignment\+Id (\begin{DoxyParamCaption}\item[{int}]{assignment\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Sets related assignment id. 
+
+\Hypertarget{class_help_request_model_a64a1f7ab9baf923f1f9841ba395c69a7}\index{HelpRequestModel@{HelpRequestModel}!setCreatedAt@{setCreatedAt}}
+\index{setCreatedAt@{setCreatedAt}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{setCreatedAt()}{setCreatedAt()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a64a1f7ab9baf923f1f9841ba395c69a7} 
+void Help\+Request\+Model::\+set\+Created\+At (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{created\+At}{}\end{DoxyParamCaption})}
+
+
+
+Sets creation timestamp string. 
+
+\Hypertarget{class_help_request_model_af41e32dc4f45fb154ba58f833ca6bcd2}\index{HelpRequestModel@{HelpRequestModel}!setId@{setId}}
+\index{setId@{setId}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{setId()}{setId()}}
+{\footnotesize\ttfamily \label{class_help_request_model_af41e32dc4f45fb154ba58f833ca6bcd2} 
+void Help\+Request\+Model::\+set\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Sets primary key. 
+
+\Hypertarget{class_help_request_model_a15b2126a2256560fe3c03ed6b291e3fc}\index{HelpRequestModel@{HelpRequestModel}!setMessage@{setMessage}}
+\index{setMessage@{setMessage}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{setMessage()}{setMessage()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a15b2126a2256560fe3c03ed6b291e3fc} 
+void Help\+Request\+Model::\+set\+Message (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{message}{}\end{DoxyParamCaption})}
+
+
+
+Sets message body. 
+
+\Hypertarget{class_help_request_model_a72bdc4c283e350163e81372282291ffe}\index{HelpRequestModel@{HelpRequestModel}!setRaiserDisplayName@{setRaiserDisplayName}}
+\index{setRaiserDisplayName@{setRaiserDisplayName}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{setRaiserDisplayName()}{setRaiserDisplayName()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a72bdc4c283e350163e81372282291ffe} 
+void Help\+Request\+Model::\+set\+Raiser\+Display\+Name (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Sets denormalized display name for UI lists. 
+
+\Hypertarget{class_help_request_model_a6eaa09566a13e20f7358cbdc2103c67f}\index{HelpRequestModel@{HelpRequestModel}!setRequestStatus@{setRequestStatus}}
+\index{setRequestStatus@{setRequestStatus}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{setRequestStatus()}{setRequestStatus()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a6eaa09566a13e20f7358cbdc2103c67f} 
+void Help\+Request\+Model::\+set\+Request\+Status (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{request\+\_\+status}{}\end{DoxyParamCaption})}
+
+
+
+Sets request status string. 
+
+\Hypertarget{class_help_request_model_a4c8825e55858fd2fa6e91a85e05ccbd6}\index{HelpRequestModel@{HelpRequestModel}!setUserId@{setUserId}}
+\index{setUserId@{setUserId}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{setUserId()}{setUserId()}}
+{\footnotesize\ttfamily \label{class_help_request_model_a4c8825e55858fd2fa6e91a85e05ccbd6} 
+void Help\+Request\+Model::\+set\+User\+Id (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Sets raiser user id. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_help_request_model_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_help_request_model_ae5e04d256f81a65559cb360026822d8f}\index{HelpRequestModel@{HelpRequestModel}!tableName@{tableName}}
+\index{tableName@{tableName}!HelpRequestModel@{HelpRequestModel}}
+\doxysubsubsection{\texorpdfstring{tableName}{tableName}}
+{\footnotesize\ttfamily \label{class_help_request_model_ae5e04d256f81a65559cb360026822d8f} 
+const std::\+string Help\+Request\+Model::\+table\+Name = "{}help\+\_\+requests"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_help_request_model_8hpp}{Help\+Request\+Model.\+hpp}}\item 
+\doxymbox{\hyperlink{_help_request_model_8cpp}{Help\+Request\+Model.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,272 @@
+\doxysection{User\+Model Class Reference}
+\hypertarget{class_user_model}{}\label{class_user_model}\index{UserModel@{UserModel}}
+
+
+Mutable in-\/memory representation of a user row.  
+
+
+
+
+{\ttfamily \+\#include $<$User\+Model.\+hpp$>$}
+
+Inheritance diagram for User\+Model:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_user_model}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_user_model_a1a6abeb95a746eb2753358cdc259581f}{User\+Model}} (int id, const std::\+string \&first\+\_\+name, const std::\+string \&last\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Constructs a user with identifier and display names; email/\+password default empty until set. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_user_model_a6938310e7f96da01ecdfcb8294bd5cdd}{User\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Default construct:\+ zero id and empty strings. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_user_model_aa3abc02a8764e1c83501bcc9b79d0cf3}{get\+Id}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_user_model_a3f1f6d0d6fedfab9977a2260b15ef826}{get\+First\+Name}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_user_model_a3692ca66cddb0822447d05c6687442d7}{get\+Last\+Name}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_user_model_a27b32e346df608fd176ae91ee6aa5e57}{get\+Email}} () const
+\item 
+std::\+string \doxymbox{\hyperlink{class_user_model_ad3d236c9ffaa8f000e7bdaad1e937004}{get\+Password}} () const
+\item 
+\doxymbox{\hyperlink{class_user_model}{User\+Model}} \& \doxymbox{\hyperlink{class_user_model_a200755a2cd54d0a9f8b06c71610bbc01}{set\+First\+Name}} (const std::\+string \&first\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Sets given name. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_user_model}{User\+Model}} \& \doxymbox{\hyperlink{class_user_model_a65f0623ee3059789216b1d95f57f470a}{set\+Last\+Name}} (const std::\+string \&last\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Sets family name. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_user_model}{User\+Model}} \& \doxymbox{\hyperlink{class_user_model_a3ec6753d42086be9d104f723b77172a9}{set\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Sets primary key. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_user_model}{User\+Model}} \& \doxymbox{\hyperlink{class_user_model_acdb2b38eecd8ea9fb3cee4b458f7206c}{set\+Email}} (const std::\+string \&email)
+\begin{DoxyCompactList}\small\item\em Sets email. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_user_model}{User\+Model}} \& \doxymbox{\hyperlink{class_user_model_a310e74214def85754dac975f3182f5b9}{set\+Password}} (const std::\+string \&password)
+\begin{DoxyCompactList}\small\item\em Sets password hash string. \end{DoxyCompactList}\item 
+std::\+string \doxymbox{\hyperlink{class_user_model_a5a7856cc8996fe2d3058bc86572b75e9}{get\+Table\+Name}} () override
+\item 
+bool \doxymbox{\hyperlink{class_user_model_a067d5e2ae3a2e4eb0c20f2e30a2fcb3e}{save}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&db) override
+\begin{DoxyCompactList}\small\item\em Calls {\ttfamily \doxylink{class_i_database_a27e07395648063e2c8ffef2e5b668f72}{IDatabase::\+create\+User}} with this object. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_user_model_a3491e556ea32840305b3d9954b95c52b}{remove}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&db) override
+\begin{DoxyCompactList}\small\item\em Calls {\ttfamily \doxylink{class_i_database_a7760475f8381eb95fe97ae0ec33b8e18}{IDatabase::\+delete\+User}} with this object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_base_model}{Base\+Model}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \doxymbox{\hyperlink{class_base_model_aeec6feadc4ebee6ea92d3c379092e0b6}{\texorpdfstring{$\sim$}{\string~}\+Base\+Model}} ()=default
+\begin{DoxyCompactList}\small\item\em Ensures derived destructors run when deleting through {\ttfamily Base\+Model\texorpdfstring{$\ast$}{*}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const std::\+string \doxymbox{\hyperlink{class_user_model_a36f130f55829442370df506abe9efc1c}{table\+Name}} = "{}users"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Mutable in-\/memory representation of a user row. 
+
+{\ttfamily \doxylink{class_user_model_a067d5e2ae3a2e4eb0c20f2e30a2fcb3e}{save}} delegates to {\ttfamily \doxylink{class_i_database_a27e07395648063e2c8ffef2e5b668f72}{IDatabase::\+create\+User}}. Password field stores a libsodium {\ttfamily crypto\+\_\+pwhash\+\_\+str} output string, not plain text, after registration flows. 
+
+\label{doc-constructors}
+\Hypertarget{class_user_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_user_model_a1a6abeb95a746eb2753358cdc259581f}\index{UserModel@{UserModel}!UserModel@{UserModel}}
+\index{UserModel@{UserModel}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{UserModel()}{UserModel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_user_model_a1a6abeb95a746eb2753358cdc259581f} 
+User\+Model::\+\+User\+Model (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{const std::\+string \&}]{first\+\_\+name}{, }\item[{const std::\+string \&}]{last\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a user with identifier and display names; email/\+password default empty until set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Database id or sentinel (e.\+g. -\/1) before insert. \\
+\hline
+{\em first\+\_\+name} & Given name. \\
+\hline
+{\em last\+\_\+name} & Family name. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_user_model_a6938310e7f96da01ecdfcb8294bd5cdd}\index{UserModel@{UserModel}!UserModel@{UserModel}}
+\index{UserModel@{UserModel}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{UserModel()}{UserModel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_user_model_a6938310e7f96da01ecdfcb8294bd5cdd} 
+User\+Model::\+\+User\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Default construct:\+ zero id and empty strings. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_user_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_user_model_a27b32e346df608fd176ae91ee6aa5e57}\index{UserModel@{UserModel}!getEmail@{getEmail}}
+\index{getEmail@{getEmail}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{getEmail()}{getEmail()}}
+{\footnotesize\ttfamily \label{class_user_model_a27b32e346df608fd176ae91ee6aa5e57} 
+std::\+string User\+Model::\+get\+Email (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Email address string. 
+\end{DoxyReturn}
+\Hypertarget{class_user_model_a3f1f6d0d6fedfab9977a2260b15ef826}\index{UserModel@{UserModel}!getFirstName@{getFirstName}}
+\index{getFirstName@{getFirstName}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{getFirstName()}{getFirstName()}}
+{\footnotesize\ttfamily \label{class_user_model_a3f1f6d0d6fedfab9977a2260b15ef826} 
+std::\+string User\+Model::\+get\+First\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Given name. 
+\end{DoxyReturn}
+\Hypertarget{class_user_model_aa3abc02a8764e1c83501bcc9b79d0cf3}\index{UserModel@{UserModel}!getId@{getId}}
+\index{getId@{getId}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily \label{class_user_model_aa3abc02a8764e1c83501bcc9b79d0cf3} 
+int User\+Model::\+get\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Current user primary key. 
+\end{DoxyReturn}
+\Hypertarget{class_user_model_a3692ca66cddb0822447d05c6687442d7}\index{UserModel@{UserModel}!getLastName@{getLastName}}
+\index{getLastName@{getLastName}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{getLastName()}{getLastName()}}
+{\footnotesize\ttfamily \label{class_user_model_a3692ca66cddb0822447d05c6687442d7} 
+std::\+string User\+Model::\+get\+Last\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Family name. 
+\end{DoxyReturn}
+\Hypertarget{class_user_model_ad3d236c9ffaa8f000e7bdaad1e937004}\index{UserModel@{UserModel}!getPassword@{getPassword}}
+\index{getPassword@{getPassword}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{getPassword()}{getPassword()}}
+{\footnotesize\ttfamily \label{class_user_model_ad3d236c9ffaa8f000e7bdaad1e937004} 
+std::\+string User\+Model::\+get\+Password (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+Stored password hash string (never log as plain text). 
+\end{DoxyReturn}
+\Hypertarget{class_user_model_a5a7856cc8996fe2d3058bc86572b75e9}\index{UserModel@{UserModel}!getTableName@{getTableName}}
+\index{getTableName@{getTableName}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{getTableName()}{getTableName()}}
+{\footnotesize\ttfamily \label{class_user_model_a5a7856cc8996fe2d3058bc86572b75e9} 
+std::\+string User\+Model::\+get\+Table\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+Logical table name {\ttfamily "{}users"{}}. 
+\end{DoxyReturn}
+
+
+Implements \doxymbox{\hyperlink{class_base_model_abdc6d5be8ae06dedf6d08fefe1efe2f8}{Base\+Model}}.
+
+\Hypertarget{class_user_model_a3491e556ea32840305b3d9954b95c52b}\index{UserModel@{UserModel}!remove@{remove}}
+\index{remove@{remove}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{class_user_model_a3491e556ea32840305b3d9954b95c52b} 
+bool User\+Model::\+remove (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{db}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calls {\ttfamily \doxylink{class_i_database_a7760475f8381eb95fe97ae0ec33b8e18}{IDatabase::\+delete\+User}} with this object. 
+
+
+
+Implements \doxymbox{\hyperlink{class_base_model_a63f923033f87f2b11f97bff190fdd685}{Base\+Model}}.
+
+\Hypertarget{class_user_model_a067d5e2ae3a2e4eb0c20f2e30a2fcb3e}\index{UserModel@{UserModel}!save@{save}}
+\index{save@{save}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily \label{class_user_model_a067d5e2ae3a2e4eb0c20f2e30a2fcb3e} 
+bool User\+Model::\+save (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{db}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calls {\ttfamily \doxylink{class_i_database_a27e07395648063e2c8ffef2e5b668f72}{IDatabase::\+create\+User}} with this object. 
+
+
+
+Implements \doxymbox{\hyperlink{class_base_model_ad64fcc8fdbd3663f8267f12d009683a2}{Base\+Model}}.
+
+\Hypertarget{class_user_model_acdb2b38eecd8ea9fb3cee4b458f7206c}\index{UserModel@{UserModel}!setEmail@{setEmail}}
+\index{setEmail@{setEmail}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{setEmail()}{setEmail()}}
+{\footnotesize\ttfamily \label{class_user_model_acdb2b38eecd8ea9fb3cee4b458f7206c} 
+\doxymbox{\hyperlink{class_user_model}{User\+Model}} \& User\+Model::\+set\+Email (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{email}{}\end{DoxyParamCaption})}
+
+
+
+Sets email. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_user_model_a200755a2cd54d0a9f8b06c71610bbc01}\index{UserModel@{UserModel}!setFirstName@{setFirstName}}
+\index{setFirstName@{setFirstName}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{setFirstName()}{setFirstName()}}
+{\footnotesize\ttfamily \label{class_user_model_a200755a2cd54d0a9f8b06c71610bbc01} 
+\doxymbox{\hyperlink{class_user_model}{User\+Model}} \& User\+Model::\+set\+First\+Name (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{first\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+Sets given name. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_user_model_a3ec6753d42086be9d104f723b77172a9}\index{UserModel@{UserModel}!setId@{setId}}
+\index{setId@{setId}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{setId()}{setId()}}
+{\footnotesize\ttfamily \label{class_user_model_a3ec6753d42086be9d104f723b77172a9} 
+\doxymbox{\hyperlink{class_user_model}{User\+Model}} \& User\+Model::\+set\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Sets primary key. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_user_model_a65f0623ee3059789216b1d95f57f470a}\index{UserModel@{UserModel}!setLastName@{setLastName}}
+\index{setLastName@{setLastName}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{setLastName()}{setLastName()}}
+{\footnotesize\ttfamily \label{class_user_model_a65f0623ee3059789216b1d95f57f470a} 
+\doxymbox{\hyperlink{class_user_model}{User\+Model}} \& User\+Model::\+set\+Last\+Name (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{last\+\_\+name}{}\end{DoxyParamCaption})}
+
+
+
+Sets family name. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+\Hypertarget{class_user_model_a310e74214def85754dac975f3182f5b9}\index{UserModel@{UserModel}!setPassword@{setPassword}}
+\index{setPassword@{setPassword}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{setPassword()}{setPassword()}}
+{\footnotesize\ttfamily \label{class_user_model_a310e74214def85754dac975f3182f5b9} 
+\doxymbox{\hyperlink{class_user_model}{User\+Model}} \& User\+Model::\+set\+Password (\begin{DoxyParamCaption}\item[{const std::\+string \&}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Sets password hash string. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily \texorpdfstring{$\ast$}{*}this} for chaining. 
+\end{DoxyReturn}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_user_model_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_user_model_a36f130f55829442370df506abe9efc1c}\index{UserModel@{UserModel}!tableName@{tableName}}
+\index{tableName@{tableName}!UserModel@{UserModel}}
+\doxysubsubsection{\texorpdfstring{tableName}{tableName}}
+{\footnotesize\ttfamily \label{class_user_model_a36f130f55829442370df506abe9efc1c} 
+const std::\+string User\+Model::\+table\+Name = "{}users"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_user_model_8hpp}{User\+Model.\+hpp}}\item 
+\doxymbox{\hyperlink{_user_model_8cpp}{User\+Model.\+cpp}}\end{DoxyCompactItemize}

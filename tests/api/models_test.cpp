@@ -1,3 +1,8 @@
+/**
+ * @file models_test.cpp
+ * @brief GoogleTest coverage for domain model construction and table names.
+ */
+
 #include <gtest/gtest.h>
 
 #include "AssignmentModel.hpp"

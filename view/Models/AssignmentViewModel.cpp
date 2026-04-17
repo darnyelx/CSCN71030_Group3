@@ -1,3 +1,8 @@
+/**
+ * @file AssignmentViewModel.cpp
+ * @brief `Assignment` ↔ `AssignmentViewModel` mapping for forms and delegates.
+ */
+
 #include "view/Models/headers/AssignmentViewModel.hpp"
 #include "api/AssignmentModel.hpp"
 

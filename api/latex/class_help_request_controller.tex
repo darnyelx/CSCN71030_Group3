@@ -1,0 +1,136 @@
+\doxysection{Help\+Request\+Controller Class Reference}
+\hypertarget{class_help_request_controller}{}\label{class_help_request_controller}\index{HelpRequestController@{HelpRequestController}}
+
+
+Coordinates help-\/request persistence and cross-\/user listing rules.  
+
+
+
+
+{\ttfamily \+\#include $<$Help\+Request\+Controller.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_help_request_controller_af988039a76ceabdd9add1c7588ff384f}{Help\+Request\+Controller}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&database)
+\begin{DoxyCompactList}\small\item\em Constructs controller with database dependency. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_help_request_result_payload}{Help\+Request\+Result\+Payload}} \doxymbox{\hyperlink{class_help_request_controller_a45c64337c9d8be8753e3ee63cbf2e49f}{create\+Help\+Request}} (int user\+Id, int assignment\+Id, const std::\+string \&message)
+\begin{DoxyCompactList}\small\item\em Creates a help request for an assignment from a user, with server-\/side timestamp. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_help_request_result_payload}{Help\+Request\+Result\+Payload}} \doxymbox{\hyperlink{class_help_request_controller_af49caf56dfb0fbfa2a4c22150c9c624b}{get\+Help\+Request\+By\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Fetches one help request by id. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_get_all_help_request_result_payload}{Get\+All\+Help\+Request\+Result\+Payload}} \doxymbox{\hyperlink{class_help_request_controller_a0852414e7afdbc8886fc4f3c5b2c7554}{get\+All\+Help\+Requests}} (int user\+Id)
+\begin{DoxyCompactList}\small\item\em Lists all help requests raised by {\ttfamily user\+Id}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_get_all_help_request_result_payload}{Get\+All\+Help\+Request\+Result\+Payload}} \doxymbox{\hyperlink{class_help_request_controller_a45e93565381b7352a94a4c445bd9c0cc}{get\+Help\+Requests\+From\+Other\+Users}} (int user\+Id)
+\begin{DoxyCompactList}\small\item\em Lists help requests from other users (excludes {\ttfamily user\+Id}), with display names when \doxylink{class_d_b}{DB} provides them. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Coordinates help-\/request persistence and cross-\/user listing rules. 
+
+{\ttfamily \doxylink{class_help_request_controller_a45c64337c9d8be8753e3ee63cbf2e49f}{create\+Help\+Request}} stamps UTC {\ttfamily created\+At} before insert. 
+
+\label{doc-constructors}
+\Hypertarget{class_help_request_controller_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_help_request_controller_af988039a76ceabdd9add1c7588ff384f}\index{HelpRequestController@{HelpRequestController}!HelpRequestController@{HelpRequestController}}
+\index{HelpRequestController@{HelpRequestController}!HelpRequestController@{HelpRequestController}}
+\doxysubsubsection{\texorpdfstring{HelpRequestController()}{HelpRequestController()}}
+{\footnotesize\ttfamily \label{class_help_request_controller_af988039a76ceabdd9add1c7588ff384f} 
+Help\+Request\+Controller::\+\+Help\+Request\+Controller (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{database}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs controller with database dependency. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em database} & Must outlive this controller. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_help_request_controller_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_help_request_controller_a45c64337c9d8be8753e3ee63cbf2e49f}\index{HelpRequestController@{HelpRequestController}!createHelpRequest@{createHelpRequest}}
+\index{createHelpRequest@{createHelpRequest}!HelpRequestController@{HelpRequestController}}
+\doxysubsubsection{\texorpdfstring{createHelpRequest()}{createHelpRequest()}}
+{\footnotesize\ttfamily \label{class_help_request_controller_a45c64337c9d8be8753e3ee63cbf2e49f} 
+\doxymbox{\hyperlink{struct_help_request_result_payload}{Help\+Request\+Result\+Payload}} Help\+Request\+Controller::\+create\+Help\+Request (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{, }\item[{int}]{assignment\+Id}{, }\item[{const std::\+string \&}]{message}{}\end{DoxyParamCaption})}
+
+
+
+Creates a help request for an assignment from a user, with server-\/side timestamp. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Raiser’s user id. \\
+\hline
+{\em assignment\+Id} & Target assignment. \\
+\hline
+{\em message} & User-\/visible request text. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Payload with inserted model on success, or error message on failure. 
+\end{DoxyReturn}
+\Hypertarget{class_help_request_controller_a0852414e7afdbc8886fc4f3c5b2c7554}\index{HelpRequestController@{HelpRequestController}!getAllHelpRequests@{getAllHelpRequests}}
+\index{getAllHelpRequests@{getAllHelpRequests}!HelpRequestController@{HelpRequestController}}
+\doxysubsubsection{\texorpdfstring{getAllHelpRequests()}{getAllHelpRequests()}}
+{\footnotesize\ttfamily \label{class_help_request_controller_a0852414e7afdbc8886fc4f3c5b2c7554} 
+\doxymbox{\hyperlink{struct_get_all_help_request_result_payload}{Get\+All\+Help\+Request\+Result\+Payload}} Help\+Request\+Controller::\+get\+All\+Help\+Requests (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Lists all help requests raised by {\ttfamily user\+Id}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Raiser filter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector (possibly empty). 
+\end{DoxyReturn}
+\Hypertarget{class_help_request_controller_af49caf56dfb0fbfa2a4c22150c9c624b}\index{HelpRequestController@{HelpRequestController}!getHelpRequestById@{getHelpRequestById}}
+\index{getHelpRequestById@{getHelpRequestById}!HelpRequestController@{HelpRequestController}}
+\doxysubsubsection{\texorpdfstring{getHelpRequestById()}{getHelpRequestById()}}
+{\footnotesize\ttfamily \label{class_help_request_controller_af49caf56dfb0fbfa2a4c22150c9c624b} 
+\doxymbox{\hyperlink{struct_help_request_result_payload}{Help\+Request\+Result\+Payload}} Help\+Request\+Controller::\+get\+Help\+Request\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Fetches one help request by id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & Primary key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Not-\/found error or success with model. 
+\end{DoxyReturn}
+\Hypertarget{class_help_request_controller_a45e93565381b7352a94a4c445bd9c0cc}\index{HelpRequestController@{HelpRequestController}!getHelpRequestsFromOtherUsers@{getHelpRequestsFromOtherUsers}}
+\index{getHelpRequestsFromOtherUsers@{getHelpRequestsFromOtherUsers}!HelpRequestController@{HelpRequestController}}
+\doxysubsubsection{\texorpdfstring{getHelpRequestsFromOtherUsers()}{getHelpRequestsFromOtherUsers()}}
+{\footnotesize\ttfamily \label{class_help_request_controller_a45e93565381b7352a94a4c445bd9c0cc} 
+\doxymbox{\hyperlink{struct_get_all_help_request_result_payload}{Get\+All\+Help\+Request\+Result\+Payload}} Help\+Request\+Controller::\+get\+Help\+Requests\+From\+Other\+Users (\begin{DoxyParamCaption}\item[{int}]{user\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Lists help requests from other users (excludes {\ttfamily user\+Id}), with display names when \doxylink{class_d_b}{DB} provides them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Id} & Current user to exclude from results. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of other users’ requests. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_help_request_controller_8hpp}{Help\+Request\+Controller.\+hpp}}\item 
+\doxymbox{\hyperlink{_help_request_controller_8cpp}{Help\+Request\+Controller.\+cpp}}\end{DoxyCompactItemize}

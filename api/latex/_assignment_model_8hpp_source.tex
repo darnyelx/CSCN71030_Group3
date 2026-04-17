@@ -1,0 +1,58 @@
+\doxysection{Assignment\+Model.\+hpp}
+\hypertarget{_assignment_model_8hpp_source}{}\label{_assignment_model_8hpp_source}\doxymbox{\hyperlink{_assignment_model_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_base_model_8hpp}{BaseModel.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <string>}\ \ \ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_base_model}{BaseModel}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{protected}:\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \doxymbox{\hyperlink{class_assignment_a360970ab5bf7888e119e4ed10d30ad83}{tableName}}\ =\ \textcolor{stringliteral}{"{}assignments"{}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00020\ \ \ \ \ std::string\ title;}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ description;}
+\DoxyCodeLine{00022\ \ \ \ \ std::string\ created\_at;}
+\DoxyCodeLine{00023\ \ \ \ \ std::string\ updated\_at;}
+\DoxyCodeLine{00024\ \ \ \ \ std::string\ due\_date;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ course\_id\{\};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ user\_id\{\};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ priority\{\};}
+\DoxyCodeLine{00029\ \ \ \ \ std::string\ status;}
+\DoxyCodeLine{00031\ \ \ \ \ std::string\ course\_name;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ -\/1,\ \textcolor{keyword}{const}\ std::string\&\ title\ =\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{const}\ std::string\&\ description\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_assignment_ae89b7e6cea45ce3a370b8645171e3bc5}{getId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_assignment_ad53932d9f1fc6caa517181c188a5b5d5}{getTitle}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_assignment_aa6f5ec52a7ef4e90046c120ec7978a5c}{getDescription}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_assignment_a59eea26327551fed4e6ff77173550ba9}{getCourseId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_assignment_a0adcced466b4c6ce67dac00627b6fafd}{getCourseName}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_assignment_a13f581809228e1920de13984f7501d6a}{getUserId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_assignment_a00886a481ca2d23b00cabea1531c4e2f}{getPriority}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_assignment_ad3a71209dcfa00fbfde78c720dec867b}{getStatus}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_assignment_a0957f7188df3762766951dba77b6780f}{getDueDate}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_assignment_ab0554706f0dd55ed80d3b46f8767bfe0}{getCreatedAt}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_assignment_ab075fcb3c6bc231d4e7892552ff41874}{getUpdatedAt}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ \ \ \ \ std::string\ \doxymbox{\hyperlink{class_assignment_ad121dd9b8466c164b591737a7f83e7c0}{getTableName}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00066\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\&\ \doxymbox{\hyperlink{class_assignment_a0e186b6544da8a58f34cecd65525feec}{setId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00068\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\&\ \doxymbox{\hyperlink{class_assignment_ac3926d3fad060fa3ed5022fc9137e072}{setTitle}}(\textcolor{keyword}{const}\ std::string\&\ title);}
+\DoxyCodeLine{00070\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\&\ \doxymbox{\hyperlink{class_assignment_a4122f213e654ca6e940df652b32a18bc}{setDescription}}(\textcolor{keyword}{const}\ std::string\&\ description);}
+\DoxyCodeLine{00072\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\&\ \doxymbox{\hyperlink{class_assignment_aa0c491d2e360a10918d1110640849543}{setCreatedAt}}(\textcolor{keyword}{const}\ std::string\&\ created\_at);}
+\DoxyCodeLine{00074\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\&\ \doxymbox{\hyperlink{class_assignment_aff9c8b72dded3ce2998893934aebbd3f}{setUpdatedAt}}(\textcolor{keyword}{const}\ std::string\&\ updated\_at);}
+\DoxyCodeLine{00076\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\&\ \doxymbox{\hyperlink{class_assignment_a30d6e1d969c9451c56803ef582b57e0a}{setDueDate}}(\textcolor{keyword}{const}\ std::string\&\ due\_date);}
+\DoxyCodeLine{00078\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\&\ \doxymbox{\hyperlink{class_assignment_a737c452c98076a745218c0c2a133c479}{setCourseId}}(\textcolor{keywordtype}{int}\ course\_id);}
+\DoxyCodeLine{00080\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\&\ \doxymbox{\hyperlink{class_assignment_aba820868e0041c846549acee390be526}{setCourseName}}(\textcolor{keyword}{const}\ std::string\ \&name);}
+\DoxyCodeLine{00082\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\&\ \doxymbox{\hyperlink{class_assignment_a48b60834ebff9e2a39cb2e128b7da3c7}{setPriority}}(\textcolor{keywordtype}{int}\ priority);}
+\DoxyCodeLine{00084\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\&\ \doxymbox{\hyperlink{class_assignment_a8f61cd8bcda5ab02a51c9c24ead961c2}{setStatus}}(\textcolor{keyword}{const}\ std::string\ \&status);}
+\DoxyCodeLine{00086\ \ \ \ \ \doxymbox{\hyperlink{class_assignment_aba61348e8e38c60afa1a946d5e4242c5}{Assignment}}\&\ \doxymbox{\hyperlink{class_assignment_ae86244f207110dc158e5b1269da7399f}{setUserId}}(\textcolor{keywordtype}{int}\ user\_id);}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_assignment_ad257ca8b777ddec191fd69a3e23adb2f}{save}}(IDatabase\ \&db)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_assignment_a98fff912dc8455ff15ccc59ffa088558}{load}}();}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_assignment_ad0e116c816191d777f96c89cf30529a2}{remove}}(IDatabase\ \&db)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \};}
+
+\end{DoxyCode}

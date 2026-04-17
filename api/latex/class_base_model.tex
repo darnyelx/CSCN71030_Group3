@@ -1,0 +1,119 @@
+\doxysection{Base\+Model Class Reference}
+\hypertarget{class_base_model}{}\label{class_base_model}\index{BaseModel@{BaseModel}}
+
+
+Base type for entities mapped to SQL tables ({\ttfamily \doxylink{class_user_model}{User\+Model}}, {\ttfamily \doxylink{class_assignment}{Assignment}}, etc.).  
+
+
+
+
+{\ttfamily \+\#include $<$Base\+Model.\+hpp$>$}
+
+Inheritance diagram for Base\+Model:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_base_model}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \doxymbox{\hyperlink{class_base_model_aeec6feadc4ebee6ea92d3c379092e0b6}{\texorpdfstring{$\sim$}{\string~}\+Base\+Model}} ()=default
+\begin{DoxyCompactList}\small\item\em Ensures derived destructors run when deleting through {\ttfamily Base\+Model\texorpdfstring{$\ast$}{*}}. \end{DoxyCompactList}\item 
+virtual std::\+string \doxymbox{\hyperlink{class_base_model_abdc6d5be8ae06dedf6d08fefe1efe2f8}{get\+Table\+Name}} ()=0
+\begin{DoxyCompactList}\small\item\em SQL table name associated with this entity (e.\+g. {\ttfamily "{}users"{}}, {\ttfamily "{}assignments"{}}). \end{DoxyCompactList}\item 
+virtual bool \doxymbox{\hyperlink{class_base_model_ad64fcc8fdbd3663f8267f12d009683a2}{save}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&db)=0
+\begin{DoxyCompactList}\small\item\em Inserts or updates this row through the given database port. \end{DoxyCompactList}\item 
+virtual bool \doxymbox{\hyperlink{class_base_model_a63f923033f87f2b11f97bff190fdd685}{remove}} (\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&db)=0
+\begin{DoxyCompactList}\small\item\em Deletes this row from the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base type for entities mapped to SQL tables ({\ttfamily \doxylink{class_user_model}{User\+Model}}, {\ttfamily \doxylink{class_assignment}{Assignment}}, etc.). 
+
+Concrete models implement {\ttfamily \doxylink{class_base_model_abdc6d5be8ae06dedf6d08fefe1efe2f8}{get\+Table\+Name}} for logging or generic SQL helpers, and {\ttfamily \doxylink{class_base_model_ad64fcc8fdbd3663f8267f12d009683a2}{save}} /\+ {\ttfamily \doxylink{class_base_model_a63f923033f87f2b11f97bff190fdd685}{remove}} to delegate writes to an {\ttfamily \doxylink{class_i_database}{IDatabase}} implementation. 
+
+\label{doc-constructors}
+\Hypertarget{class_base_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_base_model_aeec6feadc4ebee6ea92d3c379092e0b6}\index{BaseModel@{BaseModel}!````~BaseModel@{\texorpdfstring{$\sim$}{\string~}BaseModel}}
+\index{````~BaseModel@{\texorpdfstring{$\sim$}{\string~}BaseModel}!BaseModel@{BaseModel}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}BaseModel()}{\string~BaseModel()}}
+{\footnotesize\ttfamily \label{class_base_model_aeec6feadc4ebee6ea92d3c379092e0b6} 
+virtual Base\+Model::\+\texorpdfstring{$\sim$}{\string~}\+Base\+Model (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Ensures derived destructors run when deleting through {\ttfamily Base\+Model\texorpdfstring{$\ast$}{*}}. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_base_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_base_model_abdc6d5be8ae06dedf6d08fefe1efe2f8}\index{BaseModel@{BaseModel}!getTableName@{getTableName}}
+\index{getTableName@{getTableName}!BaseModel@{BaseModel}}
+\doxysubsubsection{\texorpdfstring{getTableName()}{getTableName()}}
+{\footnotesize\ttfamily \label{class_base_model_abdc6d5be8ae06dedf6d08fefe1efe2f8} 
+virtual std::\+string Base\+Model::\+get\+Table\+Name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+SQL table name associated with this entity (e.\+g. {\ttfamily "{}users"{}}, {\ttfamily "{}assignments"{}}). 
+
+\begin{DoxyReturn}{Returns}
+Non-\/owning logical table identifier as a string. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_assignment_ad121dd9b8466c164b591737a7f83e7c0}{Assignment}}, \doxymbox{\hyperlink{class_course_a5ea3109e7177d4e6c9495065176d90f2}{Course}}, \doxymbox{\hyperlink{class_help_request_model_a25aaeda75ab71d6709c5dd7acb180711}{Help\+Request\+Model}}, and \doxymbox{\hyperlink{class_user_model_a5a7856cc8996fe2d3058bc86572b75e9}{User\+Model}}.
+
+\Hypertarget{class_base_model_a63f923033f87f2b11f97bff190fdd685}\index{BaseModel@{BaseModel}!remove@{remove}}
+\index{remove@{remove}!BaseModel@{BaseModel}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{class_base_model_a63f923033f87f2b11f97bff190fdd685} 
+virtual bool Base\+Model::\+remove (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{db}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Deletes this row from the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & Database used for persistence. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the operation succeeded. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_assignment_ad0e116c816191d777f96c89cf30529a2}{Assignment}}, \doxymbox{\hyperlink{class_course_aa7d70cacc5aad41c6e882eea1a9a46e8}{Course}}, \doxymbox{\hyperlink{class_help_request_model_ad1b4a686b54c210cc23ba853f0e9ccd7}{Help\+Request\+Model}}, and \doxymbox{\hyperlink{class_user_model_a3491e556ea32840305b3d9954b95c52b}{User\+Model}}.
+
+\Hypertarget{class_base_model_ad64fcc8fdbd3663f8267f12d009683a2}\index{BaseModel@{BaseModel}!save@{save}}
+\index{save@{save}!BaseModel@{BaseModel}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily \label{class_base_model_ad64fcc8fdbd3663f8267f12d009683a2} 
+virtual bool Base\+Model::\+save (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_i_database}{IDatabase}} \&}]{db}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Inserts or updates this row through the given database port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & Database used for persistence. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the operation succeeded. 
+\end{DoxyReturn}
+
+
+Implemented in \doxymbox{\hyperlink{class_assignment_ad257ca8b777ddec191fd69a3e23adb2f}{Assignment}}, \doxymbox{\hyperlink{class_course_a0bd53ef6c7fb075bd1aa33f5e5178970}{Course}}, \doxymbox{\hyperlink{class_help_request_model_ae0fa8cc106c37a3de11115d9d72e323e}{Help\+Request\+Model}}, and \doxymbox{\hyperlink{class_user_model_a067d5e2ae3a2e4eb0c20f2e30a2fcb3e}{User\+Model}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_base_model_8hpp}{Base\+Model.\+hpp}}\end{DoxyCompactItemize}

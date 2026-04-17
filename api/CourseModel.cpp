@@ -1,3 +1,8 @@
+/**
+ * @file CourseModel.cpp
+ * @brief Course accessors and persistence helpers.
+ */
+
 #include <iostream>
 #include "CourseModel.hpp"
 

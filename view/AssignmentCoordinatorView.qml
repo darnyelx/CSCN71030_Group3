@@ -763,6 +763,13 @@ Page {
                                     color: textSecondary
                                     font.pixelSize: 13
                                 }
+
+                                Text {
+                                    text: "Welcome " + UserStore.firstName + " !"
+                                    color: textSecondary
+                                    font.pixelSize: 24
+                                    font.bold: true
+                                }
                             }
                         }
 
@@ -1275,7 +1282,7 @@ Page {
 
                                         Text {
                                             width: parent.width
-                                            visible: helpRequestController.helpRequestModel.entryCount() === 0
+                                            visible: false
                                             text: "You have not raised any help requests yet. Use “Request help” on an assignment card to ask for support."
                                             color: textSecondary
                                             font.pixelSize: 15
@@ -1345,7 +1352,7 @@ Page {
                                         Text {
                                             width: parent.width
                                             visible: helpRequestController.othersHelpRequestModel.entryCount() === 0
-                                            text: "No help requests from other users yet."
+                                            text: "No help requests yet."
                                             color: textSecondary
                                             font.pixelSize: 15
                                             wrapMode: Text.WordWrap
@@ -1650,6 +1657,7 @@ Page {
                                                 color: textSecondary
                                                 font.pixelSize: 15
                                                 wrapMode: Text.WordWrap
+                                                visible: helpRequestController.othersHelpRequestModel.rowCount() === 0
                                             }
                                         }
 

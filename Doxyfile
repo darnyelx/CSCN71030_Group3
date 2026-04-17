@@ -1,0 +1,42 @@
+# Doxygen configuration for todo_app (Qt 6 + C++20).
+# Generate HTML: doxygen Doxyfile
+
+PROJECT_NAME           = todo_app
+PROJECT_NUMBER         = 0.1
+PROJECT_BRIEF          = "Assignment coordinator: Qt Quick UI, PostgreSQL API layer"
+
+OUTPUT_DIRECTORY       = doxygen-html
+CREATE_SUBDIRS         = NO
+ALLOW_UNICODE_NAMES    = YES
+
+INPUT                  = main.cpp api view tests
+FILE_PATTERNS          = *.cpp *.hpp *.h
+RECURSIVE              = YES
+
+EXCLUDE                = build-tests \
+                         build-release \
+                         tests/build \
+                         tests/cmake-build-release
+
+EXCLUDE_PATTERNS       = */build-tests/* \
+                         */build-release/* \
+                         */CMakeFiles/* \
+                         */tests/build/* \
+                         */tests/cmake-build-release/* \
+                         */_deps/*
+
+EXTENSION_MAPPING      = hpp=C++ \
+                         h=C++
+
+OPTIMIZE_OUTPUT_FOR_C  = NO
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE         = NO
+EXTRACT_STATIC          = YES
+
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = YES
+
+USE_MDFILE_AS_MAINPAGE =

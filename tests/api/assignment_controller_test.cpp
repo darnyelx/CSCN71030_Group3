@@ -1,3 +1,8 @@
+/**
+ * @file assignment_controller_test.cpp
+ * @brief Tests for assignment CRUD payloads via `StubDatabase`.
+ */
+
 #include <gtest/gtest.h>
 
 #include "AssignmentController.hpp"

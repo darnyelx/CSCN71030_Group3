@@ -1,6 +1,7 @@
-//
-// Created by Darnyelx on 2026-04-10.
-//
+/**
+ * @file CourseListModel.cpp
+ * @brief QAbstractListModel roles and `setCourses` population.
+ */
 
 #include "view/Models/headers/CourseListModel.hpp"
 #include <QVariant>
