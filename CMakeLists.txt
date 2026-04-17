@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.21)
 project(todo_app VERSION 0.1 LANGUAGES CXX)
 
 option(TODO_APP_BUILD_TESTS "Build GoogleTest suite for api/" ON)
+option(TODO_APP_DB_INTEGRATION_TESTS "Build api_integration_tests (Auth register/login vs real DB; needs config.env or cache override)" OFF)
+set(TODO_APP_DB_CONNECTION_STRING "" CACHE STRING "Optional: libpq connection string for api_integration_tests (overrides parsing config.env)")
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD 20)
@@ -127,6 +129,59 @@ if(TODO_APP_BUILD_TESTS)
     set_target_properties(api_tests PROPERTIES AUTOMOC OFF)
     include(GoogleTest)
     gtest_discover_tests(api_tests)
+
+    if(TODO_APP_DB_INTEGRATION_TESTS)
+        # Value for CTest: read DBConnectionString from config.env (same key as the app). Optional override: -DTODO_APP_DB_CONNECTION_STRING=...
+        set(TODO_APP_INTEGRATION_DB_CONN "")
+        if(TODO_APP_DB_CONNECTION_STRING)
+            set(TODO_APP_INTEGRATION_DB_CONN "${TODO_APP_DB_CONNECTION_STRING}")
+        elseif(EXISTS "${CMAKE_SOURCE_DIR}/config.env")
+            file(STRINGS "${CMAKE_SOURCE_DIR}/config.env" _todo_app_config_lines)
+            foreach(_todo_app_ln IN LISTS _todo_app_config_lines)
+                string(STRIP "${_todo_app_ln}" _todo_app_ln)
+                if(_todo_app_ln MATCHES "^#" OR _todo_app_ln STREQUAL "")
+                    continue()
+                endif()
+                if(_todo_app_ln MATCHES "^DBConnectionString[ \t]*=(.*)$")
+                    set(TODO_APP_INTEGRATION_DB_CONN "${CMAKE_MATCH_1}")
+                    string(STRIP "${TODO_APP_INTEGRATION_DB_CONN}" TODO_APP_INTEGRATION_DB_CONN)
+                    break()
+                endif()
+            endforeach()
+        endif()
+
+        add_executable(api_integration_tests
+            tests/api/integration/auth_db_integration_test.cpp
+        )
+        target_include_directories(api_integration_tests PRIVATE
+            ${CMAKE_SOURCE_DIR}/api
+        )
+        target_sources(api_integration_tests PRIVATE
+            api/DB.cpp
+            api/UserModel.cpp
+            api/AssignmentModel.cpp
+            api/CourseModel.cpp
+            api/HelpRequestModel.cpp
+            api/AuthController.cpp
+        )
+        target_link_libraries(api_integration_tests PRIVATE
+            GTest::gtest_main
+            unofficial-sodium::sodium
+            libpqxx::pqxx
+        )
+        set_target_properties(api_integration_tests PROPERTIES AUTOMOC OFF)
+
+        if(NOT TODO_APP_INTEGRATION_DB_CONN STREQUAL "")
+            string(LENGTH "${TODO_APP_INTEGRATION_DB_CONN}" _dbc_len)
+            message(STATUS "api_integration_tests: DBConnectionString for CTest is set (length ${_dbc_len}, not printed).")
+            gtest_discover_tests(api_integration_tests
+                PROPERTIES ENVIRONMENT "DBConnectionString=${TODO_APP_INTEGRATION_DB_CONN}"
+            )
+        else()
+            message(WARNING "api_integration_tests: could not read DBConnectionString from config.env; tests will skip unless you export DBConnectionString before running the binary.")
+            gtest_discover_tests(api_integration_tests)
+        endif()
+    endif()
 endif()
 
 include(GNUInstallDirs)
